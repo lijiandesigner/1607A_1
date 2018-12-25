@@ -7,6 +7,7 @@ namespace MvcUI.Controllers
 {
     public class Index : Controller
     {
-
+        public void Get()
+        { }
     }
 }
