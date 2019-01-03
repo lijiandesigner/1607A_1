@@ -138,6 +138,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HttpClientHelper.cs" />
+    <Compile Include="Models\AttendanceInfo.cs" />
+    <Compile Include="Models\AttendanceType.cs" />
+    <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\MonthAtten.cs" />
+    <Compile Include="Models\PermissionInfo.cs" />
+    <Compile Include="Models\PersonMessage.cs" />
+    <Compile Include="Models\PositionInfo.cs" />
+    <Compile Include="Models\RestInfo.cs" />
+    <Compile Include="Models\WagesInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -176,14 +185,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Leave\Leave_PartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Checking\" />
     <Folder Include="Views\Finnance\" />
-    <Folder Include="Views\Leave\" />
     <Folder Include="Views\PersonnelInfomation\" />
     <Folder Include="Views\PersonnelPermissions\" />
     <Folder Include="Views\PersonnelPosition\" />
