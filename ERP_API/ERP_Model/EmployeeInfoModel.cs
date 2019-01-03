@@ -22,6 +22,5 @@ namespace ERP_Model
         public string EcardID { get; set; }//身份证
         public string Eheart { get; set; }//头像
         public int Pid { get; set; }//职位
-        public string Permissions { get; set; }//权限
     }
 }
