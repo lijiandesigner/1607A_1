@@ -11,7 +11,6 @@ namespace ERP_Bll
 {
     public class AttendanceInfoBll
     {
-        AttendanceInfoDal dal = new AttendanceInfoDal();
-        public int MyProperty { get; set; }
+        
     }
 }
