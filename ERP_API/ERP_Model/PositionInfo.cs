@@ -10,7 +10,7 @@ namespace ERP_Model
     /// <summary>
     /// 职位表
     /// </summary>
-    public class PositionInfoModel
+    public class PositionInfo
     {
         [Key]
         public int PoID { get; set; }//主键ID

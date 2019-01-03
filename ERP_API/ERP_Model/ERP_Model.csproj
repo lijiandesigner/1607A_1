@@ -48,15 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttendanceInfoModel.cs" />
-    <Compile Include="AttendanceTypeModel.cs" />
-    <Compile Include="EmployeeInfoModel.cs" />
-    <Compile Include="MonthAttenModel.cs" />
-    <Compile Include="PersonMessageModel.cs" />
-    <Compile Include="PositionInfoModel.cs" />
+    <Compile Include="AttendanceInfo.cs" />
+    <Compile Include="AttendanceType.cs" />
+    <Compile Include="EmployeeInfo.cs" />
+    <Compile Include="MonthAtten.cs" />
+    <Compile Include="PersonMessage.cs" />
+    <Compile Include="PositionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestInfoModel.cs" />
-    <Compile Include="WagesInfoModel.cs" />
+    <Compile Include="RestInfo.cs" />
+    <Compile Include="WagesInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

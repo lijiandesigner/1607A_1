@@ -10,7 +10,7 @@ namespace ERP_Model
     /// <summary>
     /// 月考勤信息表
     /// </summary>
-    public class MonthAttenModel
+    public class MonthAtten
     {
         [Key]
         public int MID { get; set; }//主键ID
