@@ -1,5 +1,66 @@
 ﻿@model IEnumerable<ERP_MVC.Models.RestInfo>
-    <div class="">
+<div>
+    <h1>请假信息表</h1>
+</div>
+<span>员工编号</span><input id="TxtEid" type="text" />
+    <select id="SelRestType">
+    <option value="选择请假类型">选择请假类型</option>
+    <option value="事假">事假</option>
+        <option value="病假">病假</option>
+        <option value="婚假">婚假</option>
+        <option value="产假">产假</option>
+        <option value="丧假">丧假</option>
+</select>
+    <input id="btnSelect" type="button" onclick="SelectRest()" value="查询" />
+<table>
+    <thead>
+        <tr>
+            <th>员工编号</th>
+            <th>请假类型</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>请假理由</th>
+            <th>审核时间</th>
+            <th>审核状态</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody id="tb">
 
-    </div>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    </tbody>
+</table>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script>
+    function SelectRest() {
+        eid = $("#TxtEid").val();
+        rtype = $("#SelRestType").val();
+        $.ajax({
+            url: "",
+            type: "get",
+            data: { Eid: eid, Rtype: rtype },
+            dataType: "json",
+            success: function (data) {
+                var str = "";
+                for (var i in data) {
+                    str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].AMBeginTime + "</td><td>" + data[i].AMEndTime + "</td><td>" + data[i].AABeginTime + "</td><td>" + data[i].AAEndTime + "</td><td>" + data[i].ABeLateTime + "</td><td>" + data[i].ALeaveTime + "</td><td>" + data[i].Static + "</td><td>" + data[i].Adate + "</td></tr>";
+                }
+                $("#tb").html(str);
+            }
+        });
+    }
+    $(function () {
+        $.ajax({
+            url: '',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                var str = "";
+                for (var i in data) {
+                    str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].AMBeginTime + "</td><td>" + data[i].AMEndTime + "</td><td>" + data[i].AABeginTime + "</td><td>" + data[i].AAEndTime + "</td><td>" + data[i].ABeLateTime + "</td><td>" + data[i].ALeaveTime + "</td><td>" + data[i].Static + "</td><td>" + data[i].Adate + "</td></tr>";
+                }
+                $("#tb").html(str);
+            }
+        })
+    })
+</script>
