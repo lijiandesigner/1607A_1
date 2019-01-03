@@ -10,7 +10,7 @@ namespace ERP_Model
     /// <summary>
     /// 考勤规则表
     /// </summary>
-    public class AttendanceTypeModel
+    public class AttendanceType
     {
         [Key]
         public int ATID { get; set; }//主键ID

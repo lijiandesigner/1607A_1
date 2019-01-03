@@ -10,7 +10,7 @@ namespace ERP_Model
     /// <summary>
     /// 员工信息表
     /// </summary>
-    public class EmployeeInfoModel
+    public class EmployeeInfo
     {
         [Key]
         public int EID { get; set; }//主键ID
@@ -22,6 +22,5 @@ namespace ERP_Model
         public string EcardID { get; set; }//身份证
         public string Eheart { get; set; }//头像
         public int Pid { get; set; }//职位
-        public string Permissions { get; set; }//权限
     }
 }

@@ -8,14 +8,15 @@ using System.ComponentModel.DataAnnotations;
 namespace ERP_Model
 {
     /// <summary>
-    /// 工资信息表
+    /// 人事管理表
     /// </summary>
-    public class WagesInfoModel
+    public class PersonMessage
     {
         [Key]
-        public int WID { get; set; }//主键ID
+        public int PID { get; set; }//主键ID
         public int EID { get; set; }//员工ID
-        public string WDudectionMoney { get; set; }//应扣除金额
-        public DateTime WShouldMoney { get; set; }//实发金额
+        public DateTime PeBeginWork { get; set; }//入职时间
+        public DateTime PeEndwork { get; set; }//离职时间
+        public bool Pstatic { get; set; }//状态
     }
 }

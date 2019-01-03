@@ -10,7 +10,7 @@ namespace ERP_Model
     /// <summary>
     /// 日考勤信息表
     /// </summary>
-    public class AttendanceInfoModel
+    public class AttendanceInfo
     {
         [Key]
         public int AID { get; set; }//主键ID

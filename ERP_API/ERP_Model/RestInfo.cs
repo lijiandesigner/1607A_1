@@ -10,7 +10,7 @@ namespace ERP_Model
     /// <summary>
     /// 请假信息表
     /// </summary>
-    public class RestInfoModel
+    public class RestInfo
     {
         [Key]
         public int RID { get; set; }//主键ID
