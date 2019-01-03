@@ -51,7 +51,6 @@
     <Compile Include="AttendanceInfoModel.cs" />
     <Compile Include="AttendanceTypeModel.cs" />
     <Compile Include="EmployeeInfoModel.cs" />
-    <Compile Include="PermissionInfoModel.cs" />
     <Compile Include="MonthAttenModel.cs" />
     <Compile Include="PersonMessageModel.cs" />
     <Compile Include="PositionInfoModel.cs" />
