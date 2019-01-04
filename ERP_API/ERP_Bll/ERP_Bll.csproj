@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\..\插件\A大全\EF_dll\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +59,10 @@
     <ProjectReference Include="..\ERP_Dal\ERP_Dal.csproj">
       <Project>{565561f9-7fcf-4a8a-bc13-8d64eae323a0}</Project>
       <Name>ERP_Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Model\ERP_Model.csproj">
+      <Project>{2b567acb-c3e7-4a50-92c0-b8d29d644bea}</Project>
+      <Name>ERP_Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{89f671a0-877d-4518-9ded-1182859cdbb2}</Project>
