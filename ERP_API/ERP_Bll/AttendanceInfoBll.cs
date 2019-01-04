@@ -11,6 +11,7 @@ namespace ERP_Bll
 {
     public class AttendanceInfoBll
     {
+
         public int MyProperty1 { get; set; }
     }
 }
