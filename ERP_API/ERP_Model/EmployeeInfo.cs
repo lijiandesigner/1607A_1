@@ -22,6 +22,7 @@ namespace ERP_Model
         public string Ephone { get; set; }//手机号
         public string Eemail { get; set; }//邮箱
         public string EcardID { get; set; }//身份证
+        public string Password { get; set; }//密码
         public string Eheart { get; set; }//头像
         public int Pid { get; set; }//职位
     }
