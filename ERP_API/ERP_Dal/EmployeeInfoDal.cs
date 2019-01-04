@@ -41,11 +41,11 @@ namespace ERP_Dal
                          where a.ENo.Equals(ENo) && a.EcardID.Contains(Rpassword)
                          select new {
                              name=a.EName,
-                             Pstatic= c.Pstatic,
+                             Pts= c.Pstatic,
                              permissins = b.Permission
                         };
             LoginResult loginResult = new LoginResult();
-            if (result.Count() != 1||result.FirstOrDefault().Pstatic)
+            if (result.Count() != 1||result.FirstOrDefault().Pts)
                 loginResult.Result = false;
             else
             {
