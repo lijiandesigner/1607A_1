@@ -263,7 +263,6 @@
     <ProjectReference Include="..\ERP_Bll\ERP_Bll.csproj">
       <Project>{6f617a07-b7a5-4df6-81c3-7b5fe362890b}</Project>
       <Name>ERP_Bll</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\ERP_Model\ERP_Model.csproj">
       <Project>{2b567acb-c3e7-4a50-92c0-b8d29d644bea}</Project>
@@ -276,6 +275,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
