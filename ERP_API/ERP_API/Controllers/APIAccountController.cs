@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ERP_API.Models;
+using Models;
+using ERP_Bll;
 
 namespace ERP_API.Controllers
 {
@@ -12,7 +13,7 @@ namespace ERP_API.Controllers
     {
         public LoginResult Login(string ENo,string Rpassword)
         {
-
+            return EmployeeInfoBll.Login(ENo, Rpassword);
         }
     }
 }
