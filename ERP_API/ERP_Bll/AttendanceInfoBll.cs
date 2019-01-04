@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ERP_Dal;
 using System.Data;
-using Models
+using Models;
 
 namespace ERP_Bll
 {
