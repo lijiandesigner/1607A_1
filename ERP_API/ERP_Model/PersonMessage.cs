@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERP_Model
 {
+    [Table("PersonMessage")]
     /// <summary>
     /// 人事管理表
     /// </summary>
