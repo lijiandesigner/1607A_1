@@ -1,6 +1,5 @@
 C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\bin\Debug\Models.dll
 C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\bin\Debug\Models.pdb
-C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\obj\Debug\Models.csprojAssemblyReference.cache
 C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\obj\Debug\Models.dll
 C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\obj\Debug\Models.pdb
