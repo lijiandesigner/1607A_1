@@ -20,14 +20,13 @@ namespace ERP_MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            string json = HttpClientHelper.SendRequest("get", "LeaveTable");
-            List<RestInfo> rlist = JsonConvert.DeserializeObject<List<RestInfo>>(json);
-            return PartialView("Leave_PartialView",rlist);
+            return View();
         }
         [HttpPost]
         public ActionResult AddRest()
         {
-            return PartialView("AddRest_PartialView");
+
+            return View();
         }
     }
 }

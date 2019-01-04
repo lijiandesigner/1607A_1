@@ -11,5 +11,6 @@ namespace ERP_MVC.Models
         public string PoName { get; set; }//职位名称
         public int PoLeave { get; set; }//岗位级别
         public double PoMinMoney { get; set; }//底薪
+        public string Permission { get; set; }//权限
     }
 }

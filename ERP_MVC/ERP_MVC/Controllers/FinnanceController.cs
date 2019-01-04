@@ -17,5 +17,9 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
+        public ActionResult HistoryIndex()
+        {
+            return View();
+        }
     }
 }
