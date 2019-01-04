@@ -11,7 +11,8 @@ namespace ERP_API.Controllers
 {
     public class APIAccountController : ApiController
     {
-        public LoginResult Login(string ENo,string Rpassword)
+        [HttpGet]
+        public LoginResult Login(string ENo="",string Rpassword="")
         {
             return EmployeeInfoBll.Login(ENo, Rpassword);
         }
