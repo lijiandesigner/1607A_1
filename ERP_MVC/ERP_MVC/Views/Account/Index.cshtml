@@ -217,9 +217,19 @@
             });
             return;
         }
-        else {
-            var str = "/Account/Index?txtname='" + ENo + "'&txtpwd='" + EcardID + "'";
-            window.location.href=str;
-        }
+        $.ajax({
+            url: "/Account/Index?txtname='" + ENo + "'&txtpwd='" + EcardID + "'",
+            dataType: "text",
+            success: function (data) {
+                if (data > 0) {
+                    layer.open({
+                        title: "提示",
+                        countent: "登陆成功!"
+                    });
+                }
+            }
+
+        })
+
     }
 </script>

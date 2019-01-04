@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "AccountRules";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@model List<ERP_MVC.Models.AttendanceType>
+
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>上午上班时间</th>
+                            <th>上午下班时间</th>
+                            <th>下午上班时间</th>
+                            <th>下午下班时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.MBeginTime</th>
+                                <th>@item.MEndTime</th>
+                                <th>@item.AEndTime</th>
+                                <th>@item.AEndTime</th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
