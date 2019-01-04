@@ -259,11 +259,13 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Account\Maininterface.cshtml" />
     <Content Include="Views\Checking\AccountRules.cshtml" />
+    <Content Include="Views\Leave\Index.cshtml" />
+    <Content Include="Views\Leave\AddRest.cshtml" />
+    <Content Include="Views\Finnance\SettleWage.cshtml" />
+    <Content Include="Views\Finnance\HistoryWage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Finnance\" />
-    <Folder Include="Views\Leave\" />
     <Folder Include="Views\PersonnelInfomation\" />
     <Folder Include="Views\PersonnelPermissions\" />
     <Folder Include="Views\PersonnelPosition\" />
