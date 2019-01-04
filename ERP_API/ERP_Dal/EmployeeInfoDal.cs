@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Models;
+using ERP_Model;
 
 namespace ERP_Dal
 {
@@ -16,6 +17,22 @@ namespace ERP_Dal
         public static LoginResult Login(string ENo, string Rpassword)
         {
             EFContext Context = new EFContext();
+
+            if(ENo=="admin")
+            {
+                EmployeeInfo employee = new EmployeeInfo()
+                {
+                    ENo = "admin",
+                    EName = "管理员",
+                    Esex = true,
+                    Ephone = "",
+                    Eemail = "",
+                    EcardID = "",
+                    Eheart = "",
+                    Pid = 1
+                };
+            }
+
             var result = from a in Context.EmployeeInfo
                          join b in Context.PositionInfo
                          on a.Pid equals b.PoID
