@@ -16,10 +16,10 @@ namespace ERP_Model
     {
         [Key]
         public int ATID { get; set; }//主键ID
-        public DateTime MBeginTime { get; set; }//上午上班时间
-        public DateTime MEndTime { get; set; }//上午下班时间
-        public DateTime ABeginTime { get; set; }//下午上班时间
-        public DateTime AEndTime { get; set; }//下午下班时间
+        public string MBeginTime { get; set; }//上午上班时间
+        public string MEndTime { get; set; }//上午下班时间
+        public string ABeginTime { get; set; }//下午上班时间
+        public string AEndTime { get; set; }//下午下班时间
         public string Remark { get; set; }//说明
     }
 }

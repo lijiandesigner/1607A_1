@@ -30,7 +30,7 @@ namespace ERP_Dal
                     Ephone = "",
                     Eemail = "",
                     EcardID = Rpassword,
-                    Password = Rpassword.Substring(12),
+                    Ppassword = Rpassword.Substring(12),
                     Eheart = "",
                     Pid = 1
                 };
@@ -41,35 +41,50 @@ namespace ERP_Dal
                     PoMinMoney = 0,
                     Permission = "abcdefghijk"
                 };
+                PersonMessage personMessage = new PersonMessage()
+                {
+                    EID = 1,
+                    PeBeginWork = DateTime.Now.ToString(),
+                    PeEndwork="",
+                    Pstatic=true
+                };
                 DbEntityEntry<EmployeeInfo> entityEntry = Context.Entry<EmployeeInfo>(employee);
                 entityEntry.State = System.Data.Entity.EntityState.Added;
                 DbEntityEntry<PositionInfo> entityEn = Context.Entry<PositionInfo>(positionInfo);
                 entityEn.State = System.Data.Entity.EntityState.Added;
+                DbEntityEntry<PersonMessage> person = Context.Entry<PersonMessage>(personMessage);
+                person.State = System.Data.Entity.EntityState.Added;
                 Context.SaveChanges();
+                Rpassword = Rpassword.Substring(12);
             }
 
             var result = (from a in Context.EmployeeInfo
-                         join b in Context.PositionInfo
+                          join b in Context.PositionInfo
                          on a.Pid equals b.PoID
                          join c in Context.PersonMessage
                          on a.EID equals c.EID
-                         where a.ENo.Equals(ENo) && a.Password.Equals(Rpassword.Substring(12))
+                         where a.ENo.Equals(ENo) && a.Ppassword.Equals(Rpassword)
                          select new
                          {
                              name = a.EName,
-                             Eid=a.EID,
+                             Eid = a.EID,
                              Pstats = c.Pstatic,
                              permissins = b.Permission
-                         }).ToList();
+                         }).ToList().FirstOrDefault();
             LoginResult loginResult = new LoginResult();
-            if (result.Count() != 1||result.FirstOrDefault().Pstats)
+            if (result == null)
                 loginResult.Result = false;
             else
             {
-                loginResult.Result = true;
-                loginResult.EID = result.FirstOrDefault().Eid;
-                loginResult.EName = result.FirstOrDefault().name.ToString();
-                loginResult.Permissins = result.FirstOrDefault().permissins.ToString();
+                if (result.Pstats)
+                {
+                    loginResult.Result = true;
+                    loginResult.EID = result.Eid;
+                    loginResult.EName = result.name.ToString();
+                    loginResult.Permissins = result.permissins.ToString();
+                }
+                else
+                    loginResult.Result = false;
             }
             return loginResult;
         }
