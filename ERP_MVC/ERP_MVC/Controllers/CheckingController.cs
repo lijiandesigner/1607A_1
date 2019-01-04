@@ -8,12 +8,12 @@ namespace ERP_MVC.Controllers
 {
     public class CheckingController : Controller
     {
+        // GET: Checking
         /// <summary>
-        /// 考勤信息控制器
+        /// 考勤规则
         /// </summary>
         /// <returns></returns>
-        // GET: Checking
-        public ActionResult Index()
+        public ActionResult AccountRules()
         {
             return View();
         }

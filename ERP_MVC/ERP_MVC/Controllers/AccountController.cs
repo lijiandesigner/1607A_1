@@ -25,7 +25,7 @@ namespace ERP_MVC.Controllers
             string result = Helpers.HttpClientHelper.SendRequest("api/APIAccount/Login", "get", JsonConvert.SerializeObject(post));
             LoginResult loginResult = JsonConvert.DeserializeObject<LoginResult>(result);
             Session[txtname] = loginResult;
-            if(loginResult.Result)
+            if(loginResult.Result )
             {
                 Response.Write("<script>alert('cg')</script>");
             }
@@ -34,6 +34,12 @@ namespace ERP_MVC.Controllers
                 Response.Write("<script>alert('sb')</script>");
             }
         }
+
+        public ActionResult Maininterface()
+        {
+            return View();
+        }
+
     }
 
 }

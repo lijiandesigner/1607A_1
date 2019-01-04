@@ -256,10 +256,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Account\Maininterface.cshtml" />
+    <Content Include="Views\Checking\AccountRules.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Checking\" />
     <Folder Include="Views\Finnance\" />
     <Folder Include="Views\Leave\" />
     <Folder Include="Views\PersonnelInfomation\" />
