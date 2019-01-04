@@ -16,7 +16,7 @@ namespace ERP_Model
     {
         [Key]
         public int EID { get; set; }//主键ID
-        public int ENo { get; set; }//员工编号
+        public string ENo { get; set; }//员工编号
         public string EName { get; set; }//姓名
         public bool Esex { get; set; }//性别
         public string Ephone { get; set; }//手机号
