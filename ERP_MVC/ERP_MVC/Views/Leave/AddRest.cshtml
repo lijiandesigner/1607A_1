@@ -11,11 +11,12 @@
         $.ajax({
             url: '',
             type: 'post',
-            data: { Eid: eid, REName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark };
+            data: { Eid: eid, EName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic:'待审核'},
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
                     alert('提交成功');
+                    location.href = '/Leave_PartialView.cshtml';
                 }
                 else {
                     alert('提交失败');

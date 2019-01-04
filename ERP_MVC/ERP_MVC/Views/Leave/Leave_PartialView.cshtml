@@ -22,7 +22,7 @@
             <th>请假理由</th>
             <th>审核时间</th>
             <th>审核状态</th>
-            <th>备注</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody id="tb">
@@ -43,24 +43,35 @@
             success: function (data) {
                 var str = "";
                 for (var i in data) {
-                    str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].AMBeginTime + "</td><td>" + data[i].AMEndTime + "</td><td>" + data[i].AABeginTime + "</td><td>" + data[i].AAEndTime + "</td><td>" + data[i].ABeLateTime + "</td><td>" + data[i].ALeaveTime + "</td><td>" + data[i].Static + "</td><td>" + data[i].Adate + "</td></tr>";
+                    str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='sRestatic'>" + data[i].Restatic + "</span>" + "</td><td><a id='aAgree' onclick='Agree()'>同意</a> <a id='aReject' onclick='Reject()'>驳回</a></td></tr>";
                 }
                 $("#tb").html(str);
             }
         });
     }
-    $(function () {
-        $.ajax({
-            url: '',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                var str = "";
-                for (var i in data) {
-                    str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].AMBeginTime + "</td><td>" + data[i].AMEndTime + "</td><td>" + data[i].AABeginTime + "</td><td>" + data[i].AAEndTime + "</td><td>" + data[i].ABeLateTime + "</td><td>" + data[i].ALeaveTime + "</td><td>" + data[i].Static + "</td><td>" + data[i].Adate + "</td></tr>";
+    function loadData() {
+        $(function () {
+            $.ajax({
+                url: '',
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    var str = "";
+                    for (var i in data) {
+                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='sRestatic'>" + data[i].Restatic + "</span>" + "</td><td><a id='aAgree' onclick='Agree()'>同意</a> <a id='aReject' onclick='Reject()'>驳回</a></td></tr>";
+                    }
+                    $("#tb").html(str);
                 }
-                $("#tb").html(str);
-            }
-        })
-    })
+            });
+        });
+    }
+    
+    function Agree() {
+        $("#aAgree").text = "同意";
+        loadData();
+    }
+    function Reject() {
+        $("#aReject").text = "不同意";
+        loadData();
+    }
 </script>
