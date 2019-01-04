@@ -11,5 +11,6 @@ namespace ERP_Dal
     /// </summary>
     public class EmployeeInfoDal
     {
+      
     }
 }
