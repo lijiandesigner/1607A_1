@@ -17,10 +17,11 @@ namespace ERP_API.Controllers
         /// <param name="ENo">员工编号</param>
         /// <param name="Rpassword">密码(身份证后六位)</param>
         /// <returns></returns>
-        [HttpGet]
-        public LoginResult Login(string ENo="",string Rpassword="")
+       
+        public LoginResult Get(string ENo="",string Rpassword="")
         {
             return EmployeeInfoBll.Login(ENo, Rpassword);
         }
+
     }
 }

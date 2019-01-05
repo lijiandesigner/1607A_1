@@ -92,8 +92,10 @@ namespace ERP_Dal
         public static DataTable GetDataTable(string procName, SqlParameter[] paras = null)
         {
             Open();
-            SqlCommand command = new SqlCommand(procName, cnn);
-            command.CommandType = CommandType.StoredProcedure;
+            SqlCommand command = new SqlCommand(procName, cnn)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
 
             if (paras != null)
             {
