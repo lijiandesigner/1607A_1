@@ -14,25 +14,24 @@ namespace ERP_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: Account
+
         public ActionResult Index()
         {
             return View();
         }
-        [HttpPost]
-        public void Index(string txtname, string txtpwd)
+        [HttpGet]
+        public void Login(string txtname, string txtpwd)
         {
             var post = new { Eno = txtname, Rpassword = txtpwd };
             string result = Helpers.HttpClientHelper.SendRequest("api/APIAccount/Login", "get", JsonConvert.SerializeObject(post));
             LoginResult loginResult = JsonConvert.DeserializeObject<LoginResult>(result);
-            Session[txtname] = loginResult;
-            if(loginResult.Result )
+            if (loginResult.Result)
             {
-                Response.Write("<script>alert('cg')</script>");
+                Session[txtname] = loginResult;
+                Response.Write("<script>location.href='/Account/Maininterface'</script>");
             }
             else
-            {
-                Response.Write("<script>alert('sb')</script>");
-            }
+                Response.Write("<script>alert('登陆失败')</script>");
         }
 
         public ActionResult Maininterface()
