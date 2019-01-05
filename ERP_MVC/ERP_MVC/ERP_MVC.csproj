@@ -140,7 +140,6 @@
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\LoginResult.cs" />
     <Compile Include="Models\MonthAtten.cs" />
-    <Compile Include="Models\PermissionInfo.cs" />
     <Compile Include="Models\PersonMessage.cs" />
     <Compile Include="Models\PositionInfo.cs" />
     <Compile Include="Models\RestInfo.cs" />
@@ -256,14 +255,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Leave\Leave_PartialView.cshtml" />
-    <Content Include="Views\Leave\AddRest.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Account\Maininterface.cshtml" />
+    <Content Include="Views\Checking\AccountRules.cshtml" />
+    <Content Include="Views\Leave\Index.cshtml" />
+    <Content Include="Views\Leave\AddRest.cshtml" />
+    <Content Include="Views\Finnance\SettleWage.cshtml" />
+    <Content Include="Views\Finnance\HistoryWage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Checking\" />
-    <Folder Include="Views\Finnance\" />
     <Folder Include="Views\PersonnelInfomation\" />
     <Folder Include="Views\PersonnelPermissions\" />
     <Folder Include="Views\PersonnelPosition\" />

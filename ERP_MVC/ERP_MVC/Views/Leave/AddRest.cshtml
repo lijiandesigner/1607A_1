@@ -1,5 +1,12 @@
-﻿@model IEnumerable<ERP_MVC.Models.RestInfo>
+﻿@model List<ERP_MVC.Models.RestInfo>
+@{
+    ViewBag.Title = "AddRest";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>提交请假申请</h2>
 <script src="~/My97DatePicker/WdatePicker.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
     function AddRest() {
         var eid = $("#txtEid").val();
@@ -11,7 +18,7 @@
         $.ajax({
             url: '',
             type: 'post',
-            data: { Eid: eid, EName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic:'待审核'},
+            data: { Eid: eid, EName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic: '待审核' },
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
