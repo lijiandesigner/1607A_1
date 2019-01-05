@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Class1
+    public class LoginJsonString
     {
+        public string ENo { get; set; }
+        public string Rpassword { get; set; }
     }
 }
