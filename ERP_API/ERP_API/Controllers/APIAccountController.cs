@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Models;
 using ERP_Bll;
+using Newtonsoft.Json;
 
 namespace ERP_API.Controllers
 {
@@ -18,9 +19,10 @@ namespace ERP_API.Controllers
         /// <param name="Rpassword">密码(身份证后六位)</param>
         /// <returns></returns>
        
-        public LoginResult Get(string ENo="",string Rpassword="")
+        public LoginResult Get(string jsonstr)
         {
-            return EmployeeInfoBll.Login(ENo, Rpassword);
+            LoginJsonString loginJsonString = JsonConvert.DeserializeObject<LoginJsonString>(jsonstr);
+            return EmployeeInfoBll.Login(loginJsonString.ENo, loginJsonString.Rpassword);
         }
 
     }
