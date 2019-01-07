@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ERP_Dal;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using ERP_Model;
 using Models;
+using ERP_Bll;
 
-namespace ERP_Bll
+namespace ERP_API.Controllers
 {
-    public class RestInfoBll
+    public class RestController : ApiController
     {
         /// <summary>
-        /// 根据条件获取所有匹配的请假信息
+        ///根据条件查询请假信息
         /// </summary>
         /// <param name="ENo">员工编号</param>
         /// <param name="Type">请假类型</param>
         /// <returns></returns>
-        public static List<LeaveInfo> GetAllPositionInfo(string ENo, string Type)
+        public List<LeaveInfo> Get(string ENo, string Type)
         {
-            return RestInfoDal.GetAllPositionInfo(ENo, Type);
+            return RestInfoBll.GetAllPositionInfo(ENo,Type);
         }
         /// <summary>
         /// 添加请假信息
         /// </summary>
         /// <param name="restInfo">请假信息对象</param>
         /// <returns></returns>
-        public static int Add(RestInfo restInfo)
+        public int Post(RestInfo restInfo)
         {
-            return RestInfoDal.Add(restInfo);
+            return RestInfoBll.Add(restInfo);
         }
         /// <summary>
         /// 请假信息审批
@@ -36,9 +37,9 @@ namespace ERP_Bll
         /// <param name="RID">信息id</param>
         /// <param name="ReAuditTime">审批时间</param>
         /// <returns></returns>
-        public static int Update(int RID, string ReAuditTime)
+        public  int Put(int RID, string ReAuditTime)
         {
-            return RestInfoDal.Update(RID, ReAuditTime);
+            return RestInfoBll.Update(RID, ReAuditTime);
         }
     }
 }

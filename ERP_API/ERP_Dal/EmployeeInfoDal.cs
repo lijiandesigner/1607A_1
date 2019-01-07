@@ -15,6 +15,12 @@ namespace ERP_Dal
     /// </summary>
     public class EmployeeInfoDal
     {
+        /// <summary>
+        ///登录
+        /// </summary>
+        /// <param name="ENo">员工号</param>
+        /// <param name="Rpassword">密码</param>
+        /// <returns></returns>
         public static LoginResult Login(string ENo, string Rpassword)
         {
             using (EFContext Context = new EFContext())
@@ -40,7 +46,7 @@ namespace ERP_Dal
                         PoName = "超级管理员",
                         PoLeave = 1,
                         PoMinMoney = 0,
-                        Permission = "abcdefghijk"
+                        Permission = "ALL"
                     };
                     PersonMessage personMessage = new PersonMessage()
                     {
@@ -70,6 +76,7 @@ namespace ERP_Dal
                                   name = a.EName,
                                   Eid = a.EID,
                                   Pstats = c.Pstatic,
+                                  PoName=b.PoName,
                                   permissins = b.Permission
                               }).ToList().FirstOrDefault();
                 LoginResult loginResult = new LoginResult();
@@ -82,6 +89,7 @@ namespace ERP_Dal
                         loginResult.Result = true;
                         loginResult.EID = result.Eid;
                         loginResult.EName = result.name.ToString();
+                        loginResult.PoName = result.PoName.ToString();
                         loginResult.Permissins = result.permissins.ToString();
                     }
                     else
