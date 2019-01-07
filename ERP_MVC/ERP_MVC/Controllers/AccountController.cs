@@ -22,12 +22,15 @@ namespace ERP_MVC.Controllers
         [HttpGet]
         public void Login(string txtname, string txtpwd)
         {
-            var post = new { Eno = txtname, Rpassword = txtpwd };
-            string result = Helpers.HttpClientHelper.SendRequest("api/APIAccount/Login", "get", JsonConvert.SerializeObject(post));
+            var post = new LoginJsonString { ENo = txtname, Rpassword = txtpwd };
+            string result = Helpers.HttpClientHelper.SendRequest("api/APIAccount?jsonStr="+ JsonConvert.SerializeObject(post), "get");
             LoginResult loginResult = JsonConvert.DeserializeObject<LoginResult>(result);
             if (loginResult.Result)
             {
-                Session[txtname] = loginResult;
+                List<EmployeeInfo> infos = new List<EmployeeInfo>();
+                Session["infos"] = infos;
+                ViewData["Name"] = loginResult.EName == null ? txtname : loginResult.EName;
+                
                 Response.Write("<script>location.href='/Account/Maininterface'</script>");
             }
             else
