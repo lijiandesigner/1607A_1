@@ -1,5 +1,7 @@
-﻿@model IEnumerable<ERP_MVC.Models.EmployeeInfo>
-@{
+﻿
+@model IEnumerable<ERP_MVC.Models.EmployeeInfo>
+
+@{ 
     Layout = null;
 }
 
@@ -188,11 +190,11 @@
         <P style="padding: 30px 0px 10px; position: relative;">
 
             <SPAN class="u_logo"></SPAN>
-            <INPUT class="ipt" id="ENo" type="text" placeholder="请输入用户名或邮箱" value="" name="txtname" autocomplete="off">
+            <INPUT class="ipt" id="ENo" type="text" placeholder="请输入用户名或邮箱" autocomplete="off">
         </P>
         <P style="position: relative;">
             <SPAN class="p_logo"></SPAN>
-            <INPUT class="ipt" id="EcardID" type="password" placeholder="请输入密码" value="" name="txtpwd" autocomplete="off">
+            <INPUT class="ipt" id="EcardID" type="password" placeholder="请输入密码" autocomplete="off">
         </P>
         <DIV style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
             <P style="margin: 0px 35px 20px 45px;">
@@ -208,8 +210,8 @@
 
 <script>
     function sava() {
-        var ENo = $("#txtname").val();
-        var EcardID = $("#txtpwd").val();
+        var ENo = $("#ENo").val();
+        var EcardID = $("#EcardID").val();
         if (ENo == "" || EcardID == "") {
             layer.open({
                 title: '提示',
