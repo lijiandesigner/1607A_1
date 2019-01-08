@@ -98,5 +98,66 @@ namespace ERP_Dal
                 return loginResult;
             }
         }
+        /// <summary>
+        /// 根据条件获取员工信息
+        /// </summary>
+        /// <param name="ENo">员工编号</param>
+        /// <param name="EName">员工姓名</param>
+        /// <param name="Pstatic">工作状态</param>
+        /// <returns></returns>
+        public static List<EmployeeInfos> GetEmployeeInfos( string ENo,string EName ,bool Pstatic)
+        {
+            using (EFContext Context = new EFContext())
+            {
+                List<EmployeeInfos> infos = (from a in Context.EmployeeInfo
+                                             join b in Context.PositionInfo
+                                            on a.Pid equals b.PoID
+                                             join c in Context.PersonMessage
+                                             on a.EID equals c.EID
+                                             select new EmployeeInfos
+                                             {
+                                                 EID = a.EID,
+                                                 ENo = a.ENo,
+                                                 EName = a.EName,
+                                                 Esex = a.Esex,
+                                                 Ephone = a.Ephone,
+                                                 Eemail = a.Eemail,
+                                                 EcardID = a.EcardID,
+                                                 Eheart = a.Eheart,
+                                                 PoName = b.PoName,
+                                                 PeBeginWork = c.PeBeginWork,
+                                                 PeEndwork = c.PeEndwork,
+                                                 Pstatic = c.Pstatic
+                                             }).Where(u => ENo == "" ? true : u.ENo == ENo).Where(u => ENo == "" ? true : u.EName == EName).Where(u => ENo == "" ? true : u.Pstatic == Pstatic).ToList();
+                return infos;
+            }
+        }
+        /// <summary>
+        /// 添加员工信息
+        /// </summary>
+        /// <param name="restInfo">员工信息对象</param>
+        /// <returns></returns>
+        public static int Add(RestInfo restInfo)
+        {
+            using (EFContext Context = new EFContext())
+            {
+                DbEntityEntry<RestInfo> person = Context.Entry<RestInfo>(restInfo);
+                person.State = System.Data.Entity.EntityState.Added;
+                return Context.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// 员工信息修改
+        /// </summary>
+        /// <param name="restInfo">修改后的员工信息对象</param>
+        /// <returns></returns>
+        public static int Update (RestInfo restInfo)
+        {
+            using (EFContext Context = new EFContext())
+            {
+                Context.Entry<RestInfo>(restInfo).State = System.Data.Entity.EntityState.Modified;
+                return Context.SaveChanges();
+            }
+        }
     }
 }

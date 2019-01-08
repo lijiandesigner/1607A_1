@@ -10,6 +10,7 @@ namespace Models
     public class LeaveInfo
     {
         public int EID { get; set; }            //员工id
+        public string ENo { get; set; }
         public string EName { get; set; }       //员工姓名
         public string PoName { get; set; }      //员工职位
         public string Rtype { get; set; }       //请假类型
