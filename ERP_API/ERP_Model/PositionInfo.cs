@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERP_Model
 {
+    [Table("PositionInfo")]
     /// <summary>
     /// 职位表
     /// </summary>
@@ -17,6 +19,6 @@ namespace ERP_Model
         public string PoName { get; set; }//职位名称
         public int PoLeave { get; set; }//岗位级别
         public double PoMinMoney { get; set; }//底薪
-        public int Permission { get; set; }//权限
+        public string Permission { get; set; }//权限
     }
 }

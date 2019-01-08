@@ -13,7 +13,11 @@ namespace ERP_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: Finnance
-        public ActionResult Index()
+        public ActionResult SettleWage()
+        {
+            return View();
+        }
+        public ActionResult HistoryWage()
         {
             return View();
         }

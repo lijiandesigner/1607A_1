@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using ERP_MVC.Models;
+using Newtonsoft.Json;
 namespace ERP_MVC.Controllers
 {
     public class AccountController : Controller
@@ -13,9 +14,34 @@ namespace ERP_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: Account
+
         public ActionResult Index()
         {
             return View();
         }
+        [HttpGet]
+        public void Login(string txtname, string txtpwd)
+        {
+            var post = new LoginJsonString { ENo = txtname, Rpassword = txtpwd };
+            string result = Helpers.HttpClientHelper.SendRequest("api/APIAccount?jsonStr="+ JsonConvert.SerializeObject(post), "get");
+            LoginResult loginResult = JsonConvert.DeserializeObject<LoginResult>(result);
+            if (loginResult.Result)
+            {
+                List<EmployeeInfo> infos = new List<EmployeeInfo>();
+                Session["infos"] = infos;
+                ViewData["Name"] = loginResult.EName == null ? txtname : loginResult.EName;
+                
+                Response.Write("<script>location.href='/Account/Maininterface'</script>");
+            }
+            else
+                Response.Write("<script>alert('登陆失败')</script>");
+        }
+
+        public ActionResult Maininterface()
+        {
+            return View();
+        }
+
     }
+
 }
