@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        var Id = $("#hidId").val();
+        //职位下拉
+        $.ajax({
+            url: '',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#selzw").append("<option value='" + data[i].PoID + "'>" + data[i].PoName + "</option>");
+                }
+            }
+        });
+        //反填
+        $.ajax({
+            url: '' + Id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                if (data != null) {
+                    $("#txtbh").val(data.ENo);
+                    $("#txtxm").val(data.EName);
+                    $(".rad[value='" + (data.Esex == true ? '男' : '女') + "']").prop("checked", true);
+                    $("#txtsjh").val(data.Ephone);
+                    $("#txtyx").val(data.Eemail);
+                    $("#txtsfz").val(data.EcardID);
+                    $("#txttx").val(data.Eheart);
+                    $("#selzw").val(data.Pid)
+                }
+            }
+        });
+    });
+    function save() {
+        //接收
+        var Id = $("#hidId").val();
+        var bh = $("#txtbh").val();
+        var xm = $("#txtxm").val();
+        var xb = $(".rad:checked").val();
+        var sjh = $("#txtsjh").val();
+        var yx = $("#txtyx").val();
+        var sfz = $("#txtsfz").val();
+        var tx = $("#txttx").val();
+        var zw = $("#selzw").val();
+        //传值
+        $.ajax({
+            url: '' + Id,
+            type: 'put',
+            data: { EID:Id, ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw},
+            dataType: 'text',
+            success: function (data) {
+                if (data > 0) {
+                    alert("修改成功");
+                }
+                else {
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+</script>
+<html>
+<head>
+    <title>Add</title>
+</head>
+<body>
+    <div class="container">
+        <hr />
+        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+        <table class="table-condensed">
+            <tr>
+                <td>员工编号</td>
+                <td><input id="txtbh" type="text" /></td>
+            </tr>
+            <tr>
+                <td>姓名</td>
+                <td><input id="txtxm" type="text" /></td>
+            </tr>
+            <tr>
+                <td>性别</td>
+                <td>
+                    <input id="rad1" class="rad" type="radio" name="rad" value="男" checked="checked" />男
+                    <input id="rad2" class="rad" type="radio" name="rad" value="女" />女
+                </td>
+            </tr>
+            <tr>
+                <td>手机号</td>
+                <td><input id="txtsjh" type="text" /></td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td><input id="txtyx" type="text" /></td>
+            </tr>
+            <tr>
+                <td>身份证</td>
+                <td><input id="txtsfz" type="text" /></td>
+            </tr>
+            <tr>
+                <td>头像</td>
+                <td><input id="txttx" type="text" /></td>
+            </tr>
+            <tr>
+                <td>职位</td>
+                <td>
+                    <select id="selzw">
+                        <option value="0">选择职位</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="Button1" type="button" value="返回" class="btn btn-default" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+

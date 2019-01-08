@@ -1,31 +1,29 @@
 ﻿@{
     ViewBag.Title = "请假申请";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    LoginResult result = Session["loginResult"] as LoginResult;
 }
-
+@using ERP_MVC.Models
 
 <script src="~/My97DatePicker/WdatePicker.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script>
     function AddRest() {
-        var eid = $("#txtEid").val();
-        var ename = $("#txtEname").val();
         var starttime = $("#txtStartTime").val();
         var endtime = $("#txtEndTime").val();
         var rtype = $(".rodType:checked").val();
         var remark = $("#txtRemark").val();
         $.ajax({
-            url: 'http://localhost:59776/api/Rest',
-            type: 'post',
+            url: 'http://localhost:59776/api/Rest/',
+            type: 'Post',
             data: {
-                'restInfoStr': JSON.stringify({ Eid: eid, EName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic: '待审批' })
+                '': JSON.stringify({ Eid: @result.EID, RBeginTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic: '待审批' })
             },
-            dataType: 'json',
+            dataType: 'text',
             success: function (data) {
                 if (data > 0) {
                     alert('提交成功');
-                    location.href = '/Leave/Index/';
                 }
                 else {
                     alert('提交失败');
@@ -39,14 +37,6 @@
     <hr style="height:3px" />
     <table class="table table-hover table-bordered" style="width:500px;height:500px">
         <tr>
-            <td>员工编号</td>
-            <td><input id="txtEid" type="text" /></td>
-        </tr>
-        <tr>
-            <td>员工姓名</td>
-            <td><input id="txtEname" type="text" /></td>
-        </tr>
-        <tr>
             <td>请假开始时间</td>
             <td><input id="txtStartTime" onclick="WdatePicker()" class="Wdate" type="text" /></td>
         </tr>
@@ -57,11 +47,11 @@
         <tr>
             <td>请假类型</td>
             <td>
-                <input id="rodType" name="Type" type="radio" />事假
-                <input id="rodType" name="Type" type="radio" />病假
-                <input id="rodType" name="Type" type="radio" />婚假
-                <input id="rodType" name="Type" type="radio" />产假
-                <input id="rodType" name="Type" type="radio" />丧假
+                <input class="rodType" name="Type" value="事假" type="radio" checked />事假
+                <input class="rodType" name="Type" value="病假" type="radio" />病假
+                <input class="rodType" name="Type" value="婚假" type="radio" />婚假
+                <input class="rodType" name="Type" value="产假" type="radio" />产假
+                <input class="rodType" name="Type" value="丧假" type="radio" />丧假
             </td>
         </tr>
         <tr>

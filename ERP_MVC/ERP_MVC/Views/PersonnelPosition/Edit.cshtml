@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>修改职位</h2>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        var Id = $("#hidId").val();
+        //反填
+        $.ajax({
+            url: '' + Id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                if (data != null) {
+                    $("#txtzwmc").val(data.PoName);
+                    $("#txtzwjb").val(data.PoLeave);
+                    $("#txtdx").val(data.PoMinMoney);
+                    $("#txtqx").val(data.Permission)
+                }
+            }
+        });
+    });
+    function save() {
+        //接收
+        var Id = $("#hidId").val();
+        var zwmc = $("#txtzwmc").val();
+        var zwjb = $("#txtzwjb").val();
+        var dx = $("#txtdx").val();
+        var qx = $("#txtqx").val();
+        //传值
+        $.ajax({
+            url: '' + Id,
+            type: 'put',
+            data: { PoID: Id, PoName: zwmc, PoLeave: zwjb, PoMinMoney: dx, Permission: qx},
+            dataType: 'text',
+            success: function (data) {
+                if (data > 0) {
+                    alert("修改成功");
+                }
+                else {
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+</script>
+<html>
+<head>
+</head>
+<body>
+    <div class="container">
+        <hr />
+        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+        <table class="table-condensed">
+            <tr>
+                <td>职位名称</td>
+                <td><input id="txtzwmc" type="text" /></td>
+            </tr>
+            <tr>
+                <td>职位级别</td>
+                <td><input id="txtzwjb" type="text" /></td>
+            </tr>
+            <tr>
+                <td>底薪</td>
+                <td><input id="txtdx" type="text" /></td>
+            </tr>
+            <tr>
+                <td>权限</td>
+                <td><input id="txtqx" type="text" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="Button1" type="button" value="返回" class="btn btn-default" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
