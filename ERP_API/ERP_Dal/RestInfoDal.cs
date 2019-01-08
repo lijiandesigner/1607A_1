@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Models;
 using ERP_Model;
 using System.Data.Entity.Infrastructure;
+using Newtonsoft.Json;
 
 namespace ERP_Dal
 {
@@ -29,11 +30,11 @@ namespace ERP_Dal
                                                 on a.Pid equals b.PoID
                                                  join c in Context.RestInfo
                                                  on a.EID equals c.EID
-                                                 where a.ENo.Equals(ENo) && c.Rtype.Equals(Type)
                                                  select new LeaveInfo
                                                  {
 
                                                      EID = a.EID,
+                                                     ENo=a.ENo,
                                                      EName = a.EName,
                                                      PoName = b.PoName,
                                                      Rtype = c.Rtype,
@@ -45,7 +46,7 @@ namespace ERP_Dal
                                                      Remark = c.Remark
 
                                                  }).ToList();
-                return positionInfos;
+                return positionInfos.Where(u=>ENo==""?true:u.ENo==ENo).Where(u => ENo == "" ? true : u.Rtype == Type).ToList();
             }
         }
         /// <summary>
@@ -53,10 +54,11 @@ namespace ERP_Dal
         /// </summary>
         /// <param name="restInfo">请假信息对象</param>
         /// <returns></returns>
-        public static int Add(RestInfo restInfo)
+        public static int Add(string restInfoStr)
         {
             using (EFContext Context = new EFContext())
             {
+                RestInfo restInfo = JsonConvert.DeserializeObject<RestInfo>(restInfoStr);
                 DbEntityEntry<RestInfo> person = Context.Entry<RestInfo>(restInfo);
                 person.State = System.Data.Entity.EntityState.Added;
                 return Context.SaveChanges();
