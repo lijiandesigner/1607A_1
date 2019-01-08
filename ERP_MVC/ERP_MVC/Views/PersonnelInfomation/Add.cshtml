@@ -8,7 +8,7 @@
     //下拉
     $(function () {
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/APIposition',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -29,9 +29,10 @@
         var tx = $("#txttx").val();
         var zw = $("#selzw").val();
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/EmployeeInfo',
             type: 'post',
-            data: { ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw},
+            data: {
+                '': JSON.stringify({ ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw }) },
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
