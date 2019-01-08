@@ -36,9 +36,9 @@ namespace ERP_Bll
         /// <param name="RID">信息id</param>
         /// <param name="ReAuditTime">审批时间</param>
         /// <returns></returns>
-        public static int Update(int RID, string ReAuditTime)
+        public static int Update(int RID,string Restatic, string ReAuditTime)
         {
-            return RestInfoDal.Update(RID, ReAuditTime);
+            return RestInfoDal.Update(RID,Restatic,ReAuditTime);
         }
     }
 }

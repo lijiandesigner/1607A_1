@@ -31,7 +31,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="id">员工id</param>
         /// <returns></returns>
-        public static EmployeeInfo Get(int id)
+        public  EmployeeInfo Get(int id)
         {
             return EmployeeInfoBll.GetById(id);
         }
@@ -40,7 +40,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="restInfo">员工信息对象</param>
         /// <returns></returns>
-        public static int Post([FromBody]string EmployeeInfoStr)
+        public  int Post([FromBody]string EmployeeInfoStr)
         {
             return EmployeeInfoBll.Add(EmployeeInfoStr);
         }
@@ -49,7 +49,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="restInfo">修改后的员工信息对象</param>
         /// <returns></returns>
-        public static int Put([FromBody]string EmployeeInfoStr)
+        public  int Put([FromBody]string EmployeeInfoStr)
         {
             return EmployeeInfoBll.Update(EmployeeInfoStr);
         }
