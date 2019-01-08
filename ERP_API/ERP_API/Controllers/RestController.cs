@@ -28,7 +28,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="restInfo">请假信息对象</param>
         /// <returns></returns>
-        public int Post(string restInfoStr)
+        public int Post([FromBody]string restInfoStr)
         {
             return RestInfoBll.Add(restInfoStr);
         }
