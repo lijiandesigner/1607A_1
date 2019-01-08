@@ -155,6 +155,7 @@ namespace ERP_Dal
             using (EFContext Context = new EFContext())
             {
                 EmployeeInfo EmployeeInfo = JsonConvert.DeserializeObject<EmployeeInfo>(EmployeeInfoStr);
+                EmployeeInfo.Ppassword = EmployeeInfo.EcardID.Substring(12);
                 DbEntityEntry<EmployeeInfo> person = Context.Entry<EmployeeInfo>(EmployeeInfo);
                 person.State = System.Data.Entity.EntityState.Added;
                 return Context.SaveChanges();
