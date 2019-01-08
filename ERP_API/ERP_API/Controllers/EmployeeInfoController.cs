@@ -26,5 +26,32 @@ namespace ERP_API.Controllers
         {
             return EmployeeInfoBll.GetEmployeeInfos(ENo, EName, Pstatic);
         }
+        /// <summary>
+        /// 根据员工ID获取单个对象
+        /// </summary>
+        /// <param name="id">员工id</param>
+        /// <returns></returns>
+        public static EmployeeInfo Get(int id)
+        {
+            return EmployeeInfoBll.GetById(id);
+        }
+        /// <summary>
+        /// 添加员工信息
+        /// </summary>
+        /// <param name="restInfo">员工信息对象</param>
+        /// <returns></returns>
+        public static int Post([FromBody]string EmployeeInfoStr)
+        {
+            return EmployeeInfoBll.Add(EmployeeInfoStr);
+        }
+        /// <summary>
+        /// 员工信息修改
+        /// </summary>
+        /// <param name="restInfo">修改后的员工信息对象</param>
+        /// <returns></returns>
+        public static int Put([FromBody]string EmployeeInfoStr)
+        {
+            return EmployeeInfoBll.Update(EmployeeInfoStr);
+        }
     }
 }
