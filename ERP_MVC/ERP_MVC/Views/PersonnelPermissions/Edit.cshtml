@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>人事管理修改</h2>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(function () {
+        var Id = $("#hidId").val();
+        //反填
+        $.ajax({
+            url: '' + Id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                if (data != null) {
+                    $("#txtygid").val(data.EID);
+                    $("#txtrzsj").val(data.PeBeginWork);
+                    $("#txtlzsj").val(data.PeEndwork);
+                    $(".rad[value='" + (data.Pstatic == true ? '是' : '否') + "']").prop("checked", true);
+                }
+            }
+        });
+    });
+    function save() {
+        //接收
+        var Id = $("#hidId").val();
+        var ygid = $("#txtygid").val();
+        var rzsj = $("#txtrzsj").val();
+        var lzsj = $("#txtlzsj").val();
+        var zt = $(".rad:checked").val();
+        //传值
+        $.ajax({
+            url: '' + Id,
+            type: 'put',
+            data: { PID: Id, EID: ygid, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt},
+            dataType: 'text',
+            success: function (data) {
+                if (data > 0) {
+                    alert("修改成功");
+                }
+                else {
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+</script>
+<html>
+<head>
+    <title>Add</title>
+</head>
+<body>
+    <div class="container">
+        <h1></h1>
+        <hr />
+        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+        <table class="table-condensed">
+            <tr>
+                <td>员工ID</td>
+                <td><input id="txtygid" type="text" readonly="readonly" /></td>
+            </tr>
+            <tr>
+                <td>入职时间</td>
+                <td><input id="txtrzsj" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" readonly="readonly" /></td>
+            </tr>
+            <tr>
+                <td>离职时间</td>
+                <td><input id="txtlzsj" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" readonly="readonly" /></td>
+            </tr>
+            <tr>
+                <td>状态</td>
+                <td>
+                    <input id="rad1" class="rad" type="radio" name="rad" value="是" checked="checked" />是
+                    <input id="rad2" class="rad" type="radio" name="rad" value="否" />否
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="Button1" type="button" value="返回" class="btn btn-default" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+

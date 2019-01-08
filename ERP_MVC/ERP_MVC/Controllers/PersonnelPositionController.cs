@@ -17,5 +17,14 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
+        public ActionResult Add()
+        {
+            return View();
+        }
+        public ActionResult Edit(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
     }
 }

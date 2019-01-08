@@ -171,6 +171,29 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="WebExtend\My97DatePicker\calendar.js" />
+    <Content Include="WebExtend\My97DatePicker\lang\en.js" />
+    <Content Include="WebExtend\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="WebExtend\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="WebExtend\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="WebExtend\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="WebExtend\My97DatePicker\skin\default\img.gif" />
+    <Content Include="WebExtend\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="WebExtend\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="WebExtend\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="WebExtend\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="WebExtend\My97DatePicker\WdatePicker.js" />
+    <Content Include="WebExtend\My97DatePicker\开发包\lang\en.js" />
+    <Content Include="WebExtend\My97DatePicker\开发包\lang\zh-cn.js" />
+    <Content Include="WebExtend\My97DatePicker\开发包\lang\zh-tw.js" />
+    <Content Include="WebExtend\My97DatePicker\开发包\readme.txt" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\datePicker.gif" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\default\datepicker.css" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\default\img.gif" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\WdatePicker.css" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="WebExtend\My97DatePicker\开发包\skin\whyGreen\img.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -186,15 +209,21 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Leave\Leave_PartialView.cshtml" />
+    <Content Include="Views\PersonnelInfomation\Index.cshtml" />
+    <Content Include="Views\PersonnelInfomation\Add.cshtml" />
+    <Content Include="Views\PersonnelInfomation\Edit.cshtml" />
+    <Content Include="Views\PersonnelPosition\Index.cshtml" />
+    <Content Include="Views\PersonnelPosition\Add.cshtml" />
+    <Content Include="Views\PersonnelPosition\Edit.cshtml" />
+    <Content Include="Views\PersonnelPermissions\Index.cshtml" />
+    <Content Include="Views\PersonnelPermissions\Add.cshtml" />
+    <Content Include="Views\PersonnelPermissions\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Checking\" />
     <Folder Include="Views\Finnance\" />
-    <Folder Include="Views\PersonnelInfomation\" />
-    <Folder Include="Views\PersonnelPermissions\" />
-    <Folder Include="Views\PersonnelPosition\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

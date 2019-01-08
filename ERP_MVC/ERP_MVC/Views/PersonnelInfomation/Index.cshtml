@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<h2>显示员工</h2>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<h2>员工信息表</h2>
+<div>
+    <table class="table table-hover">
+        <tr>
+            <td align="right"><h4>显示</h4></td>
+            <td>
+                <select id="Select1" class="btn btn-default">
+                    <option>10</option>
+                    <option>9</option>
+                </select>页
+            </td>
+            <td align="right">
+                <input id="txtxm" type="text" class="btn btn-default" />
+                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-default" />
+                <input id="Button1" type="button" value="添加员工信息" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Add'" />
+            </td>
+        </tr>
+    </table>
+    <table class="table table-hover">
+        <thead style="background-color:#00cdff">
+            <tr>
+                <td>ID</td>
+                <td>员工编号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>手机号</td>
+                <td>邮箱</td>
+                <td>身份证</td>
+                <td>头像</td>
+                <td>职位</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    <table class="table table-hover">
+        <tr>
+            <td></td>
+            <td align="right">
+                <input id="Button1" type="button" value="首页" class="btn btn-default" />
+                <input id="Button1" type="button" value="上一页" class="btn btn-default" />
+                <input id="Button1" type="button" value="①" class="btn btn-default" />
+                <input id="Button1" type="button" value="②" class="btn btn-default" />
+                <input id="Button1" type="button" value="③" class="btn btn-default" />
+                <input id="Button1" type="button" value="下一页" class="btn btn-default" />
+                <input id="Button1" type="button" value="尾页" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    //显示
+    $(function () {
+        $.ajax({
+            url: '',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].Pid + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].EID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].EID + ")' /></td></tr>");
+                }
+            }
+        });
+    });
+    //删除
+    function del(id) {
+        if (confirm("确认删除么？")) {
+            $.ajax({
+                url: '' + id,
+                type: 'delete',
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        alert("删除成功");
+                        location.reload();
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            });
+        }
+    }
+    //查询
+    function sel() {
+        var xm = $("#txtxm").val();
+        $.ajax({
+            url: '',
+            type: 'get',
+            data: { EName: xm, },
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].Pid + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].EID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].EID + ")' /></td></tr>");
+                }
+            }
+        })
+    }
+    function edit(id) {
+        location.href = "/PersonnelInfomation/Edit/" + id;
+    }
+</script>
