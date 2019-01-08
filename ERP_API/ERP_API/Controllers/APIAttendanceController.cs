@@ -8,7 +8,11 @@ using System.Web.Http;
 namespace ERP_API.Controllers
 {
     //考勤控制器
-    public class AttendanceController : ApiController
+    public class APIAttendanceController : ApiController
     {
+        public int Get(int EID,string AttendanceTime)
+        {
+            return 1;
+        }
     }
 }
