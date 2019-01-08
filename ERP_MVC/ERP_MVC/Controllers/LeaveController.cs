@@ -22,7 +22,7 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpGet]
         public ActionResult AddRest()
         {
 
