@@ -264,6 +264,8 @@
     <Content Include="Views\Leave\AddRest.cshtml" />
     <Content Include="Views\Finnance\SettleWage.cshtml" />
     <Content Include="Views\Finnance\HistoryWage.cshtml" />
+    <Content Include="Views\Checking\MonthAccount.cshtml" />
+    <Content Include="Views\Account\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

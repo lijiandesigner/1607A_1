@@ -27,9 +27,10 @@ namespace ERP_MVC.Controllers
             LoginResult loginResult = JsonConvert.DeserializeObject<LoginResult>(result);
             if (loginResult.Result)
             {
-                List<EmployeeInfo> infos = new List<EmployeeInfo>();
-                Session["infos"] = infos;
-                ViewData["Name"] = loginResult.EName == null ? txtname : loginResult.EName;
+                //List<EmployeeInfo> infos = JsonConvert.DeserializeObject<List<EmployeeInfo>>(result);
+                //EmployeeInfo e = infos.FirstOrDefault();
+                Session["loginResult"] = loginResult;
+                //ViewData["Name"] = loginResult.EName == null ? txtname : loginResult.EName;
                 
                 Response.Write("<script>location.href='/Account/Maininterface'</script>");
             }
@@ -41,7 +42,14 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
-
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+        public ActionResult HomePage()
+        {
+            return View();
+        }
     }
 
 }

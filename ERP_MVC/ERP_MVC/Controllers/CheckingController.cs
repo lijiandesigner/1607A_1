@@ -10,10 +10,18 @@ namespace ERP_MVC.Controllers
     {
         // GET: Checking
         /// <summary>
-        /// 考勤规则
+        /// 日考勤管理
         /// </summary>
         /// <returns></returns>
         public ActionResult AccountRules()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 月考勤管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MonthAccount()
         {
             return View();
         }
