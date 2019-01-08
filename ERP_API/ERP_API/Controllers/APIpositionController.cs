@@ -34,9 +34,9 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Post(PositionInfo positionInfo)
+        public static int Post(string positionInfoStr)
         {
-            return PositionInfoBll.Add(positionInfo);
+            return PositionInfoBll.Add(positionInfoStr);
         }
         /// <summary>
         /// 职位修改

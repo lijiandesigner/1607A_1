@@ -15,10 +15,9 @@ namespace ERP_API.Controllers
         /// <summary>
         /// 登录管理
         /// </summary>
-        /// <param name="ENo">员工编号</param>
-        /// <param name="Rpassword">密码(身份证后六位)</param>
+        /// <param name="jsonstr">json登录字符串</param>
         /// <returns></returns>
-       
+
         public LoginResult Get(string jsonstr)
         {
             LoginJsonString loginJsonString = JsonConvert.DeserializeObject<LoginJsonString>(jsonstr);

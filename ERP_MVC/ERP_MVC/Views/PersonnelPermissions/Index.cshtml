@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>人事管理</h2>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<h2></h2>
+<div>
+    <table class="table table-hover">
+        <tr>
+            <td align="right"><h4>显示</h4></td>
+            <td>
+                <select id="Select1" class="btn btn-default">
+                    <option>10</option>
+                    <option>9</option>
+                </select>页
+            </td>
+            <td align="right">
+                <input id="txtxm" type="text" class="btn btn-default" />
+                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-default" />
+                <input id="Button1" type="button" value="添加员工信息" class="btn btn-default" onclick="location.href='/PersonnelPermissions/Add'" />
+            </td>
+        </tr>
+    </table>
+    <table class="table table-hover">
+        <thead style="background-color:#00cdff">
+            <tr>
+                <td>ID</td>
+                <td>员工ID</td>
+                <td>入职时间</td>
+                <td>离职时间</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    <table class="table table-hover">
+        <tr>
+            <td></td>
+            <td align="right">
+                <input id="Button1" type="button" value="首页" class="btn btn-default" />
+                <input id="Button1" type="button" value="上一页" class="btn btn-default" />
+                <input id="Button1" type="button" value="①" class="btn btn-default" />
+                <input id="Button1" type="button" value="②" class="btn btn-default" />
+                <input id="Button1" type="button" value="③" class="btn btn-default" />
+                <input id="Button1" type="button" value="下一页" class="btn btn-default" />
+                <input id="Button1" type="button" value="尾页" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    //显示
+    $(function () {
+        $.ajax({
+            url: '',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PID + ")' /></td></tr>");
+                }
+            }
+        });
+    });
+    //删除
+    function del(id) {
+        if (confirm("确认删除么？")) {
+            $.ajax({
+                url: '' + id,
+                type: 'delete',
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        alert("删除成功");
+                        location.reload();
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            });
+        }
+    }
+    //查询
+    function sel() {
+        var xm = $("#txtxm").val();
+        $.ajax({
+            url: '',
+            type: 'get',
+            data: { EID: xm, },
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PID + ")' /></td></tr>");
+                }
+            }
+        })
+    }
+    function edit(id) {
+        location.href = "/PersonnelPermissions/Edit/" + id;
+    }
+</script>
+
+

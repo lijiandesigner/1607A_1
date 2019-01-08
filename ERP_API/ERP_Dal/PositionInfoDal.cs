@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ERP_Model;
+using Models;
+using Newtonsoft.Json;
 
 namespace ERP_Dal
 {
@@ -22,7 +24,7 @@ namespace ERP_Dal
             using (EFContext Context = new EFContext())
             {
                 List<PositionInfo> positionInfos = (from s in Context.PositionInfo
-                                                    select s).ToList<PositionInfo>();
+                                                    select s).ToList();
                 return positionInfos;
             }
         }
@@ -46,10 +48,11 @@ namespace ERP_Dal
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Add(PositionInfo positionInfo)
+        public static int Add(string positionInfoStr)
         {
             using (EFContext Context = new EFContext())
             {
+                PositionInfo positionInfo = JsonConvert.DeserializeObject<PositionInfo>(positionInfoStr);
                 DbEntityEntry<PositionInfo> entityEntry = Context.Entry<PositionInfo>(positionInfo);
                 entityEntry.State = System.Data.Entity.EntityState.Added;
                 int result= Context.SaveChanges();

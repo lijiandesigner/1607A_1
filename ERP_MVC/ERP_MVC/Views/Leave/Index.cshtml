@@ -1,5 +1,4 @@
-﻿@model List<ERP_MVC.Models.RestInfo>
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
@@ -23,6 +22,8 @@
     <thead>
         <tr>
             <th>员工编号</th>
+            <th>员工姓名</th>
+            <th>员工职位</th>
             <th>请假类型</th>
             <th>开始时间</th>
             <th>结束时间</th>
@@ -43,31 +44,30 @@
         }
         else {
             $.ajax({
-                url: "",
+                url: "http://localhost:59776/api/Rest",
                 type: "get",
                 data: { Eid: eid, Rtype: rtype },
                 dataType: "json",
                 success: function (data) {
                     var str = "";
                     for (var i in data) {
-                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='sRestatic'>" + data[i].Restatic + "</span>" + "</td><td><a id='aAgree' onclick='Agree()'>同意</a> <a id='aReject' onclick='Reject()'>驳回</a></td></tr>";
+                        str += "<tr><td>" + data[i].Eid + "</td><td>"+data[i].Ename+"</td><td>"+data[i].PoName+"</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='sRestatic'>" + data[i].Restatic + "</span>" + "</td><td><a id='aAgree' onclick='Agree()'>同意</a> <a id='aReject' onclick='Reject()'>驳回</a></td></tr>";
                     }
                     $("#tb").html(str);
                 }
             });
         }
-
     }
     function loadData() {
         $(function () {
             $.ajax({
-                url: '',
+                url: 'http://localhost:59776/api/Rest',
                 type: 'get',
                 dataType: 'json',
                 success: function (data) {
                     var str = "";
                     for (var i in data) {
-                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='sRestatic'>" + data[i].Restatic + "</span>" + "</td><td><a id='aAgree' onclick='Agree()'>同意</a> <a id='aReject' onclick='Reject()'>驳回</a></td></tr>";
+                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='sRestatic'>" + data[i].Restatic + "</span>" + "</td><td><a id='aAgree' onclick='Agree()'>同意</a> <a id='aReject' onclick='Reject()'>驳回</a></td></tr>";
                     }
                     $("#tb").html(str);
                 }

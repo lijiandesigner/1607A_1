@@ -9,6 +9,5 @@ namespace ERP_MVC.Models
     {
         public string ENo { get; set; }
         public string Rpassword { get; set; }
-
     }
 }

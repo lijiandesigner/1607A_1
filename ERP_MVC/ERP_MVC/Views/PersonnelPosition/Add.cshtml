@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>添加职位</h2>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    //添加
+    function save() {
+        var zwmc = $("#txtzwmc").val();
+        var zwjb = $("#txtzwjb").val();
+        var dx = $("#txtdx").val();
+        var qx = $("#txtqx").val();
+        if (zwmc == "") {
+            alert("信息不能为空");
+        } else {
+            $.ajax({
+                url: '',
+                type: 'post',
+                data: { PoName: zwmc, PoLeave: zwjb, PoMinMoney: dx, Permission: qx },
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        alert("添加成功");
+                    }
+                    else {
+                        alert("添加失败");
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+<h2>添加职位</h2>
+<table class="table table-hover">
+    <tr>
+        <td>职位名称</td>
+        <td><input id="txtzwmc" type="text" /></td>
+    </tr>
+    <tr>
+        <td>职位级别</td>
+        <td><input id="txtzwjb" type="text" /></td>
+    </tr>
+    <tr>
+        <td>底薪</td>
+        <td><input id="txtdx" type="text" /></td>
+    </tr>
+    <tr>
+        <td>权限</td>
+        <td><input id="txtqx" type="text" /></td>
+    </tr>
+    <tr>
+        <td><input id="Button1" type="button" value="返回" class="btn btn-default" /></td>
+        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" /></td>
+    </tr>
+</table>
+
