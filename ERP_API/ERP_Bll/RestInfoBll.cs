@@ -26,9 +26,9 @@ namespace ERP_Bll
         /// </summary>
         /// <param name="restInfo">请假信息对象</param>
         /// <returns></returns>
-        public static int Add(RestInfo restInfo)
+        public static int Add(string restInfoStr)
         {
-            return RestInfoDal.Add(restInfo);
+            return RestInfoDal.Add(restInfoStr);
         }
         /// <summary>
         /// 请假信息审批

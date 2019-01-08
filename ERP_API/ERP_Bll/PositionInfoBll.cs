@@ -32,9 +32,9 @@ namespace ERP_Bll
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Add(PositionInfo positionInfo)
+        public static int Add(string positionInfoStr)
         {
-            return PositionInfoDal.Add(positionInfo);
+            return PositionInfoDal.Add(positionInfoStr);
         }
         /// <summary>
         /// 职位修改

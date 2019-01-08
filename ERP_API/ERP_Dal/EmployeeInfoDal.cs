@@ -7,6 +7,7 @@ using System.Web;
 using Models;
 using ERP_Model;
 using System.Data.Entity.Infrastructure;
+using Newtonsoft.Json;
 
 namespace ERP_Dal
 {
@@ -133,15 +134,28 @@ namespace ERP_Dal
             }
         }
         /// <summary>
+        /// 根据员工ID获取单个对象
+        /// </summary>
+        /// <param name="id">员工id</param>
+        /// <returns></returns>
+        public static EmployeeInfo GetById(int id)
+        {
+            using (EFContext Context = new EFContext())
+            {
+                return Context.EmployeeInfo.Where(u => u.EID == id).Select(u => u).ToList().FirstOrDefault();
+            }
+        }
+        /// <summary>
         /// 添加员工信息
         /// </summary>
         /// <param name="restInfo">员工信息对象</param>
         /// <returns></returns>
-        public static int Add(RestInfo restInfo)
+        public static int Add(string EmployeeInfoStr)
         {
             using (EFContext Context = new EFContext())
             {
-                DbEntityEntry<RestInfo> person = Context.Entry<RestInfo>(restInfo);
+                EmployeeInfo EmployeeInfo = JsonConvert.DeserializeObject<EmployeeInfo>(EmployeeInfoStr);
+                DbEntityEntry<EmployeeInfo> person = Context.Entry<EmployeeInfo>(EmployeeInfo);
                 person.State = System.Data.Entity.EntityState.Added;
                 return Context.SaveChanges();
             }
@@ -151,11 +165,13 @@ namespace ERP_Dal
         /// </summary>
         /// <param name="restInfo">修改后的员工信息对象</param>
         /// <returns></returns>
-        public static int Update (RestInfo restInfo)
+        public static int Update (string EmployeeInfoStr)
         {
             using (EFContext Context = new EFContext())
             {
-                Context.Entry<RestInfo>(restInfo).State = System.Data.Entity.EntityState.Modified;
+                EmployeeInfo employeeInfo = JsonConvert.DeserializeObject<EmployeeInfo>(EmployeeInfoStr);
+                employeeInfo.Ppassword = employeeInfo.EcardID.Substring(12);
+                Context.Entry(employeeInfo).State = System.Data.Entity.EntityState.Modified;
                 return Context.SaveChanges();
             }
         }

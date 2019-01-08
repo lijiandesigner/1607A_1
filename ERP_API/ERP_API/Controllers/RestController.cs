@@ -10,6 +10,7 @@ using ERP_Bll;
 
 namespace ERP_API.Controllers
 {
+    //请假控制器
     public class RestController : ApiController
     {
         /// <summary>
@@ -18,7 +19,7 @@ namespace ERP_API.Controllers
         /// <param name="ENo">员工编号</param>
         /// <param name="Type">请假类型</param>
         /// <returns></returns>
-        public List<LeaveInfo> Get(string ENo, string Type)
+        public List<LeaveInfo> Get(string ENo ="", string Type="")
         {
             return RestInfoBll.GetAllPositionInfo(ENo,Type);
         }
@@ -27,9 +28,9 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="restInfo">请假信息对象</param>
         /// <returns></returns>
-        public int Post(RestInfo restInfo)
+        public int Post(string restInfoStr)
         {
-            return RestInfoBll.Add(restInfo);
+            return RestInfoBll.Add(restInfoStr);
         }
         /// <summary>
         /// 请假信息审批
