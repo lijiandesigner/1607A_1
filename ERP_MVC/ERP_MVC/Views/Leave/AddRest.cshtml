@@ -1,5 +1,4 @@
-﻿@model List<ERP_MVC.Models.RestInfo>
-@{
+﻿@{
     ViewBag.Title = "AddRest";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
@@ -16,9 +15,9 @@
         var rtype = $(".rodType:checked").val();
         var remark = $("#txtRemark").val();
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/Rest',
             type: 'post',
-            data: { Eid: eid, EName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic: '待审核' },
+            data: { Eid: eid, EName: ename, RStartTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark },
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
