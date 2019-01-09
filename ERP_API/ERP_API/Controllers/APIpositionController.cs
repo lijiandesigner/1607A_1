@@ -16,7 +16,7 @@ namespace ERP_API.Controllers
         /// 获取所有职位信息
         /// </summary>
         /// <returns></returns>
-        public static List<PositionInfo> Get()
+        public List<PositionInfo> Get()
         {
             return PositionInfoBll.GetAllPositionInfo();
         }
@@ -25,7 +25,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="id">职位id</param>
         /// <returns></returns>
-        public static PositionInfo Get(int id)
+        public PositionInfo Get(int id)
         {
             return PositionInfoBll.GetById(id);
         }
@@ -34,7 +34,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Post(string positionInfoStr)
+        public int Post([FromBody]string positionInfoStr)
         {
             return PositionInfoBll.Add(positionInfoStr);
         }
@@ -43,7 +43,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Update(PositionInfo positionInfo)
+        public int Update([FromBody]PositionInfo positionInfo)
         {
             return PositionInfoBll.Update(positionInfo);
         }
@@ -52,7 +52,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static int Delete(int id)
+        public int Delete(int id)
         {
             return PositionInfoBll.DeleteById(id);
         }
