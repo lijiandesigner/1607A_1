@@ -4,13 +4,13 @@
 }
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
     $(function () {
         var Id = $("#hidId").val();
         //职位下拉
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/position',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -21,7 +21,7 @@
         });
         //反填
         $.ajax({
-            url: '' + Id,
+            url: 'http://localhost:59776/api/EmployeeInfo/' + Id,
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -51,13 +51,14 @@
         var zw = $("#selzw").val();
         //传值
         $.ajax({
-            url: '' + Id,
+            url: 'http://localhost:59776/api/EmployeeInfo/' + Id,
             type: 'put',
             data: { EID:Id, ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw},
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
                     alert("修改成功");
+                    location.href = '/PersonnelInfomation/Index';
                 }
                 else {
                     alert("修改失败");
@@ -68,7 +69,7 @@
 </script>
 <html>
 <head>
-    <title>Add</title>
+    <title>Edit</title>
 </head>
 <body>
     <div class="container">
@@ -117,7 +118,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input id="Button1" type="button" value="返回" class="btn btn-default" />
+                    <input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Index'" />
                     <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
                 </td>
             </tr>

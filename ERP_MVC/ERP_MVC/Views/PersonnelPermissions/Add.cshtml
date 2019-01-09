@@ -18,13 +18,14 @@
             alert("信息不能为空");
         } else {
             $.ajax({
-                url: '',
+                url: 'http://localhost:59776/api/position',
                 type: 'post',
                 data: { EID: ygid, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt },
                 dataType: 'text',
                 success: function (data) {
                     if (data > 0) {
                         alert("添加成功");
+                        location.href = '/PersonnelPermissions/Index';
                     }
                     else {
                         alert("添加失败");
@@ -56,6 +57,6 @@
     </tr>
     <tr>
         <td></td>
-        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　<input id="Button1" type="button" value="返回" class="btn btn-default" /></td>
+        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPermissions/Index'" /></td>
     </tr>
 </table>
