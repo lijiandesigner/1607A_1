@@ -19,6 +19,7 @@
         <td>
             <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />男
             <input id="rad2" class="rad" type="radio" name="rad" value="false" />女
+            <input id="Radio1" type="radio" />
         </td>
     </tr>
     <tr>
@@ -40,21 +41,18 @@
     <tr>
         <td>职位</td>
         <td>
-            <select id="selzw">
-                <option value="0">选择职位</option>
-            </select>
+            <select id="selzw"></select>
         </td>
     </tr>
     <tr>
-        <td><input id="Button1" type="button" value="返回" class="btn btn-default" /></td>
-        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" /></td>
+        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Index'" /></td>
     </tr>
 </table>
 <script>
     //下拉
     $(function () {
         $.ajax({
-            url: 'http://localhost:59776/api/APIposition',
+            url: 'http://localhost:59776/api/position',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -82,6 +80,7 @@
             success: function (data) {
                 if (data > 0) {
                     alert("添加成功");
+                    location.href = '/PersonnelInfomation/Index';
                 }
                 else {
                     alert("添加失败");
