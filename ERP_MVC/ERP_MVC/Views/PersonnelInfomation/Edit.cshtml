@@ -75,7 +75,7 @@
     <div class="container">
         <hr />
         <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
-        <table class="table-condensed">
+        <table class="table table-hover">
             <tr>
                 <td>员工编号</td>
                 <td><input id="txtbh" type="text" /></td>
@@ -111,15 +111,13 @@
                 <td>职位</td>
                 <td>
                     <select id="selzw">
-                        <option value="0">选择职位</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Index'" />
-                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Index'" />
                 </td>
             </tr>
         </table>
