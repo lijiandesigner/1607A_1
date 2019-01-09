@@ -43,7 +43,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public int Post([FromBody]PositionInfo positionInfo)
+        public int Put([FromBody]PositionInfo positionInfo)
         {
             return PositionInfoBll.Update(positionInfo);
         }
