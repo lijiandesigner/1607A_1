@@ -21,3 +21,4 @@ C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.csproj.
 C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.dll
 C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.pdb
 C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\obj\Debug\Models.csprojAssemblyReference.cache
+E:\小实训1(重修)\一组项目\考勤管理项目\mvc\ERP_API\Models\obj\Debug\Models.csprojAssemblyReference.cache
