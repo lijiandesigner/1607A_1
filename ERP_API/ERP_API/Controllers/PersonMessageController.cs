@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ERP_Dal;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using Models;
+using ERP_Bll;
 
-namespace ERP_Bll
+namespace ERP_API.Controllers
 {
-    public class PersonMessageBll
+    public class PersonMessageController : ApiController
     {
         /// <summary>
         /// 根据条件查询员工工作状态
@@ -17,18 +18,18 @@ namespace ERP_Bll
         /// <param name="EName">员工姓名</param>
         /// <param name="Static">工作状态</param>
         /// <returns></returns>
-        public static List<WorkState> Get(string ENo, string EName, string Static)
+        public List<WorkState> Get(string ENo=null, string EName=null, string Static=null)
         {
-            return PersonMessageDal.Get(ENo, EName, Static);
+            return PersonMessageBll.Get(ENo, EName, Static);
         }
         /// <summary>
         /// 员工工作状态修改
         /// </summary>
         /// <param name="workState"></param>
         /// <returns></returns>
-        public static int Update(WorkState workState)
+        public int Put([FromBody]WorkState workState)
         {
-            return PersonMessageDal.Update(workState);
+            return PersonMessageBll.Update(workState);
         }
     }
 }

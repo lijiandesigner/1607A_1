@@ -64,6 +64,7 @@ namespace ERP_Dal
                     person.State = System.Data.Entity.EntityState.Added;
                     Context.SaveChanges();
                     Rpassword = Rpassword.Substring(12);
+                    //"create trigger trigger_insert on employeeinfo for insert as insert into PersonMessage values(@@IDENTITY,CONVERT(varchar(12) , getdate(), 111 ),'',1)"
                 }
 
                 var result = (from a in Context.EmployeeInfo
