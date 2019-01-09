@@ -17,8 +17,8 @@
             </td>
             <td align="right">
                 <select id="selzw">
-                    <option value="true">在职</option>
-                    <option value="false">离职</option>
+                    <option value="true" >在职</option>
+                    <option value="false" >离职</option>
                 </select>
                 <input id="txtbh" type="text" />
                 <input id="txtxm" type="text" />
@@ -112,7 +112,7 @@
         var xm = $("#txtxm").val();
         var str = "";
         if (bh==""&&xm=="") {
-            str += "";
+            str += "?Pstatic="+zt;
         } else if (bh == "" && xm != "") {
             str += "?Pstatic=" + zt + "&ename=" + xm;
         } else if (bh != "" && xm == "") {
