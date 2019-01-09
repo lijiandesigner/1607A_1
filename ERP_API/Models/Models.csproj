@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttendanceDay.cs" />
     <Compile Include="EmployeeInfos.cs" />
     <Compile Include="LeaveInfo.cs" />
     <Compile Include="LoginJsonString.cs" />

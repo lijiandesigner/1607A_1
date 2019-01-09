@@ -28,7 +28,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="restInfo">请假信息对象</param>
         /// <returns></returns>
-        public int Post(string restInfoStr)
+        public int Post([FromBody]string restInfoStr)
         {
             return RestInfoBll.Add(restInfoStr);
         }
@@ -38,9 +38,9 @@ namespace ERP_API.Controllers
         /// <param name="RID">信息id</param>
         /// <param name="ReAuditTime">审批时间</param>
         /// <returns></returns>
-        public  int Put(int RID, string ReAuditTime)
+        public  int Put([FromUri]int RID,[FromUri]int Restatic)
         {
-            return RestInfoBll.Update(RID, ReAuditTime);
+            return RestInfoBll.Update(RID,Restatic==1?"同意":"驳回", DateTime.Now.ToString("yyyy/MM/dd hh:mm"));
         }
     }
 }

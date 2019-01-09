@@ -33,7 +33,7 @@ namespace ERP_Dal
                                                  select new LeaveInfo
                                                  {
 
-                                                     EID = a.EID,
+                                                     RID = c.RID,
                                                      ENo=a.ENo,
                                                      EName = a.EName,
                                                      PoName = b.PoName,
@@ -70,13 +70,14 @@ namespace ERP_Dal
         /// <param name="RID">信息id</param>
         /// <param name="ReAuditTime">审批时间</param>
         /// <returns></returns>
-        public static int Update(int RID, string ReAuditTime)
+        public static int Update(int RID,string Restatic, string ReAuditTime)
         {
             using (EFContext Context = new EFContext())
             {
                 RestInfo restInfo = new RestInfo()
                 {
-                    RID = RID
+                    RID = RID,
+                    Restatic = Restatic
                 };
                 RestInfo a = Context.RestInfo.Attach(restInfo);
                 a.ReAuditTime = ReAuditTime;

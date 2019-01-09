@@ -35,7 +35,7 @@ namespace ERP_MVC.Controllers
                 Response.Write("<script>location.href='/Account/Maininterface'</script>");
             }
             else
-                Response.Write("<script>alert('登陆失败')</script>");
+                Response.Write("<script>alert('登陆失败');location.href='/Account/Index'</script>");
         }
 
         public ActionResult Maininterface()
