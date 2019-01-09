@@ -34,7 +34,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Post(string positionInfoStr)
+        public int Post([FromBody]string positionInfoStr)
         {
             return PositionInfoBll.Add(positionInfoStr);
         }
@@ -43,7 +43,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public static int Update(PositionInfo positionInfo)
+        public int Update([FromBody]PositionInfo positionInfo)
         {
             return PositionInfoBll.Update(positionInfo);
         }
@@ -52,7 +52,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static int Delete(int id)
+        public int Delete(int id)
         {
             return PositionInfoBll.DeleteById(id);
         }

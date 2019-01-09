@@ -20,3 +20,4 @@ C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.csprojA
 C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.dll
 C:\Users\段帅达\source\repos\1607A_12\ERP_API\Models\obj\Debug\Models.pdb
+C:\Users\Administrator\source\repos\1607A_1\ERP_API\Models\obj\Debug\Models.csprojAssemblyReference.cache
