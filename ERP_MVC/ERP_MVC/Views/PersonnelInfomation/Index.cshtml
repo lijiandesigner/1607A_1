@@ -16,7 +16,10 @@
                 </select>页
             </td>
             <td align="right">
-                <select id="selzw"></select>
+                <select id="selzw">
+                    <option value="true">在职</option>
+                    <option value="false">离职</option>
+                </select>
                 <input id="txtbh" type="text" />
                 <input id="txtxm" type="text" />
                 <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-default" />
@@ -57,26 +60,25 @@
     </table>
 </div>
 <script>
-    //下拉
-    $(function () {
-        $.ajax({
-            url: 'http://localhost:59776/api/',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    $("#selzw").append("<option value='" + data[i].PID + "'>" + data[i].Pstatic + "</option>");
-                }
-            }
-        });
-    });
+    ////下拉
+    //$(function () {
+    //    $.ajax({
+    //        url: 'http://localhost:59776/api/',
+    //        type: 'get',
+    //        dataType: 'json',
+    //        success: function (data) {
+    //            for (var i = 0; i < data.length; i++) {
+    //                $("#selzw").append("<option value='" + data[i].PID + "'>" + data[i].Pstatic + "</option>");
+    //            }
+    //        }
+    //    });
+    //});
     //显示
     $(function () {
         $.ajax({
-            url: 'http://localhost:59776/api/EmployeeInfo',
+            url: 'http://localhost:59776/api/EmployeeInfo?Pstatic=true',
             type: 'get',
             dataType: 'json',
-            data: {},
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
                     $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].Pid + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].EID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].EID + ")' /></td></tr>");
@@ -108,11 +110,19 @@
         var zt = $("#selzw").val();
         var bh = $("#txtbh").val();
         var xm = $("#txtxm").val();
+        var str = "";
+        if (bh==""&&xm=="") {
+            str += "";
+        } else if (bh == "" && xm != "") {
+            str += "?Pstatic=" + zt + "&ename=" + xm;
+        } else if (bh != "" && xm == "") {
+            str += "?Pstatic=" + zt + "&eno=" + bh;
+        } else {
+            str += "?Pstatic=" + zt + "&eno=" + bh + "&ename=" + xm;
+        }
         $.ajax({
-            url: 'http://localhost:59776/api/EmployeeInfo',
+            url: 'http://localhost:59776/api/EmployeeInfo'+str,
             type: 'get',
-            data: { Pstatic:zt, ENo:bh, EName: xm, },
-            dataType: 'json',
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
