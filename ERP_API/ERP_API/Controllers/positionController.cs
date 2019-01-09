@@ -16,7 +16,7 @@ namespace ERP_API.Controllers
         /// 获取所有职位信息
         /// </summary>
         /// <returns></returns>
-        public static List<PositionInfo> Get()
+        public List<PositionInfo> Get()
         {
             return PositionInfoBll.GetAllPositionInfo();
         }
@@ -25,7 +25,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="id">职位id</param>
         /// <returns></returns>
-        public static PositionInfo Get(int id)
+        public PositionInfo Get(int id)
         {
             return PositionInfoBll.GetById(id);
         }
