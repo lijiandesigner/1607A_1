@@ -46,7 +46,7 @@ namespace ERP_Dal
                                                      Remark = c.Remark
 
                                                  }).ToList();
-                return positionInfos.Where(u=>ENo==""?true:u.ENo==ENo).Where(u => ENo == "" ? true : u.Rtype == Type).ToList();
+                return positionInfos.Where(u=>ENo==null?true:u.ENo==ENo).Where(u => ENo == null ? true : u.Rtype == Type).ToList();
             }
         }
         /// <summary>

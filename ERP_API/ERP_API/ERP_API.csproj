@@ -169,6 +169,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\APIAccountController.cs" />
+    <Compile Include="Controllers\AttendanceTypeController.cs" />
     <Compile Include="Controllers\positionController.cs" />
     <Compile Include="Controllers\APIAttendanceController.cs" />
     <Compile Include="Controllers\EmployeeInfoController.cs" />
