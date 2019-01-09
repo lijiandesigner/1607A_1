@@ -76,11 +76,11 @@ namespace ERP_Dal
             {
                 RestInfo restInfo = new RestInfo()
                 {
-                    RID = RID,
-                    Restatic = Restatic
+                    RID = RID
                 };
                 RestInfo a = Context.RestInfo.Attach(restInfo);
-                a.ReAuditTime = ReAuditTime;
+                restInfo.Restatic = Restatic;
+                restInfo.ReAuditTime = ReAuditTime;
                 return Context.SaveChanges();
             }
         }
