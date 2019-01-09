@@ -7,7 +7,6 @@
 
 <script src="~/My97DatePicker/WdatePicker.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-@*<link href="~/Content/main.css" rel="stylesheet" />*@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script>
     function AddRest() {
@@ -83,61 +82,9 @@
         <div class="tile-footer">
             <div class="row">
                 <div class="col-md-8 col-md-offset-3">
-                    <button style="float:right;margin-right:50px" class="btn btn-primary" id="btnAdd" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交</button>
+                    <button style="float:right;margin-right:50px" class="btn btn-primary" onclick="AddRest()" id="btnAdd" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>提交</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@*<div style="width:500px;height:580px;text-align:center;margin-left:350px;background-color:white">
-        <h2 style="text-align:center">提交请假申请</h2>
-        <hr style="height:3px" />
-        <table class="table table-hover table-bordered" style="width:500px;height:500px">
-            <tr>
-                <td>请假开始时间</td>
-                <td><input id="txtStartTime" onclick="WdatePicker()" class="Wdate" type="text" /></td>
-            </tr>
-            <tr>
-                <td>请假结束时间</td>
-                <td><input id="txtEndTime" type="text" onclick="WdatePicker()" class="Wdate" /></td>
-            </tr>
-            <tr>
-                <td>请假类型</td>
-                <td>
-                    <input class="rodType" name="Type" value="事假" type="radio" checked />事假
-                    <input class="rodType" name="Type" value="病假" type="radio" />病假
-                    <input class="rodType" name="Type" value="婚假" type="radio" />婚假
-                    <input class="rodType" name="Type" value="产假" type="radio" />产假
-                    <input class="rodType" name="Type" value="丧假" type="radio" />丧假
-                </td>
-            </tr>
-            <tr>
-                <td>请假理由</td>
-                <td><textarea id="txtRemark" rows="3" cols="20"></textarea></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input id="btnAdd" class="btn-info" style="width:80px;height:30px" type="button" value="提交" onclick="AddRest()" /></td>
-            </tr>
-        </table>
-
-    </div>*@
-@*<script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
-@*<script src="~/Scripts/js/popper.min.js"></script>*@
-@*<script src="~/Scripts/js/bootstrap.min.js"></script>*@
-@*<script src="~/Scripts/js/main.js"></script>*@
-<!-- The javascript plugin to display page loading on top-->
-@*<script src="~/Scripts/js/plugins/pace.min.js"></script>*@
-<!-- Page specific javascripts-->
-<!-- Google analytics script-->
-@*<script type="text/javascript">
-    if (document.location.hostname == 'pratikborsadiya.in') {
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-72504830-1', 'auto');
-        ga('send', 'pageview');
-    }
-</script>*@

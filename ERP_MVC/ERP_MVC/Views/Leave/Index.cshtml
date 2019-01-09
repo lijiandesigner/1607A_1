@@ -16,8 +16,9 @@
 @*<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
 <h2 style="text-align:center">请假信息表</h2>
 <div>
-    <span runat="server">员工编号</span><input id="TxtENo" type="text" />
-    <select id="SelRestType">
+    <label class="control-label float-left" style="font-size:17px;margin-left:25px;margin-top:4px">员工编号：</label>
+    <input class="form-control float-left" style="width:150px" type="text">
+    <select id="SelRestType" class="form-control float-left" style="width:150px">
         <option value="选择请假类型">选择请假类型</option>
         <option value="事假">事假</option>
         <option value="病假">病假</option>
@@ -25,12 +26,14 @@
         <option value="产假">产假</option>
         <option value="丧假">丧假</option>
     </select>
-    <input id="btnSelect" type="button" class="btn-info" value="查询" />
+    <input id="btnSelect" type="button" class="btn btn-info" value="查询" />
 </div>
+    
+    
 <div class="col-md-12">
     <div class="tile">
         <div class="tile-body">
-            <table class="table table-bordered table-hover" id="sampleTable">
+            <table class="table table-bordered table-hover" id="sampleTable" style="text-align:center">
                 <thead>
                     <tr>
                         <th>员工编号</th>
@@ -45,7 +48,7 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody id="tb"></tbody>
+                <tbody id="tb" style="text-align:center"></tbody>
             </table>
         </div>
     </div>
@@ -61,11 +64,10 @@
                     url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + '',
                     type: 'get',
                     success: function (data) {
-                        var str = "";
+                        $("#tb").empty();
                         for (var i in data) {
-                            str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
                         }
-                        $("#tb").html(str);
                     }
                 });
             }
@@ -77,11 +79,25 @@
                     url: 'http://localhost:59776/api/Rest?ENo=' + '' + '&Rtype=' + rtype,
                     type: 'get',
                     success: function (data) {
-                        var str = "";
+                        $("#tb").empty();
                         for (var i in data) {
-                            str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' class='btn btn - info float-left' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
                         }
-                        $("#tb").html(str);
+                    }
+                });
+            }
+            else if ($("#SelRestType").val() == "选择请假类型" & $("#TxtENo").val() == "")
+            {
+                eno = $("#TxtENo").val();
+                rtype = $("#SelRestType").val();
+                $.ajax({
+                    url: 'http://localhost:59776/api/Rest?ENo=' + '' + '&Rtype=' + '',
+                    type: 'get',
+                    success: function (data) {
+                        $("#tb").empty();
+                        for (var i in data) {
+                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
+                        }
                     }
                 });
             }
@@ -92,11 +108,10 @@
                     url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + rtype,
                     type: 'get',
                     success: function (data) {
-                        var str = "";
+                        $("#tb").empty();
                         for (var i in data) {
-                            str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' class='btn btn - info float-left' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' class='btn btn - info float-left' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
                         }
-                        $("#tb").html(str);
 
                     }
                 });
@@ -104,23 +119,6 @@
 
         });
     });
-    //function SelectLoad() {
-    //    eno = $("#TxtENo").val();
-    //    rtype = $("#SelRestType").val();
-    //    $.ajax({
-    //        url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + rtype,
-    //        type: 'get',
-    //        success: function (data) {
-    //            $("#tb").empty();
-    //            for (var i in data) {
-    //                $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
-    //            }
-
-    //        }
-    //    });
-    //}
-</script>
-<script>
     function loadData() {
         $(function () {
             eno = $("#TxtENo").val();
@@ -132,7 +130,7 @@
                 success: function (data) {
                     var str = "";
                     for (var i in data) {
-                        str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                        str += "<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
         }
                     $("#tb").html(str);
                 }
@@ -154,7 +152,6 @@
             }
         })
         document.getElementById("s" + RID).innerText = "同意";
-        //loadData();
     }
     function Reject(RID) {
         $.ajax({
@@ -168,32 +165,6 @@
             }
         })
         document.getElementById("s" + RID).innerText = "驳回";
-        //loadData();
     }
 
 </script>
-@*<!-- Essential javascripts for application to work-->
-<script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
-<script src="~/Scripts/js/popper.min.js"></script>
-<script src="~/Scripts/js/bootstrap.min.js"></script>
-<script src="~/Scripts/js/main.js"></script>
-<!-- The javascript plugin to display page loading on top-->
-<script src="~/Scripts/js/plugins/pace.min.js"></script>
-<!-- Page specific javascripts-->
-<!-- Data table plugin-->
-<script type="text/javascript" src="~/Scripts/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="~/Scripts/js/plugins/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript">$('#sampleTable').DataTable();</script>
-<!-- Google analytics script-->
-<script type="text/javascript">
-    if (document.location.hostname == 'pratikborsadiya.in') {
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-72504830-1', 'auto');
-        ga('send', 'pageview');
-    }
-</script>*@
