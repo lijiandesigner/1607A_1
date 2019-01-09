@@ -33,7 +33,7 @@ namespace ERP_Dal
                                                  select new LeaveInfo
                                                  {
 
-                                                     EID = a.EID,
+                                                     RID = c.RID,
                                                      ENo=a.ENo,
                                                      EName = a.EName,
                                                      PoName = b.PoName,

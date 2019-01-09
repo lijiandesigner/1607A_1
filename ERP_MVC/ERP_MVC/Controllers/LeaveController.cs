@@ -27,10 +27,5 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
-        public ActionResult Edit(int RID)
-        {
-            ViewBag.RID = RID;
-            return View();
-        }
     }
 }

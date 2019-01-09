@@ -87,10 +87,10 @@
         })
         function Agree(RID) {
             $.ajax({
-                url: 'http://localhost:59776/api/Rest',
+                url: 'http://localhost:59776/api/Rest/RID=' + RID,
                 type: 'put',
-                data: { RID: RID, Restatic: 1 },
-                dataType: 'text',
+                data: { '': 1 },
+                dataType: 'json',
                 success: function (data) {
                     if (data > 0) {
                         alert("审批成功");
@@ -102,10 +102,10 @@
         }
         function Reject(RID) {
             $.ajax({
-                url: 'http://localhost:59776/api/Rest',
+                url: 'http://localhost:59776/api/Rest/RID=' + RID,
                 type: 'put',
-                data: { RID: RID, Restatic: 0 },
-                dataType: 'text',
+                data: { '': 0 },
+                dataType: 'json',
                 success: function (data) {
                     if (data > 0) {
                         alert("审批成功");

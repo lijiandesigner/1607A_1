@@ -9,7 +9,7 @@ namespace Models
     //返回请假信息类
     public class LeaveInfo
     {
-        public int EID { get; set; }            //员工id
+        public int RID { get; set; }            //id
         public string ENo { get; set; }         //员工编号
         public string EName { get; set; }       //员工姓名
         public string PoName { get; set; }      //员工职位
