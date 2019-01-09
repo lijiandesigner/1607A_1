@@ -17,9 +17,9 @@ namespace ERP_Bll
         /// <param name="ENo">员工编号</param>
         /// <param name="Type">请假类型</param>
         /// <returns></returns>
-        public static List<LeaveInfo> GetAllPositionInfo(string ENo, string Type)
+        public static List<LeaveInfo> GetAllPositionInfo(string ENo, string Rtype)
         {
-            return RestInfoDal.GetAllPositionInfo(ENo, Type);
+            return RestInfoDal.GetAllPositionInfo(ENo, Rtype);
         }
         /// <summary>
         /// 添加请假信息
