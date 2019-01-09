@@ -3,17 +3,17 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<meta property="twitter:card" content="summary_large_image">
+@*<meta property="twitter:card" content="summary_large_image">
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">*@
+@*<meta name="viewport" content="width=device-width, initial-scale=1">*@
 <!-- Main CSS-->
 @*<link href="~/Content/main.css" rel="stylesheet" />*@
 <!-- Font-icon css-->
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+@*<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
 <h2 style="text-align:center">请假信息表</h2>
 <div>
     <span runat="server">员工编号</span><input id="TxtENo" type="text" />
@@ -25,24 +25,24 @@
         <option value="产假">产假</option>
         <option value="丧假">丧假</option>
     </select>
-    <input id="btnSelect" type="button" class="btn-info" onclick="SelectRest()" value="查询" />
+    <input id="btnSelect" type="button" class="btn-info" value="查询" />
 </div>
 <div class="col-md-12">
     <div class="tile">
         <div class="tile-body">
-            <table class="ta ble table-hover table-bordered" id="sampleTable">
+            <table class="table table-bordered table-hover" id="sampleTable">
                 <thead>
-                    <tr role="row">
-                        <th class="sorting">员工编号</th>
-                        <th class="sorting">员工姓名</th>
-                        <th class="sorting">员工职位</th>
-                        <th class="sorting">开始时间</th>
-                        <th class="sorting">请假类型</th>
-                        <th class="sorting">结束时间</th>
-                        <th class="sorting">请假理由</th>
-                        <th class="sorting">审核时间</th>
-                        <th class="sorting">审核状态</th>
-                        <th class="sorting">操作</th>
+                    <tr>
+                        <th>员工编号</th>
+                        <th>员工姓名</th>
+                        <th>员工职位</th>
+                        <th>请假类型</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>请假理由</th>
+                        <th>审核时间</th>
+                        <th>审核状态</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody id="tb"></tbody>
@@ -51,31 +51,80 @@
     </div>
 </div>
 <script>
-    function SelectRest() {
-        eno = $("#TxtENo").val();
-        rtype = $("#SelRestType").val();
-        if (eid == "" || rtype.Select.text == "选择请假类型") {
-            loadData();
-        }
-        else {
-            $.ajax({
-                url: "http://localhost:59776/api/Rest",
-                type: "get",
-                data: { ENo: eno, Rtype: rtype },
-                dataType: "json",
-                success: function (data) {
-                    var str = "";
-                    for (var i in data) {
-                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td>" + "<span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span>" + "</td><td><input id='txtAgree' type='button' class='btn - info' value='同意' onclick='Agree()' /><input id='txtReject' type='button' value='驳回' onclick='Reject(" + data[i].RID + ")' /></td></tr>";
-                    }
-                    $("#tb").html(str);
-                }
-            });
-        }
-    }
-    function loadData() {
+    $(function () {
+        $("#btnSelect").click(function () {
+            if ($("#TxtENo").val() != "" & $("#SelRestType").val() == "选择请假类型") {
+                eno = $("#TxtENo").val();
+                rtype = $("#SelRestType").val();
 
+                $.ajax({
+                    url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + '',
+                    type: 'get',
+                    success: function (data) {
+                        var str = "";
+                        for (var i in data) {
+                            str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                        }
+                        $("#tb").html(str);
+                    }
+                });
+            }
+
+            else if ($("#SelRestType").val() != "选择请假类型" & $("#TxtENo").val() == "") {
+                eno = $("#TxtENo").val();
+                rtype = $("#SelRestType").val();
+                $.ajax({
+                    url: 'http://localhost:59776/api/Rest?ENo=' + '' + '&Rtype=' + rtype,
+                    type: 'get',
+                    success: function (data) {
+                        var str = "";
+                        for (var i in data) {
+                            str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                        }
+                        $("#tb").html(str);
+                    }
+                });
+            }
+            else {
+                eno = $("#TxtENo").val();
+                rtype = $("#SelRestType").val();
+                $.ajax({
+                    url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + rtype,
+                    type: 'get',
+                    success: function (data) {
+                        var str = "";
+                        for (var i in data) {
+                            str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
+                        }
+                        $("#tb").html(str);
+
+                    }
+                });
+            }
+
+        });
+    });
+    //function SelectLoad() {
+    //    eno = $("#TxtENo").val();
+    //    rtype = $("#SelRestType").val();
+    //    $.ajax({
+    //        url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + rtype,
+    //        type: 'get',
+    //        success: function (data) {
+    //            $("#tb").empty();
+    //            for (var i in data) {
+    //                $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
+    //            }
+
+    //        }
+    //    });
+    //}
+</script>
+<script>
+    function loadData() {
         $(function () {
+            eno = $("#TxtENo").val();
+            rtype = $("#SelRestType").val();
             $.ajax({
                 url: 'http://localhost:59776/api/Rest',
                 type: 'get',
@@ -84,7 +133,7 @@
                     var str = "";
                     for (var i in data) {
                         str += "<tr><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>";
-                    }
+        }
                     $("#tb").html(str);
                 }
             });
@@ -123,8 +172,7 @@
     }
 
 </script>
-<!-- Essential javascripts for application to work-->
-
+@*<!-- Essential javascripts for application to work-->
 <script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
 <script src="~/Scripts/js/popper.min.js"></script>
 <script src="~/Scripts/js/bootstrap.min.js"></script>
@@ -148,4 +196,4 @@
         ga('create', 'UA-72504830-1', 'auto');
         ga('send', 'pageview');
     }
-</script>
+</script>*@
