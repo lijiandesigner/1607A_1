@@ -8,6 +8,8 @@
 <script src="~/My97DatePicker/WdatePicker.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     function AddRest() {
         var starttime = $("#txtStartTime").val();
@@ -23,10 +25,10 @@
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
-                    alert('提交成功');
+                    layer.msg('提交成功', {icon:1});
                 }
                 else {
-                    alert('提交失败');
+                    layer.msg('提交失败', {icon:0});
                 }
             }
         })
