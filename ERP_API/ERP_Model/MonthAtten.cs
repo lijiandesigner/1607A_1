@@ -20,6 +20,7 @@ namespace ERP_Model
         public int MAbsenteeism { get; set; }//总旷工次数
         public int MLateTime { get; set; }//总迟到分钟数
         public int MLeaveTime { get; set; }//总早退分钟数
+        public string MDate { get; set; }//打卡日期(年/月)
         public string Remark { get; set; }//说明
     }
 }

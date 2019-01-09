@@ -42,6 +42,10 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 打卡
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SignIn()
         {
             return View();
