@@ -22,7 +22,7 @@ namespace ERP_API.Controllers
         /// <param name="EName">员工姓名</param>
         /// <param name="Pstatic">工作状态</param>
         /// <returns></returns>
-        public List<EmployeeInfos> Get(bool Pstatic, string ENo = "", string EName = "")
+        public List<EmployeeInfos> Get(bool Pstatic, string ENo = null, string EName = null)
         {
             return EmployeeInfoBll.GetEmployeeInfos(ENo, EName, Pstatic);
         }

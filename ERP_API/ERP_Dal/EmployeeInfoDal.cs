@@ -129,7 +129,7 @@ namespace ERP_Dal
                                                  PeBeginWork = c.PeBeginWork,
                                                  PeEndwork = c.PeEndwork,
                                                  Pstatic = c.Pstatic
-                                             }).Where(u => ENo == "" ? true : u.ENo == ENo).Where(u => ENo == "" ? true : u.EName == EName).Where(u => ENo == "" ? true : u.Pstatic == Pstatic).ToList();
+                                             }).Where(u => ENo == null ? true : u.ENo == ENo).Where(u => EName == null ? true : u.EName == EName).Where(u =>u.Pstatic == Pstatic).ToList();
                 return infos;
             }
         }
@@ -158,6 +158,7 @@ namespace ERP_Dal
                 EmployeeInfo.Ppassword = EmployeeInfo.EcardID.Substring(12);
                 DbEntityEntry<EmployeeInfo> person = Context.Entry<EmployeeInfo>(EmployeeInfo);
                 person.State = System.Data.Entity.EntityState.Added;
+                
                 return Context.SaveChanges();
             }
         }

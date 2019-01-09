@@ -7,6 +7,9 @@ using System.Web.Http;
 
 namespace ERP_API.Controllers
 {
+    /// <summary>
+    /// 考勤规则
+    /// </summary>
     public class AttendanceTypeController : ApiController
     {
     }
