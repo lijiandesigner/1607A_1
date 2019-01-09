@@ -21,7 +21,7 @@ namespace ERP_Dal
         /// <param name="EID">员工id</param>
         /// <param name="AttendanceTime">打卡时间</param>
         /// <returns></returns>
-        public static int Get(int EID, string AttendanceTime)
+        public static int DK(int EID, string AttendanceTime)
         {
             using (EFContext Context = new EFContext())
             {
@@ -35,19 +35,60 @@ namespace ERP_Dal
                 return (int)parameters[2].Value;
             }
         }
-        public static List<AttendanceDay> AttendanceDays(string ENo,string Adate)
+        /// <summary>
+        /// 根据条件查询日打卡信息
+        /// </summary>
+        /// <param name="ENo">员工编号</param>
+        /// <param name="EName">员工姓名</param>
+        /// <param name="Adate">打卡日期</param>
+        /// <returns></returns>
+        public static List<AttendanceDay> AttendanceDays(string ENo,string EName,string Adate)
         {
             using (EFContext Context = new EFContext())
             {
                 List<AttendanceDay> infos = (from a in Context.EmployeeInfo
-                                             join b in Context.PositionInfo
-                                            on a.Pid equals b.PoID
-                                             join c in Context.PersonMessage
-                                             on a.EID equals c.EID
+                                             join b in Context.AttendanceInfo
+                                            on a.Pid equals b.EID
                                              select new AttendanceDay
                                              {
-                                                 
-                                             }).Where(u => ENo == "" ? true : u.ENo == ENo).Where(u => ENo == "" ? true : u.Adate == Adate).ToList();
+                                                 AID=b.AID,
+                                                 ENo=a.ENo,
+                                                 EName=a.EName,
+                                                 AMBeginTime=b.AMBeginTime,
+                                                 AMEndTime=b.AMEndTime,
+                                                 AABeginTime=b.AABeginTime,
+                                                 AAEndTime=b.AAEndTime,
+                                                 ABeLateTime=b.ABeLateTime,
+                                                 ALeaveTime=b.ALeaveTime,
+                                                 AStatic=b.AStatic,
+                                                 Adate=b.Adate
+                                             }).Where(u => ENo == "" ? true : u.ENo == ENo).Where(u => EName == "" ? true : u.EName ==EName).Where(u => ENo == "" ? true : u.Adate == Adate).ToList();
+                return infos;
+            }
+        }
+        /// <summary>
+        /// 根据条件查询月打卡信息
+        /// </summary>
+        /// <param name="ENo">员工编号</param>
+        /// <param name="EName">员工姓名</param>
+        /// <param name="Adate">打卡日期</param>
+        /// <returns></returns>
+        public static List<AttendanceMonth> AttendanceMonth(string ENo, string EName, string Adate)
+        {
+            using (EFContext Context = new EFContext())
+            {
+                List<AttendanceMonth> infos = (from a in Context.EmployeeInfo
+                                               join b in Context.MonthAtten
+                                              on a.Pid equals b.EID
+                                               select new AttendanceMonth
+                                               {
+                                                   MID = b.MID,
+                                                   ENo = a.ENo,
+                                                   EName = a.EName,
+                                                   MAbsenteeism=b.MAbsenteeism,
+                                                   MLateTime=b.MLateTime,
+                                                   Adate = b.MDate
+                                             }).Where(u => ENo == "" ? true : u.ENo == ENo).Where(u => EName == "" ? true : u.EName == EName).Where(u => ENo == "" ? true : u.Adate == Adate).ToList();
                 return infos;
             }
         }

@@ -9,7 +9,7 @@ using ERP_Bll;
 
 namespace ERP_API.Controllers
 {
-    public class APIpositionController : ApiController
+    public class positionController : ApiController
     {
         //职位管理
         /// <summary>
@@ -43,7 +43,7 @@ namespace ERP_API.Controllers
         /// </summary>
         /// <param name="positionInfo"></param>
         /// <returns></returns>
-        public int Update([FromBody]PositionInfo positionInfo)
+        public int Post([FromBody]PositionInfo positionInfo)
         {
             return PositionInfoBll.Update(positionInfo);
         }
