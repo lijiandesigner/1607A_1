@@ -78,6 +78,7 @@ namespace ERP_Dal
                                   name = a.EName,
                                   Eid = a.EID,
                                   Pstats = c.Pstatic,
+                                  ENo=a.ENo,
                                   PoName=b.PoName,
                                   permissins = b.Permission
                               }).ToList().FirstOrDefault();
