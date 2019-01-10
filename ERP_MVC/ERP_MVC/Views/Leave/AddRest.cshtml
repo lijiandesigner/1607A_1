@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "请假申请";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
-    LoginResult result = Session["loginResult"] as LoginResult;
+    string str = Request.Cookies["cookie"]["eno"];
+    LoginResult loginResult = Session[str] as LoginResult;
 }
 @using ERP_MVC.Models
 
@@ -19,18 +20,25 @@
             var remark = $("#txtRemark").val();
             var date = new Date();
             var year = date.getFullYear();
-            var month = date.getMonth() + 1;
+            var month = date.getMonth()+1;
             var day = date.getDate();
             var time = year + "-" + month + "-" + day;
-            if ($("#txtStartTime").val() < time | $("#txtEndTime").val() < $("#txtStartTime").val()) {
-                layer.msg('时间选择不正确', { icon: 0 });
+            var st = new Date(Date.parse(starttime));
+            var se = new Date(Date.parse(endtime));
+            var ti = new Date(Date.parse(time));
+            if (st < ti) {
+                layer.msg('时间选择不正确', { icon: 0});
+                return;
+            }
+            if (se < st) {
+                layer.msg('时间选择不正确', { icon: 0});
                 return;
             }
             $.ajax({
                 url: 'http://localhost:59776/api/Rest/',
                 type: 'Post',
                 data: {
-                    '': JSON.stringify({ Eid: @result.EID, RBeginTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic: '待审批' })
+                    '': JSON.stringify({ Eid: @loginResult.EID, RBeginTime: starttime, REndTime: endtime, RType: rtype, RemarkInfo: remark, Restatic: '待审批' })
                 },
                 dataType: 'text',
                 success: function (data) {
