@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ERP_Model
+namespace Models
 {
-    [Table("WagesInfo")]
-    /// <summary>
-    /// 工资信息表
-    /// </summary>
-    public class WagesInfo
+    public class GZ
     {
-        [Key]
         public int WID { get; set; }//主键ID
-        public int EID { get; set; }//员工ID
+        public string ENo { get; set; }//员工编号
+        public string EName { get; set; }//姓名
         public string WDudectionMoney { get; set; }//应扣除金额
         public float WShouldMoney { get; set; }//实发金额
         public string CreateDate { get; set; }//日期
+        public bool Pstatic { get; set; }//状态
     }
 }

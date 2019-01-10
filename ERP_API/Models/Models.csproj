@@ -44,6 +44,7 @@
     <Compile Include="AttendanceDay.cs" />
     <Compile Include="AttendanceMonth.cs" />
     <Compile Include="EmployeeInfos.cs" />
+    <Compile Include="GZ.cs" />
     <Compile Include="LeaveInfo.cs" />
     <Compile Include="LoginJsonString.cs" />
     <Compile Include="LoginResult.cs" />
