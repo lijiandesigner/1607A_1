@@ -19,9 +19,9 @@
                 </select>页
             </td>
             <td align="right">
-                <input id="txtxm" type="text" class="btn btn-default" />
-                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-default" />
-                <input id="Button1" type="button" value="添加职位信息" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Add'" />
+                @*<input id="txtxm" type="text" class="btn btn-default" />
+                    <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-default" />*@
+                <input id="Button1" type="button" value="添加职位信息" class="btn btn-default" onclick="location.href='/PersonnelPosition/Add'" />
             </td>
         </tr>
     </table>
@@ -57,7 +57,7 @@
     //显示
     $(function () {
         $.ajax({
-            url: 'http://localhost:59776/api/Rest',
+            url: 'http://localhost:59776/api/position',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -71,7 +71,7 @@
     function del(id) {
         if (confirm("确认删除么？")) {
             $.ajax({
-                url: '' + id,
+                url: 'http://localhost:59776/api/position/'+id,
                 type: 'delete',
                 dataType: 'text',
                 success: function (data) {
@@ -87,21 +87,21 @@
         }
     }
     //查询
-    function sel() {
-        var xm = $("#txtxm").val();
-        $.ajax({
-            url: '',
-            type: 'get',
-            data: { PoName: xm, },
-            dataType: 'json',
-            success: function (data) {
-                $("#tb").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].PoID + "</td><td>" + data[i].PoName + "</td><td>" + data[i].PoLeave + "</td><td>" + data[i].PoMinMoney + "</td><td>" + data[i].Permission + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PoID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PoID + ")' /></td></tr>");
-                }
-            }
-        })
-    }
+    //function sel() {
+    //    var xm = $("#txtxm").val();
+    //    $.ajax({
+    //        url: '',
+    //        type: 'get',
+    //        data: { PoName: xm, },
+    //        dataType: 'json',
+    //        success: function (data) {
+    //            $("#tb").empty();
+    //            for (var i = 0; i < data.length; i++) {
+    //                $("#tb").append("<tr><td>" + data[i].PoID + "</td><td>" + data[i].PoName + "</td><td>" + data[i].PoLeave + "</td><td>" + data[i].PoMinMoney + "</td><td>" + data[i].Permission + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PoID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PoID + ")' /></td></tr>");
+    //            }
+    //        }
+    //    })
+    //}
     function edit(id) {
         location.href = "/PersonnelPosition/Edit/" + id;
     }

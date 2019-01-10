@@ -6,7 +6,6 @@
 
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<h2></h2>
 <div>
     <table class="float-left">
         <tr>
@@ -59,7 +58,7 @@
     //显示
     $(function () {
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/position',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -73,7 +72,7 @@
     function del(id) {
         if (confirm("确认删除么？")) {
             $.ajax({
-                url: '' + id,
+                url: 'http://localhost:59776/api/position/' + id,
                 type: 'delete',
                 dataType: 'text',
                 success: function (data) {
@@ -92,7 +91,7 @@
     function sel() {
         var xm = $("#txtxm").val();
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/position',
             type: 'get',
             data: { EID: xm, },
             dataType: 'json',

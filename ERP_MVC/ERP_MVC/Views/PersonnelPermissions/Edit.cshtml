@@ -12,7 +12,7 @@
         var Id = $("#hidId").val();
         //反填
         $.ajax({
-            url: '' + Id,
+            url: 'http://localhost:59776/api/position' + Id,
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -34,13 +34,14 @@
         var zt = $(".rad:checked").val();
         //传值
         $.ajax({
-            url: '' + Id,
+            url: 'http://localhost:59776/api/position' + Id,
             type: 'put',
             data: { PID: Id, EID: ygid, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt},
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
                     alert("修改成功");
+                    location.href = '/PersonnelPermissions/Index';
                 }
                 else {
                     alert("修改失败");
@@ -55,7 +56,6 @@
 </head>
 <body>
     <div class="container">
-        <h1></h1>
         <hr />
         <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
         <table class="table-condensed">
@@ -81,8 +81,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input id="Button1" type="button" value="返回" class="btn btn-default" />
-                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href = '/PersonnelPermissions/Index'" />
                 </td>
             </tr>
         </table>

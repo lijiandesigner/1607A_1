@@ -6,17 +6,29 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <h2>员工信息表</h2>
 <div>
-    <table class="table table-bordered">
+    <table class="table table-hover">
         <tr>
+            <td align="right"><h4>显示</h4></td>
+            <td>
+                <select id="Select1" class="btn btn-default">
+                    <option>10</option>
+                    <option>9</option>
+                </select>页
+            </td>
             <td align="right">
+                <select id="selzw">
+                    <option value="true" >在职</option>
+                    <option value="false" >离职</option>
+                </select>
+                <input id="txtbh" type="text" />
                 <input id="txtxm" type="text" />
-                <input id="Button1" type="button" value="查询" onclick="sel()" />
-                <input id="Button1" type="button" value="添加员工信息" onclick="location.href='/PersonnelInfomation/Add'" />
+                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-default" />
+                <input id="Button1" type="button" value="添加员工信息" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Add'" />
             </td>
         </tr>
     </table>
-    <table class="table table-bordered" style="text-align:center">
-        <thead style="background-color:#ffffff">
+    <table class="table table-hover">
+        <thead style="background-color:#00cdff">
             <tr>
                 <td>ID</td>
                 <td>员工编号</td>
@@ -48,10 +60,23 @@
     </table>
 </div>
 <script>
+    ////下拉
+    //$(function () {
+    //    $.ajax({
+    //        url: 'http://localhost:59776/api/',
+    //        type: 'get',
+    //        dataType: 'json',
+    //        success: function (data) {
+    //            for (var i = 0; i < data.length; i++) {
+    //                $("#selzw").append("<option value='" + data[i].PID + "'>" + data[i].Pstatic + "</option>");
+    //            }
+    //        }
+    //    });
+    //});
     //显示
     $(function () {
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/EmployeeInfo?Pstatic=true',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -65,7 +90,7 @@
     function del(id) {
         if (confirm("确认删除么？")) {
             $.ajax({
-                url: '' + id,
+                url: 'http://localhost:59776/api/EmployeeInfo/' + id,
                 type: 'delete',
                 dataType: 'text',
                 success: function (data) {
@@ -82,12 +107,22 @@
     }
     //查询
     function sel() {
+        var zt = $("#selzw").val();
+        var bh = $("#txtbh").val();
         var xm = $("#txtxm").val();
+        var str = "";
+        if (bh==""&&xm=="") {
+            str += "?Pstatic="+zt;
+        } else if (bh == "" && xm != "") {
+            str += "?Pstatic=" + zt + "&ename=" + xm;
+        } else if (bh != "" && xm == "") {
+            str += "?Pstatic=" + zt + "&eno=" + bh;
+        } else {
+            str += "?Pstatic=" + zt + "&eno=" + bh + "&ename=" + xm;
+        }
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/EmployeeInfo'+str,
             type: 'get',
-            data: { EName: xm, },
-            dataType: 'json',
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {

@@ -6,13 +6,13 @@
 <h2>修改职位</h2>
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $(function () {
         var Id = $("#hidId").val();
         //反填
         $.ajax({
-            url: '' + Id,
+            url: 'http://localhost:59776/api/position/' + Id,
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -34,13 +34,14 @@
         var qx = $("#txtqx").val();
         //传值
         $.ajax({
-            url: '' + Id,
+            url: 'http://localhost:59776/api/position/' + Id,
             type: 'put',
-            data: { PoID: Id, PoName: zwmc, PoLeave: zwjb, PoMinMoney: dx, Permission: qx},
+            data: { PoID: Id, PoName: zwmc, PoLeave: zwjb, PoMinMoney: dx, Permission: qx },
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
                     alert("修改成功");
+                    location.href ='/PersonnelPosition/Index'
                 }
                 else {
                     alert("修改失败");
@@ -53,8 +54,7 @@
 <head>
 </head>
 <body>
-    <div class="container">
-        <hr />
+    <div class="table table-hover">
         <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
         <table class="table-condensed">
             <tr>
@@ -76,8 +76,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input id="Button1" type="button" value="返回" class="btn btn-default" />
-                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPosition/Index'" />
                 </td>
             </tr>
         </table>

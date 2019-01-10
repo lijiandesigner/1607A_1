@@ -13,25 +13,27 @@
         var zwjb = $("#txtzwjb").val();
         var dx = $("#txtdx").val();
         var qx = $("#txtqx").val();
-        //if (zwmc == "") {
-        //    alert("信息不能为空");
-        //} else {
+        if (zwmc == "") {
+            alert("信息不能为空");
+        } else {
             $.ajax({
-                url: 'http://localhost:59776/api/APIposition',
+                url: 'http://localhost:59776/api/position',
                 type: 'post',
                 data: {
-                    '': JSON.stringify({ PoName: zwmc, PoLeave: zwjb, PoMinMoney: dx, Permission: qx }) },
+                    '': JSON.stringify({ PoName: zwmc, PoLeave: zwjb, PoMinMoney: dx, Permission: qx })
+                },
                 dataType: 'text',
                 success: function (data) {
                     if (data > 0) {
                         alert("添加成功");
+                        location.href = '/PersonnelPosition/Index';
                     }
                     else {
                         alert("添加失败");
                     }
                 }
             });
-        //}
+        }
     }
 </script>
 
@@ -53,8 +55,10 @@
         <td><input id="txtqx" type="text" /></td>
     </tr>
     <tr>
-        <td><input id="Button1" type="button" value="返回" class="btn btn-default" /></td>
-        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" /></td>
+        <td></td>
+        <td>
+            <input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPosition/Index'" />
+        </td>
     </tr>
 </table>
 
