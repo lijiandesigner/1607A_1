@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="~/Scripts/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -80,9 +80,8 @@
                 <li class="treeview">
                     <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">人事管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
-                        <li><a class="treeview-item" href="/PersonnelPosition/Index" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i>职位信息管理</a></li>
-                        <li><a class="treeview-item" href="/PersonnelPermissions/Index"><i class="icon fa fa-circle-o"></i> 职位权限管理</a></li>
-                        <li><a class="treeview-item" href="/PersonnelInfomation/Index"><i class="icon fa fa-circle-o"></i> 员工信息管理</a></li>
+                        <li><a class="treeview-item" href="/PersonnelPermissions/Index/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i>职位信息管理</a></li>
+                        <li><a class="treeview-item" href="/PersonnelInfomation/Index/"><i class="icon fa fa-circle-o"></i> 员工信息管理</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -95,14 +94,15 @@
                 <li class="treeview">
                     <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">财务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
-                        <li><a class="treeview-item" href="/Finnace/HistoryWage"><i class="icon fa fa-circle-o"></i> 历史工资管理</a></li>
-                        <li><a class="treeview-item" href="/Finnace/SettleWage"><i class="icon fa fa-circle-o"></i> 工资结算</a></li>
+                        <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> 历史工资管理</a></li>
+                        <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> 工资结算</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
                     <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">请假管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="treeview-item" href="/Leave/AddRest"><i class="icon fa fa-circle-o"></i> 请假申请</a></li>
+                        <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> 请假审批</a></li>
                         <li><a class="treeview-item" href="/Leave/Index"><i class="icon fa fa-circle-o"></i> 请假信息查看</a></li>
                     </ul>
                 </li>
@@ -136,7 +136,6 @@
 <script src="~/Scripts/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script type="text/javascript" src="~/Scripts/js/plugins/chart.js"></script>
-
 <script type="text/javascript" src="~/Scripts/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="~/Scripts/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
