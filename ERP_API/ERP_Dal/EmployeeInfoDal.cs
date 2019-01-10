@@ -92,6 +92,7 @@ namespace ERP_Dal
                         loginResult.Result = true;
                         loginResult.EID = result.Eid;
                         loginResult.EName = result.name.ToString();
+                        loginResult.ENo = result.ENo.ToString();
                         loginResult.PoName = result.PoName.ToString();
                         loginResult.Permissins = result.permissins.ToString();
                     }
