@@ -4,89 +4,94 @@
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<h2>添加员工</h2>
-<table class="table table-hover">
-    <tr>
-        <td>员工编号</td>
-        <td><input id="txtbh" type="text" /></td>
-    </tr>
-    <tr>
-        <td>姓名</td>
-        <td><input id="txtxm" type="text" /></td>
-    </tr>
-    <tr>
-        <td>性别</td>
-        <td>
-            <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />男
-            <input id="rad2" class="rad" type="radio" name="rad" value="false" />女
-            <input id="Radio1" type="radio" />
-        </td>
-    </tr>
-    <tr>
-        <td>手机号</td>
-        <td><input id="txtsjh" type="text" /></td>
-    </tr>
-    <tr>
-        <td>邮箱</td>
-        <td><input id="txtyx" type="text" /></td>
-    </tr>
-    <tr>
-        <td>身份证</td>
-        <td><input id="txtsfz" type="text" /></td>
-    </tr>
-    <tr>
-        <td>头像</td>
-        <td><input id="txttx" type="text" /></td>
-    </tr>
-    <tr>
-        <td>职位</td>
-        <td>
-            <select id="selzw"></select>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelInfomation/Index'" /></td>
-    </tr>
-</table>
-<script>
-    //下拉
-    $(function () {
-        $.ajax({
-            url: 'http://localhost:59776/api/position',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    $("#selzw").append("<option value='" + data[i].PoID + "'>" + data[i].PoName + "</option>");
-                }
+<h2></h2>
+
+    <div class="col-md-6" style="margin-left:300px">
+        <div class="tile">
+            <h3 class="tile-title" style="text-align:center">添加员工信息</h3>
+            <div class="tile-body">
+                <form class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">员工编号</label>
+                        <div class="col-md-8">
+                            <input id="txtbh" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">性别</label>
+                        <div class="col-md-8">
+                            <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />男
+                            <input id="rad2" class="rad" type="radio" name="rad" value="false" />女
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">手机号码</label>
+                        <div class="col-md-8">
+                            <input id="txtsjh" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">身份证</label>
+                        <div class="col-md-8">
+                            <input id="txtsfz" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">职位</label>
+                        <div class="col-md-8">
+                            <select id="selzw"></select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tile-footer">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-3">
+                        <input id="Button2" type="button" value="保存" class="btn btn-primary" onclick="save()" />
+                        <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelInfomation/Index'" />
+                    </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <script>
+            //下拉
+            $(function () {
+                $.ajax({
+                    url: 'http://localhost:59776/api/position',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("#selzw").append("<option value='" + data[i].PoID + "'>" + data[i].PoName + "</option>");
+                        }
+                    }
+                });
+            });
+            //添加
+            function save() {
+                var bh = $("#txtbh").val();
+                var xm = $("#txtxm").val();
+                var xb = $(".rad:checked").val();
+                var sjh = $("#txtsjh").val();
+                var yx = $("#txtyx").val();
+                var sfz = $("#txtsfz").val();
+                var tx = $("#txttx").val();
+                var zw = $("#selzw").val();
+                $.ajax({
+                    url: 'http://localhost:59776/api/EmployeeInfo',
+                    type: 'post',
+                    data: { '': JSON.stringify({ ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw }) },
+                    dataType: 'text',
+                    success: function (data) {
+                        if (data > 0) {
+                            alert("添加成功");
+                            location.href = '/PersonnelInfomation/Index';
+                        }
+                        else {
+                            alert("添加失败");
+                        }
+                    }
+                });
             }
-        });
-    });
-    //添加
-    function save() {
-        var bh = $("#txtbh").val();
-        var xm = $("#txtxm").val();
-        var xb = $(".rad:checked").val();
-        var sjh = $("#txtsjh").val();
-        var yx = $("#txtyx").val();
-        var sfz = $("#txtsfz").val();
-        var tx = $("#txttx").val();
-        var zw = $("#selzw").val();
-        $.ajax({
-            url: 'http://localhost:59776/api/EmployeeInfo',
-            type: 'post',
-            data: {'': JSON.stringify({ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw })},
-            dataType: 'text',
-            success: function (data) {
-                if (data > 0) {
-                    alert("添加成功");
-                    location.href = '/PersonnelInfomation/Index';
-                }
-                else {
-                    alert("添加失败");
-                }
-            }
-        });
-    }
-</script>
+        </script>
