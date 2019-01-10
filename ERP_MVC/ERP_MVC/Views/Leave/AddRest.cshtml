@@ -16,6 +16,15 @@
         var endtime = $("#txtEndTime").val();
         var rtype = $(".rodType:checked").val();
         var remark = $("#txtRemark").val();
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var time = year + "-" + month + "-" + day;
+        if ($("#txtStartTime").val() < time | $("#txtEndTime").val() < $("#txtStartTime").val()) {
+            layer.msg('时间选择不正确', { icon: 0 });
+            return;
+        }
         $.ajax({
             url: 'http://localhost:59776/api/Rest/',
             type: 'Post',

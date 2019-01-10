@@ -3,22 +3,14 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-@*<meta property="twitter:card" content="summary_large_image">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">*@
-@*<meta name="viewport" content="width=device-width, initial-scale=1">*@
-<!-- Main CSS-->
-@*<link href="~/Content/main.css" rel="stylesheet" />*@
-<!-- Font-icon css-->
-@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>*@
-@*<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
+
 <h2 style="text-align:center">请假信息表</h2>
 <div>
     <label class="control-label float-left" style="font-size:17px;margin-left:25px;margin-top:4px">员工编号：</label>
-    <input class="form-control float-left" style="width:150px" type="text">
+    <input class="form-control float-left" id="TxtENo" style="width:150px" type="text">
     <select id="SelRestType" class="form-control float-left" style="width:150px">
         <option value="选择请假类型">选择请假类型</option>
         <option value="事假">事假</option>
@@ -69,7 +61,8 @@
                     success: function (data) {
                         $("#tb").empty();
                         for (var i in data) {
-                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
+                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
+                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td>" + strs + "</td></tr>");
                         }
                     }
                 });
@@ -84,7 +77,8 @@
                     success: function (data) {
                         $("#tb").empty();
                         for (var i in data) {
-                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' class='btn btn - info float-left' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
+                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
+                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td>" + strs + "</td></tr>");
                         }
                     }
                 });
@@ -98,7 +92,8 @@
                     success: function (data) {
                         $("#tb").empty();
                         for (var i in data) {
-                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
+                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
+                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td>" + strs + "</td></tr>");
                         }
                     }
                 });
@@ -112,7 +107,8 @@
                     success: function (data) {
                         $("#tb").empty();
                         for (var i in data) {
-                            $("#tb").append("<tr class='text - center'><td>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td><input id='btnAgree' type='button' class='btn btn - info float-left' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject' type='button' class='btn btn - info float-left' onclick='Reject(" + data[i].RID + ")' value='驳回' /></td></tr>");
+                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
+                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td><td>" + strs + "</td></tr>");
                         }
 
                     }
@@ -151,6 +147,7 @@
             success: function (data) {
                 if (data > 0) {
                     layer.msg('审批成功', { icon: 1 });
+                    loadData();
                 }
             }
         })
@@ -166,13 +163,13 @@
             success: function (data) {
                 if (data > 0) {
                     layer.msg('审批成功', { icon: 1 });
+                    loadData();
                 }
             }
         })
         document.getElementById("s" + RID).innerText = "驳回";
         $("#btnReject" + RID).attr("style", "display:none;");
         $("#btnAgree" + RID).attr("style", "display:none;");
-        
     }
 
 </script>
