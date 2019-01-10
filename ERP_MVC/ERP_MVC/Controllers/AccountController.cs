@@ -29,7 +29,25 @@ namespace ERP_MVC.Controllers
             {
                 //List<EmployeeInfo> infos = JsonConvert.DeserializeObject<List<EmployeeInfo>>(result);
                 //EmployeeInfo e = infos.FirstOrDefault();
-                Session["loginResult"] = loginResult;
+                if(Session[loginResult.ENo]!=null)
+                { Session.Remove(loginResult.ENo);}
+                Session[loginResult.ENo] = loginResult;
+                HttpCookie cok = Request.Cookies["cookie"];
+                if ( cok== null)
+                {
+                    HttpCookie httpCookie = new HttpCookie("cookie");
+                    httpCookie.Expires = DateTime.Now.AddMinutes(20);
+                    httpCookie.Values.Add("eno", loginResult.ENo);
+                    Response.SetCookie(httpCookie);
+                }
+                else
+                {
+                    cok.Expires = DateTime.Now.AddMinutes(-1);
+                    HttpCookie httpCookie = new HttpCookie("cookie");
+                    httpCookie.Expires = DateTime.Now.AddMinutes(20);
+                    httpCookie.Values.Add("eno", loginResult.ENo);
+                    Response.SetCookie(httpCookie);
+                }
                 //ViewData["Name"] = loginResult.EName == null ? txtname : loginResult.EName;
                 
                 Response.Write("<script>location.href='/Account/Maininterface'</script>");

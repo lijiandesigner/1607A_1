@@ -81,7 +81,7 @@
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].Pid + "</td><td><input id='btnEdit' type='button' style value='修改' onclick='edit(" + data[i].EID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].PoName + "</td><td><input id='btnEdit' type='button' style value='修改' onclick='edit(" + data[i].EID + ")' /></tr>");
                 }
             }
         });
