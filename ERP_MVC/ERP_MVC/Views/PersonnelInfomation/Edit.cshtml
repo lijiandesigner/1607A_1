@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<h2>员工修改</h2>
 <script>
     $(function () {
         var Id = $("#hidId").val();
@@ -53,7 +54,8 @@
         $.ajax({
             url: 'http://localhost:59776/api/EmployeeInfo/' + Id,
             type: 'put',
-            data: { EID:Id, ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw},
+            data: {
+                '': JSON.stringify({ EID: Id, ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw })},
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
@@ -87,8 +89,8 @@
             <tr>
                 <td>性别</td>
                 <td>
-                    <input id="rad1" class="rad" type="radio" name="rad" value="男" checked="checked" />男
-                    <input id="rad2" class="rad" type="radio" name="rad" value="女" />女
+                    <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />男
+                    <input id="rad2" class="rad" type="radio" name="rad" value="false" />女
                 </td>
             </tr>
             <tr>
