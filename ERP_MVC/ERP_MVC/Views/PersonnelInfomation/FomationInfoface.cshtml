@@ -1,27 +1,27 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FomationInfoface";
+    //Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-
 <h2 style="text-align:center">员工信息表</h2>
 <div>
     <table style="background-color:#ffffff" class="table table-bordered">
-            <tr>
-                <td><input id="Button1" type="button" value="添加员工信息" class="btn btn-info" onclick="location.href='/PersonnelInfomation/Add'" /></td>
-                <td align="right">
-                    <span>在职状态</span>
-                    <select id="selzw">
-                        <option value="true">在职</option>
-                        <option value="false">离职</option>
-                    </select>
-                    <span>员工编号</span>
-                    <input id="txtbh" type="text" />
-                    <span>员工姓名</span>
-                    <input id="txtxm" type="text" />
-                    <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
-                </td>
-            </tr>
-        </table>
+        <tr>
+            <td><input id="Button1" type="button" value="添加员工信息" class="btn btn-info" onclick="location.href='/PersonnelInfomation/Add'" /></td>
+            <td align="right">
+                <span>在职状态</span>
+                <select id="selzw">
+                    <option value="true">在职</option>
+                    <option value="false">离职</option>
+                </select>
+                <span>员工编号</span>
+                <input id="txtbh" type="text" />
+                <span>员工姓名</span>
+                <input id="txtxm" type="text" />
+                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
+            </td>
+        </tr>
+    </table>
 
     <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
         <thead>

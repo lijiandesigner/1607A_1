@@ -13,7 +13,8 @@ namespace ERP_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: PersonnelPermissions
-        public ActionResult Index()
+        //
+        public ActionResult PermissionsInterface()
         {
             return View();
         }

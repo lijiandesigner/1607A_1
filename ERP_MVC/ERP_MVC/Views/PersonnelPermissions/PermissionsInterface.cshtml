@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "PermissionsInterface";
+}
+
+<h2 style="text-align:center">员工职位信息</h2>
+<div>
+    <table style="background-color:#ffffff" class="table table-bordered">
+        <tr>
+            <td> <input id="Button1" type="button" value="添加信息" onclick="location.href='/PersonnelPermissions/Add'" class="btn btn-info" /></td>
+            <td align="right">
+                <input id="txtxm" type="text" style="height:37px" />
+                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered"  style="background-color:#ffffff;text-align:center">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>员工ID</td>
+                <td>入职时间</td>
+                <td>离职时间</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    <table class="table table-bordered" style="border:none">
+        <tr>
+            <td></td>
+            <td align="right">
+                <input id="Button1" type="button" value="首页" class="btn btn-info" />
+                <input id="Button1" type="button" value="上一页" class="btn btn-info" />
+                <input id="Button1" type="button" value="①" class="btn btn-info" />
+                <input id="Button1" type="button" value="②" class="btn btn-info" />
+                <input id="Button1" type="button" value="③" class="btn btn-info" />
+                <input id="Button1" type="button" value="下一页" class="btn btn-info" />
+                <input id="Button1" type="button" value="尾页" class="btn btn-info" />
+            </td>
+        </tr>
+    </table>
+</div>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    //显示
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:59776/api/position',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
+                }
+            }
+        });
+    });
+    //删除
+    function del(id) {
+        if (confirm("确认删除么？")) {
+            $.ajax({
+                url: 'http://localhost:59776/api/position/' + id,
+                type: 'delete',
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        alert("删除成功");
+                        location.reload();
+                    }
+                    else {
+                        alert("删除失败");
+                    }
+                }
+            });
+        }
+    }
+    //查询
+    function sel() {
+        var xm = $("#txtxm").val();
+        $.ajax({
+            url: 'http://localhost:59776/api/position',
+            type: 'get',
+            data: { EID: xm, },
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
+                }
+            }
+        })
+    }
+    function edit(id) {
+        location.href = "/PersonnelPermissions/Edit/" + id;
+    }
+</script>
+
