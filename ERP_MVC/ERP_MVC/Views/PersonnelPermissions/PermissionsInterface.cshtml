@@ -11,7 +11,7 @@
             <input type="text" class="form-control" id="txtxm" placeholder="请输入姓名" autocomplete="off">
         </div>
         <button type="button" class="btn btn-info" onclick="sel()">查询</button>
-        
+
     </form>
 
     <table class="table table-bordered" style="background-color:#ffffff;text-align:center">
@@ -44,6 +44,7 @@
 </div>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     //显示
     $(function () {
@@ -67,11 +68,11 @@
                 dataType: 'text',
                 success: function (data) {
                     if (data > 0) {
-                        alert("删除成功");
+                        layer.msg('删除成功', {icon:1});
                         location.reload();
                     }
                     else {
-                        alert("删除失败");
+                        layer.msg('删除失败', { icon:0 });
                     }
                 }
             });
