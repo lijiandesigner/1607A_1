@@ -139,6 +139,7 @@
     <Compile Include="Models\AttendanceInfo.cs" />
     <Compile Include="Models\AttendanceType.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\LeaveInfo.cs" />
     <Compile Include="Models\LoginJsonString.cs" />
     <Compile Include="Models\LoginResult.cs" />
     <Compile Include="Models\MonthAtten.cs" />

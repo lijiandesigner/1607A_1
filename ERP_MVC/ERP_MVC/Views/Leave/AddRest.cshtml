@@ -34,6 +34,10 @@
                 layer.msg('时间选择不正确', { icon: 0});
                 return;
             }
+            if (remark == "") {
+                layer.msg('理由不能为空', { icon: 0 });
+                return;
+            }
             $.ajax({
                 url: 'http://localhost:59776/api/Rest/',
                 type: 'Post',
