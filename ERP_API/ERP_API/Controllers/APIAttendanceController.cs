@@ -20,7 +20,7 @@ namespace ERP_API.Controllers
         /// <param name="EName">员工姓名</param>
         /// <param name="Adate">打卡日期</param>
         /// <returns></returns>
-        public List<AttendanceDay> Get(string ENo, string EName, string Adate)
+        public List<AttendanceDay> Get(string ENo="", string EName="", string Adate="")
         {
             return AttendanceInfoBll.AttendanceDays(ENo, EName, Adate);
         }
