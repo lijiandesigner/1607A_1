@@ -5,28 +5,21 @@
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<h2 style="text-align:center">员工信息表</h2>
+
 <div>
-    <table style="background-color:#ffffff">
-        <table class="table table-bordered">
-
-            <tr>
-                <td><input id="Button1" type="button" value="添加员工信息" class="btn btn-info" onclick="location.href='/PersonnelInfomation/Add'" /></td>
-                <td align="right">
-                    <span>在职状态</span>
-                    <select id="selzw">
-                        <option value="true">在职</option>
-                        <option value="false">离职</option>
-                    </select>
-                    <span>员工编号</span>
-                    <input id="txtbh" type="text" />
-                    <span>员工姓名</span>
-                    <input id="txtxm" type="text" />
-                    <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
-
-                </td>
-            </tr>
-        </table>
+    <from class="form-inline">
+        <div class="form-group">
+            <input id="Button1" type="button" value="添加员工信息" class="btn btn-success" onclick="location.href='/PersonnelInfomation/Add'" />
+            <span>在职状态</span>
+            <select id="selzw" class="form-control">
+                <option value="true">在职</option>
+                <option value="false">离职</option>
+            </select>
+            <input id="txtbh" type="text"  class="form-control" placeholder="请输入员工编号" autocomplete="off"/>
+            <input id="txtxm" type="text"  class="form-control" placeholder="请输入员工姓名"autocomplete="off"/>
+            <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
+        </div>
+    </from>
         <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
             <thead>
                 <tr>
