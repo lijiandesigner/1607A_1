@@ -26,7 +26,6 @@
             $.ajax({
                 url: '',
                 type: 'get',
-                data: {},
                 dataType: 'json',
                 success: function (data) {
                     var str = "";
@@ -41,9 +40,6 @@
     function SelectMoney() {
         ename = $("#Ename").val();
         eid = $("#Eid").val();
-        if (ename == "" || eid == "") {
-            loadData();
-        }
         else {
             $.ajax({
                 url: '',
