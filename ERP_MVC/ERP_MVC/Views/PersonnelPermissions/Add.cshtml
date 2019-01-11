@@ -7,6 +7,31 @@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/WebExtend/My97DatePicker/WdatePicker.js"></script>
+<table class="table table-hover">
+    <tr>
+        <td>员工ID</td>
+        <td><input id="txtygid" type="text" /></td>
+    </tr>
+    <tr>
+        <td>入职时间</td>
+        <td><input id="txtrzsj" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" /></td>
+    </tr>
+    <tr>
+        <td>离职时间</td>
+        <td><input id="txtlzsj" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" /></td>
+    </tr>
+    <tr>
+        <td>状态</td>
+        <td>
+            <input id="rad1" class="rad" type="radio" name="rad" value="是" checked="checked" />是
+            <input id="rad2" class="rad" type="radio" name="rad" value="否" />否
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPermissions/Index'" /></td>
+    </tr>
+</table>
 <script>
     //添加
     function save() {
@@ -35,28 +60,3 @@
         }
     }
 </script>
-<table class="table table-hover">
-    <tr>
-        <td>员工ID</td>
-        <td><input id="txtygid" type="text" /></td>
-    </tr>
-    <tr>
-        <td>入职时间</td>
-        <td><input id="txtrzsj" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" /></td>
-    </tr>
-    <tr>
-        <td>离职时间</td>
-        <td><input id="txtlzsj" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" /></td>
-    </tr>
-    <tr>
-        <td>状态</td>
-        <td>
-            <input id="rad1" class="rad" type="radio" name="rad" value="是" checked="checked" />是
-            <input id="rad2" class="rad" type="radio" name="rad" value="否" />否
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPermissions/Index'" /></td>
-    </tr>
-</table>

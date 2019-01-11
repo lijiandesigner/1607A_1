@@ -7,6 +7,39 @@
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<html>
+<head>
+</head>
+<body>
+    <div class="table table-hover">
+        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+        <table class="table-condensed">
+            <tr>
+                <td>职位名称</td>
+                <td><input id="txtzwmc" type="text" placeholder="由2-3个汉字组成" onblur="fun1();" /><span id="s1"></span></td>
+            </tr>
+            <tr>
+                <td>职位级别</td>
+                <td><input id="txtzwjb" type="text" placeholder="由1个数字组成" onblur="fun2();" /><span id="s2"></span></td>
+            </tr>
+            <tr>
+                <td>底薪</td>
+                <td><input id="txtdx" type="text" placeholder="0-99999" onblur="fun3();" /><span id="s3"></span></td>
+            </tr>
+            <tr>
+                <td>权限</td>
+                <td><input id="txtqx" type="text" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPosition/Index'" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
 <script>
     $(function () {
         var Id = $("#hidId").val();
@@ -25,6 +58,101 @@
             }
         });
     });
+    var flag = false;
+    function fun1() {
+        var username = $("#txtzwmc").val();
+        var reg = /^[\u4e00-\u9fa5]{2,3}$/;
+        if (username == '') {
+            $("#s1").html("<font color='red'>职位名称不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s1").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s1").html("<font color='red'>职位已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s1").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s1").html("<font color='blue'>由2-3汉字组成</font>");
+                return false;
+            }
+        }
+    }
+    function fun2() {
+        var username = $("#txtzwjb").val();
+        var reg = /^\w{1}$/;
+        if (username == '') {
+            $("#s2").html("<font color='red'>职位级别不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s2").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s2").html("<font color='red'>已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s2").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s2").html("<font color='blue'>由1位数字组成</font>");
+                return false;
+            }
+        }
+    }
+    function fun3() {
+        var username = $("#txtdx").val();
+        var reg = /^\w{0,5}$/;
+        if (username == '') {
+            $("#s3").html("<font color='red'>底薪不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s3").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s3").html("<font color='red'>已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s3").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s3").html("<font color='blue'>格式不对（0-99999）</font>");
+                return false;
+            }
+        }
+    }
+    function save() {
+        if (fun1() && fun2() && fun3()) {
+            save1();
+        } else {
+            alert("请输入正确信息")
+        }
+    }
     function save() {
         //接收
         var Id = $("#hidId").val();
@@ -41,7 +169,7 @@
             success: function (data) {
                 if (data > 0) {
                     alert("修改成功");
-                    location.href ='/PersonnelPosition/Index'
+                    location.href = '/PersonnelPosition/Index'
                 }
                 else {
                     alert("修改失败");
@@ -50,36 +178,3 @@
         });
     }
 </script>
-<html>
-<head>
-</head>
-<body>
-    <div class="table table-hover">
-        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
-        <table class="table-condensed">
-            <tr>
-                <td>职位名称</td>
-                <td><input id="txtzwmc" type="text" /></td>
-            </tr>
-            <tr>
-                <td>职位级别</td>
-                <td><input id="txtzwjb" type="text" /></td>
-            </tr>
-            <tr>
-                <td>底薪</td>
-                <td><input id="txtdx" type="text" /></td>
-            </tr>
-            <tr>
-                <td>权限</td>
-                <td><input id="txtqx" type="text" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPosition/Index'" />
-                </td>
-            </tr>
-        </table>
-    </div>
-</body>
-</html>
