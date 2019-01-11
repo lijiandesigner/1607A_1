@@ -1,13 +1,13 @@
-﻿
+﻿@model IEnumerable<ERP_MVC.Models.AttendanceDay>
+@using ERP_MVC.Models
 @{
     ViewBag.Title = "AccountRules";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-
 <script src="~/Scripts/jquery-3.3.1.js"></script>
     <div class="col-md-12">
         <div class="tile">
-            <div class="tile-body">
+            <div class="tile-body"> 
                 <table class="table table-hover table-bordered" id="sampleTable">
                     <thead>
                         <tr>
@@ -23,7 +23,20 @@
                         </tr>
                     </thead>
                     <tbody id="tb">
-
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.ENo</th>
+                                <th>@item.AMBeginTime</th>
+                                <th>@item.AMEndTime</th>
+                                <th>@item.AABeginTime</th>
+                                <th>@item.AAEndTime</th>
+                                <th>@item.ABeLateTime</th>
+                                <th>@item.ALeaveTime</th>
+                                <th>@item.AStatic</th>
+                                <th>@item.Adate</th>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

@@ -135,6 +135,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HttpClientHelper.cs" />
+    <Compile Include="Models\AttendanceDay.cs" />
     <Compile Include="Models\AttendanceInfo.cs" />
     <Compile Include="Models\AttendanceType.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
@@ -277,6 +278,7 @@
     <Content Include="Views\PersonnelPosition\Index.cshtml" />
     <Content Include="Views\PersonnelPermissions\PermissionsInterface.cshtml" />
     <Content Include="Views\PersonnelInfomation\FomationInfoface.cshtml" />
+    <Content Include="Views\Checking\adfadsfdasf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
