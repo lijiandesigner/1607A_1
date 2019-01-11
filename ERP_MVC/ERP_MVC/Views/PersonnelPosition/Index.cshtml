@@ -2,31 +2,17 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>显示职位</h2>
-
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<h2></h2>
+@*<h2>显示职位</h2>*@
 <div>
-    <table class="table table-hover">
-        <tr>
-            <td align="right"><h4>显示</h4></td>
-            <td>
-                <select id="Select1" class="btn btn-info">
-                    <option>10</option>
-                    <option>9</option>
-                </select>页
-            </td>
-            <td align="right">
-              <input id="txtxm" type="text" class="btn btn-info" />
-                    <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
-                <input id="Button1" type="button" value="添加职位信息" class="btn btn-info" onclick="location.href='/PersonnelPosition/Add'" />
-            </td>
-        </tr>
-    </table>
-    <table class="table table-hover">
-        <thead style="background-color:#00cdff">
+    <from class="form-inline">
+        <div class="form-group">
+            <input id="Button1" type="button" value="添加职位信息" class="btn btn-success" onclick="location.href='/PersonnelPosition/Add'" />
+            <input id="txtxm" type="text" placeholder="请输入职位名称" class="form-control" autocomplete="off" />
+            <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
+        </div>
+    </from>
+    <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
+        <thead>
             <tr>
                 <td>ID</td>
                 <td>职位名称</td>
@@ -38,7 +24,7 @@
         </thead>
         <tbody id="tb"></tbody>
     </table>
-    <table class="table table-hover">
+    <table class="table table-bordered">
         <tr>
             <td></td>
             <td align="right">
@@ -53,6 +39,8 @@
         </tr>
     </table>
 </div>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
     //显示
     $(function () {
@@ -71,7 +59,7 @@
     function del(id) {
         if (confirm("确认删除么？")) {
             $.ajax({
-                url: 'http://localhost:59776/api/position/'+id,
+                url: 'http://localhost:59776/api/position/' + id,
                 type: 'delete',
                 dataType: 'text',
                 success: function (data) {
@@ -86,22 +74,22 @@
             });
         }
     }
-    //查询
-    //function sel() {
-    //    var xm = $("#txtxm").val();
-    //    $.ajax({
-    //        url: '',
-    //        type: 'get',
-    //        data: { PoName: xm, },
-    //        dataType: 'json',
-    //        success: function (data) {
-    //            $("#tb").empty();
-    //            for (var i = 0; i < data.length; i++) {
-    //                $("#tb").append("<tr><td>" + data[i].PoID + "</td><td>" + data[i].PoName + "</td><td>" + data[i].PoLeave + "</td><td>" + data[i].PoMinMoney + "</td><td>" + data[i].Permission + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PoID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PoID + ")' /></td></tr>");
-    //            }
-    //        }
-    //    })
-    //}
+    查询
+    function sel() {
+        var xm = $("#txtxm").val();
+        $.ajax({
+            url: '',
+            type: 'get',
+            data: { PoName: xm, },
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].PoID + "</td><td>" + data[i].PoName + "</td><td>" + data[i].PoLeave + "</td><td>" + data[i].PoMinMoney + "</td><td>" + data[i].Permission + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PoID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PoID + ")' /></td></tr>");
+                }
+            }
+        })
+    }
     function edit(id) {
         location.href = "/PersonnelPosition/Edit/" + id;
     }
