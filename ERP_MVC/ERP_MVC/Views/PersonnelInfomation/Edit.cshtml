@@ -5,6 +5,76 @@
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<html>
+<head>
+    <title>Edit</title>
+</head>
+<body>
+    <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+    <div class="col-md-6" style="margin-left:300px">
+        <div class="tile">
+            <h3 class="tile-title" style="text-align:center">修改员工信息</h3>
+            <div class="tile-body">
+                <form class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">员工编号</label>
+                        <div class="col-md-8">
+                            <input id="txtbh" type="text" class="form-control" placeholder="由字母A开头,加五位数字组成" autocomplete="off" onblur="fun1();" /><span id="s1"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">员工姓名</label>
+                        <div class="col-md-8">
+                            <input id="txtxm" type="text" class="form-control" placeholder="由2-3个汉字组成" autocomplete="off" onblur="fun2();" />
+                            <span id="s2"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">性别</label>
+                        <div class="col-md-8">
+                            <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />男
+                            <input id="rad2" class="rad" type="radio" name="rad" value="false" />女
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">手机号码</label>
+                        <div class="col-md-8">
+                            <input id="txtsjh" type="text" class="form-control" placeholder="请输入规范的手机号" autocomplete="off" onblur="fun3();" /><span id="s3"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">身份证</label>
+                        <div class="col-md-8">
+                            <input id="txtsfz" type="text" class="form-control" placeholder="请输入规范的身份证号" onblur="fun4();" /><span id="s4"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">邮箱</label>
+                        <div class="col-md-8">
+                            <input id="txtyx" type="text" class="form-control" placeholder="请输入规范的邮箱号" autocomplete="off" onblur="fun5();" /><span id="s5"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">职位</label>
+                        <div class="col-md-8">
+                            <select id="selzw"></select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tile-footer">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-3">
+                        <input id="Button2" type="button" value="保存" class="btn btn-primary" onclick="save()" />
+                        <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelInfomation/FomationInfoface'" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     $(function () {
         var Id = $("#hidId").val();
@@ -38,7 +108,160 @@
             }
         });
     });
+    var flag = false;
+    function fun1() {
+        var username = $("#txtbh").val();
+        var reg = /^[^B-Z]\w{4}$/;
+        if (username == '') {
+            $("#s1").html("<font color='red'>编号不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s1").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s1").html("<font color='red'>编号已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s1").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s1").html("<font color='blue'>由字母A开头,加四位数字组成</font>");
+                return false;
+            }
+        }
+    }
+    function fun2() {
+        var username = $("#txtxm").val();
+        var reg = /^[\u4e00-\u9fa5]{2,3}$/;
+        if (username == '') {
+            $("#s2").html("<font color='red'>姓名不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s2").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s2").html("<font color='red'>姓名已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s2").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s2").html("<font color='blue'>由2-3位汉字组成</font>");
+                return false;
+            }
+        }
+    }
+    function fun3() {
+        var username = $("#txtsjh").val();
+        var reg = /^^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        if (username == '') {
+            $("#s3").html("<font color='red'>手机号不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s3").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s3").html("<font color='red'>手机号已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s3").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s3").html("<font color='blue'>手机号码格式不对</font>");
+                return false;
+            }
+        }
+    }
+    function fun4() {
+        var username = $("#txtsfz").val();
+        var reg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+        if (username == '') {
+            $("#s4").html("<font color='red'>身份证不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s4").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s4").html("<font color='red'>身份证已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s4").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s4").html("<font color='blue'>身份证格式不对</font>");
+                return false;
+            }
+        }
+    }
+    function fun5() {
+        var username = $("#txtyx").val();
+        var reg = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+        if (username == '') {
+            $("#s5").html("<font color='red'>邮箱不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s5").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s5").html("<font color='red'>邮箱已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s5").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s5").html("<font color='blue'>邮箱格式不对</font>");
+                return false;
+            }
+        }
+    }
     function save() {
+        if (fun1() && fun2() && fun3() && fun4() && fun5()) {
+            save1();
+        } else {
+            layer.msg('请输入正确信息'{icon:2})
+        }
+    }
+    function save1() {
         //接收
         var Id = $("#hidId").val();
         var bh = $("#txtbh").val();
@@ -51,77 +274,21 @@
         var zw = $("#selzw").val();
         //传值
         $.ajax({
-            url: 'http://localhost:59776/api/EmployeeInfo/' + Id,
+            url: 'http://localhost:59776/api/EmployeeInfo/',
             type: 'put',
-            data: { EID:Id, ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw},
+            data: {
+                '': JSON.stringify({ EID: Id, ENo: bh, EName: xm, Esex: xb, Ephone: sjh, Eemail: yx, EcardID: sfz, Eheart: tx, Pid: zw })
+            },
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
-                    alert("修改成功");
-                    location.href = '/PersonnelInfomation/Index';
+                    layer.msg('修改成功',{icon:1});
+                    location.href = '/PersonnelInfomation/FomationInfoface';
                 }
                 else {
-                    alert("修改失败");
+                    layer.msg('修改失败', {icon:0});
                 }
             }
         });
     }
 </script>
-<html>
-<head>
-    <title>Edit</title>
-</head>
-<body>
-    <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
-    <div class="col-md-6" style="margin-left:300px">
-        <div class="tile">
-            <h3 class="tile-title" style="text-align:center">修改员工信息</h3>
-            <div class="tile-body">
-                <form class="form-horizontal">
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">员工编号</label>
-                        <div class="col-md-8">
-                            <input id="txtbh" type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">性别</label>
-                        <div class="col-md-8">
-                            <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />男
-                            <input id="rad2" class="rad" type="radio" name="rad" value="false" />女
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">手机号码</label>
-                        <div class="col-md-8">
-                            <input id="txtsjh" type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">身份证</label>
-                        <div class="col-md-8">
-                            <input id="txtsfz" type="text" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">职位</label>
-                        <div class="col-md-8">
-                            <select id="selzw"></select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="tile-footer">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-3">
-                        <input id="Button2" type="button" value="保存" class="btn btn-primary" onclick="save()" />
-                        <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelInfomation/Index'" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-
-

@@ -3,18 +3,156 @@
     ViewBag.Title = "Add";
 }
 
-<h2>添加职位</h2>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<div class="col-md-6" style="margin-left:300px">
+    <div class="tile">
+        <h3 class="tile-title" style="text-align:center">添加职位</h3>
+        <div class="tile-body">
+            <form class="form-horizontal">
+                <div class="form-group row">
+                    <label class="control-label col-md-3">职位名称</label>
+                    <div class="col-md-8">
+                        <input id="txtzwmc" type="text" class="form-control" autocomplete="off" placeholder="由2-3个汉字组成" onblur="fun1();" /><span id="s1"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">职位级别</label>
+                    <div class="col-md-8">
+                        <input id="txtzwjb" type="text" class="form-control" autocomplete="off" placeholder="由1个数字组成" onblur="fun2();" /><span id="s2"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">底薪</label>
+                    <div class="col-md-8">
+                        <input id="txtdx" type="text" class="form-control" autocomplete="off" placeholder="0-99999" onblur="fun3();" /><span id="s3"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3">权限</label>
+                    <div class="col-md-8">
+                        <input id="txtqx" type="text" class="form-control" autocomplete="off" /><span id="s2"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="tile-footer">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                    <input id="Button2" type="button" value="保存" class="btn btn-primary" onclick="save()" />
+
+                    <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelPosition/Index'" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
-    //添加
+    var flag = false;
+    function fun1() {
+        var username = $("#txtzwmc").val();
+        var reg = /^[\u4e00-\u9fa5]{2,3}$/;
+        if (username == '') {
+            $("#s1").html("<font color='red'>职位名称不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s1").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s1").html("<font color='red'>职位已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s1").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s1").html("<font color='blue'>由2-3汉字组成</font>");
+                return false;
+            }
+        }
+    }
+    function fun2() {
+        var username = $("#txtzwjb").val();
+        var reg = /^\w{1}$/;
+        if (username == '') {
+            $("#s2").html("<font color='red'>职位级别不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s2").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s2").html("<font color='red'>已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s2").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s2").html("<font color='blue'>由1位数字组成</font>");
+                return false;
+            }
+        }
+    }
+    function fun3() {
+        var username = $("#txtdx").val();
+        var reg = /^\w{0,5}$/;
+        if (username == '') {
+            $("#s3").html("<font color='red'>底薪不能为空</font>");
+            return false;
+        } else {
+            if (reg.test(username)) {
+                $("#s3").html("<font color='green'>✔</font>");
+                return true;
+                $.get("{:url('One/Only')}?username=" + username, function (data) {
+                    if (data > 0) {
+                        $("#s3").html("<font color='red'>已经存在</font>");
+                        flag = false;
+
+                    } else {
+                        $("#s3").html("<font color='green'>✔</font>");
+                        flag = true;
+                    }
+
+                })
+                return flag;
+
+            } else {
+                $("#s3").html("<font color='blue'>格式不对（0-99999）</font>");
+                return false;
+            }
+        }
+    }
     function save() {
+        if (fun1() && fun2() && fun3()) {
+            save1();
+        } else {
+            layer.msg('请输入正确信息', { icon: 1 })
+        }
+    }
+    //添加
+    function save1() {
         var zwmc = $("#txtzwmc").val();
         var zwjb = $("#txtzwjb").val();
         var dx = $("#txtdx").val();
         var qx = $("#txtqx").val();
         if (zwmc == "") {
-            alert("信息不能为空");
+            layer.msg('信息不能为空', { icon: 1 });
         } else {
             $.ajax({
                 url: 'http://localhost:59776/api/position',
@@ -25,40 +163,14 @@
                 dataType: 'text',
                 success: function (data) {
                     if (data > 0) {
-                        alert("添加成功");
+                        layer.msg('添加成功', { icon: 1 });
                         location.href = '/PersonnelPosition/Index';
                     }
                     else {
-                        alert("添加失败");
+                        layer.msg('添加失败', { icon: 0 });
                     }
                 }
             });
         }
     }
 </script>
-
-<table class="table table-hover">
-    <tr>
-        <td>职位名称</td>
-        <td><input id="txtzwmc" type="text" /></td>
-    </tr>
-    <tr>
-        <td>职位级别</td>
-        <td><input id="txtzwjb" type="text" /></td>
-    </tr>
-    <tr>
-        <td>底薪</td>
-        <td><input id="txtdx" type="text" /></td>
-    </tr>
-    <tr>
-        <td>权限</td>
-        <td><input id="txtqx" type="text" /></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <input id="Button2" type="button" value="保存" class="btn btn-default" onclick="save()" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPosition/Index'" />
-        </td>
-    </tr>
-</table>
-

@@ -3,18 +3,18 @@
     ViewBag.Title = "PermissionsInterface";
 }
 
-<h2 style="text-align:center">员工职位信息</h2>
+@*<h2 style="text-align:center">员工职位信息</h2>*@
 <div>
-    <table style="background-color:#ffffff" class="table table-bordered">
-        <tr>
-            <td> <input id="Button1" type="button" value="添加信息" onclick="location.href='/PersonnelPermissions/Add'" class="btn btn-info" /></td>
-            <td align="right">
-                <input id="txtxm" type="text" style="height:37px" />
-                <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
-            </td>
-        </tr>
-    </table>
-    <table class="table table-bordered"  style="background-color:#ffffff;text-align:center">
+    <form class="form-inline">
+        <div class="form-group">
+            <button type="button" class="btn btn-success" onclick="location.href='/PersonnelPermissions/Add'">添加员工状态</button>
+            <input type="text" class="form-control" id="txtxm" placeholder="请输入姓名" autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-info" onclick="sel()">查询</button>
+
+    </form>
+
+    <table class="table table-bordered" style="background-color:#ffffff;text-align:center">
         <thead>
             <tr>
                 <td>ID</td>
@@ -44,11 +44,12 @@
 </div>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     //显示
     $(function () {
         $.ajax({
-            url: 'http://localhost:59776/api/position',
+            url: 'http://localhost:59776/api/PersonMessage',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -67,11 +68,11 @@
                 dataType: 'text',
                 success: function (data) {
                     if (data > 0) {
-                        alert("删除成功");
+                        layer.msg('删除成功', {icon:1});
                         location.reload();
                     }
                     else {
-                        alert("删除失败");
+                        layer.msg('删除失败', { icon:0 });
                     }
                 }
             });

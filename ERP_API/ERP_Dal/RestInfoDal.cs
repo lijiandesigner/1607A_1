@@ -81,7 +81,8 @@ namespace ERP_Dal
                 RestInfo a = Context.RestInfo.Attach(restInfo);
                 restInfo.Restatic = Restatic;
                 restInfo.ReAuditTime = ReAuditTime;
-                return Context.SaveChanges();
+                int b = Context.SaveChanges();
+                return b;
             }
         }
     }

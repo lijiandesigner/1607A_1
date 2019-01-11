@@ -20,7 +20,9 @@ namespace ERP_MVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            string json = HttpClientHelper.SendRequest("http://localhost:59776/api/Rest", "get");
+            List<LeaveInfo> leaves = JsonConvert.DeserializeObject<List<LeaveInfo>>(json);
+            return View(leaves);
         }
         [HttpGet]
         public ActionResult AddRest()
