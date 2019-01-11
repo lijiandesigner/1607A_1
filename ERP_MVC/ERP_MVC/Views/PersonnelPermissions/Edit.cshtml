@@ -7,52 +7,9 @@
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.js"></script>
-<script>
-    $(function () {
-        var Id = $("#hidId").val();
-        //反填
-        $.ajax({
-            url: 'http://localhost:59776/api/position' + Id,
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                if (data != null) {
-                    $("#txtygid").val(data.EID);
-                    $("#txtrzsj").val(data.PeBeginWork);
-                    $("#txtlzsj").val(data.PeEndwork);
-                    $(".rad[value='" + (data.Pstatic == true ? '是' : '否') + "']").prop("checked", true);
-                }
-            }
-        });
-    });
-    function save() {
-        //接收
-        var Id = $("#hidId").val();
-        var ygid = $("#txtygid").val();
-        var rzsj = $("#txtrzsj").val();
-        var lzsj = $("#txtlzsj").val();
-        var zt = $(".rad:checked").val();
-        //传值
-        $.ajax({
-            url: 'http://localhost:59776/api/position' + Id,
-            type: 'put',
-            data: { PID: Id, EID: ygid, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt},
-            dataType: 'text',
-            success: function (data) {
-                if (data > 0) {
-                    alert("修改成功");
-                    location.href = '/PersonnelPermissions/Index';
-                }
-                else {
-                    alert("修改失败");
-                }
-            }
-        });
-    }
-</script>
 <html>
 <head>
-    <title>Add</title>
+    <title>Edit</title>
 </head>
 <body>
     <div class="container">
@@ -88,4 +45,46 @@
     </div>
 </body>
 </html>
-
+<script>
+    $(function () {
+        var Id = $("#hidId").val();
+        //反填
+        $.ajax({
+            url: 'http://localhost:59776/api/position' + Id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                if (data != null) {
+                    $("#txtygid").val(data.EID);
+                    $("#txtrzsj").val(data.PeBeginWork);
+                    $("#txtlzsj").val(data.PeEndwork);
+                    $(".rad[value='" + (data.Pstatic == true ? '是' : '否') + "']").prop("checked", true);
+                }
+            }
+        });
+    });
+    function save() {
+        //接收
+        var Id = $("#hidId").val();
+        var ygid = $("#txtygid").val();
+        var rzsj = $("#txtrzsj").val();
+        var lzsj = $("#txtlzsj").val();
+        var zt = $(".rad:checked").val();
+        //传值
+        $.ajax({
+            url: 'http://localhost:59776/api/position' + Id,
+            type: 'put',
+            data: { PID: Id, EID: ygid, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt },
+            dataType: 'text',
+            success: function (data) {
+                if (data > 0) {
+                    alert("修改成功");
+                    location.href = '/PersonnelPermissions/Index';
+                }
+                else {
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+</script>
