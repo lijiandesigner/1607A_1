@@ -18,7 +18,7 @@
         <table class="table-condensed">
             <tr>
                 <td>员工ID</td>
-                <td><input id="txtygid" type="text" readonly="readonly" /></td>
+                <td><input id="txtygid" type="text" readonly="readonly" autocomplete="off" /></td>
             </tr>
             <tr>
                 <td>入职时间</td>
@@ -45,6 +45,7 @@
     </div>
 </body>
 </html>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     $(function () {
         var Id = $("#hidId").val();
@@ -78,11 +79,11 @@
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
-                    alert("修改成功");
+                    layer.msg('修改成功', {icon:1});
                     location.href = '/PersonnelPermissions/Index';
                 }
                 else {
-                    alert("修改失败");
+                    layer.msg('修改失败', {icon:0});
                 }
             }
         });

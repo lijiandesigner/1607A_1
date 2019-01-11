@@ -5,7 +5,7 @@
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-
+<TITLE>添加员工信息</TITLE>
 <div>
     <from class="form-inline">
         <div class="form-group">
@@ -15,65 +15,65 @@
                 <option value="true">在职</option>
                 <option value="false">离职</option>
             </select>
-            <input id="txtbh" type="text"  class="form-control" placeholder="请输入员工编号" autocomplete="off"/>
-            <input id="txtxm" type="text"  class="form-control" placeholder="请输入员工姓名"autocomplete="off"/>
+            <input id="txtbh" type="text" class="form-control" placeholder="请输入员工编号" autocomplete="off" />
+            <input id="txtxm" type="text" class="form-control" placeholder="请输入员工姓名" autocomplete="off" />
             <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
         </div>
     </from>
-        <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>员工编号</td>
-                    <td>姓名</td>
-                    <td>性别</td>
-                    <td>手机号</td>
-                    <td>邮箱</td>
-                    <td>身份证</td>
-                    <td>头像</td>
-                    <td>职位</td>
-                    <td>操作</td>
-                </tr>
-            </thead>
-            <tbody id="tb"></tbody>
-        </table>
-        <table class="table table-bordered" style="border:none">
+    <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
+        <thead>
             <tr>
-                <td></td>
-                <td align="right">
-                    <input id="Button1" type="button" value="首页" class="btn btn-info" />
-                    <input id="Button1" type="button" value="上一页" class="btn btn-info" />
-                    <input id="Button1" type="button" value="①" class="btn btn-info" />
-                    <input id="Button1" type="button" value="②" class="btn btn-info" />
-                    <input id="Button1" type="button" value="③" class="btn btn-info" />
-                    <input id="Button1" type="button" value="下一页" class="btn btn-info" />
-                    <input id="Button1" type="button" value="尾页" class="btn btn-info" />
-                </td>
+                <td>ID</td>
+                <td>员工编号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>手机号</td>
+                <td>邮箱</td>
+                <td>身份证</td>
+                <td>头像</td>
+                <td>职位</td>
+                <td>操作</td>
             </tr>
-        </table>
-        @*<!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <title>Bootstrap 实例 - 默认的分页</title>
-                <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-                <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-                <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            </head>
-            <body>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    <table class="table table-bordered" style="border:none">
+        <tr>
+            <td></td>
+            <td align="right">
+                <input id="Button1" type="button" value="首页" class="btn btn-info" />
+                <input id="Button1" type="button" value="上一页" class="btn btn-info" />
+                <input id="Button1" type="button" value="①" class="btn btn-info" />
+                <input id="Button1" type="button" value="②" class="btn btn-info" />
+                <input id="Button1" type="button" value="③" class="btn btn-info" />
+                <input id="Button1" type="button" value="下一页" class="btn btn-info" />
+                <input id="Button1" type="button" value="尾页" class="btn btn-info" />
+            </td>
+        </tr>
+    </table>
+    @*<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Bootstrap 实例 - 默认的分页</title>
+            <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        </head>
+        <body>
 
-            <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
 
-            </body>
-            </html>*@
+        </body>
+        </html>*@
 
     </table>
 </div>
