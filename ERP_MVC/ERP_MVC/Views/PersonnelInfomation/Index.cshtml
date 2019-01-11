@@ -57,22 +57,33 @@
                 </td>
             </tr>
         </table>
+        @*<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Bootstrap 实例 - 默认的分页</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<ul class="pagination">
+	<li><a href="#">&laquo;</a></li>
+	<li><a href="#">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">3</a></li>
+	<li><a href="#">4</a></li>
+	<li><a href="#">5</a></li>
+	<li><a href="#">&raquo;</a></li>
+</ul>
+
+</body>
+</html>*@
+
     </table>
 </div>
 <script>
-    ////下拉
-    //$(function () {
-    //    $.ajax({
-    //        url: 'http://localhost:59776/api/',
-    //        type: 'get',
-    //        dataType: 'json',
-    //        success: function (data) {
-    //            for (var i = 0; i < data.length; i++) {
-    //                $("#selzw").append("<option value='" + data[i].PID + "'>" + data[i].Pstatic + "</option>");
-    //            }
-    //        }
-    //    });
-    //});
     //显示
     $(function () {
         $.ajax({
@@ -126,7 +137,7 @@
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].Pid + "</td><td><input id='btnEdit' type='button'  class='btn btn - info float-left'  value='修改' onclick='edit(" + data[i].EID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].PoName + "</td><td><input id='btnEdit' type='button'  class='btn btn - info float-left'  value='修改' onclick='edit(" + data[i].EID + ")' /></tr>");
                 }
             }
         })
