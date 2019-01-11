@@ -9,17 +9,23 @@
 <div>
     <span>姓名</span><input id="txtName" type="text" /><span>员工号</span><input id="txtEno" type="text" /><input id="btnSelect" onclick="SelectMoney()" type="button" value="查询" />
 </div>
-<table>
-    <thead>
-        <tr>
-            <th>员工号</th>
-            <th>应发工资</th>
-            <th>应扣工资</th>
-            <th>实发工资</th>
-        </tr>
-    </thead>
-    <tbody id="tb"></tbody>
-</table>
+<div class="col-md-12">
+    <div class="tile">
+        <div class="tile-body">
+            <table class="table table-bordered table-hover" id="sampleTable" style="text-align:center">
+                <thead>
+                    <tr>
+                        <th>员工号</th>
+                        <th>应发工资</th>
+                        <th>应扣工资</th>
+                        <th>实发工资</th>
+                    </tr>
+                </thead>
+                <tbody id="tb" style="text-align:center"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <script>
     function loadData() {
         $(function () {
