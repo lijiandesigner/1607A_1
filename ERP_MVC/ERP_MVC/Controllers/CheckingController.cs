@@ -22,19 +22,14 @@ namespace ERP_MVC.Controllers
             List<AttendanceDay> attday = JsonConvert.DeserializeObject<List<AttendanceDay>>(json);
             return View(attday);
         }
-        //[HttpGet]
-        //public ActionResult AccountRuless()
-        //{
-        //    return View();
-        //}
         /// <summary>
         /// 月考勤管理
         /// </summary>
         /// <returns></returns>
         public ActionResult MonthAccount()
         {
-            string json = Helpers.HttpClientHelper.SendRequest("api/APIAttendance", "Get");
-            List<MonthAtten> months = JsonConvert.DeserializeObject<List<MonthAtten>>(json);
+            string json = Helpers.HttpClientHelper.SendRequest("api/APIMonthattendance", "Get");
+            List<AttendanceMonth1> months = JsonConvert.DeserializeObject<List<AttendanceMonth1>>(json);
             return View(months);
         }
     }

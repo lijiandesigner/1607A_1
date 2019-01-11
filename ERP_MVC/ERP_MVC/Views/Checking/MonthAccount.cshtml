@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_MVC.Models.MonthAtten>
+﻿@model IEnumerable<ERP_MVC.Models.AttendanceMonth1>
 
 @{
     ViewBag.Title = "MonthAccount";
@@ -12,21 +12,23 @@
             <table class="table table-hover table-bordered" id="sampleTable">
                 <thead>
                     <tr>
-                        <th>员工编号</th>
+                        <th>编号</th>
+                        <th>姓名</th>
                         <th>总旷工次数</th>
                         <th>总迟到分钟数</th>
-                        <th>总早退分钟数</th>
+                        <th>考勤日期</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <th>@item.EID</th>
-                            <th>@item.MAbsenteeism</th>
-                            <th>@item.MLateTime</th>
-                            <th>@item.MLeaveTime</th>
-                        </tr>
+                    <tr>
+                        <th style="text-align:center">@item.ENo</th>
+                        <th style="text-align:center">@item.EName</th>
+                        <th style="text-align:center">@item.MAbsenteeism</th>
+                        <th style="text-align:center">@item.MLateTime</th>
+                        <th style="text-align:center">@item.Adate</th>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -35,7 +37,7 @@
 </div>
 
 <script>
-    function ShowMonthAtt() {
+    @*function ShowMonthAtt() {
         $.ajax({
             url: '',
             dataType: 'json',
@@ -54,4 +56,4 @@
 
         })
     }
-</script>
+</script>*@

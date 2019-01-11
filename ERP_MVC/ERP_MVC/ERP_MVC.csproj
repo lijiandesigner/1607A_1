@@ -137,6 +137,7 @@
     <Compile Include="Helpers\HttpClientHelper.cs" />
     <Compile Include="Models\AttendanceDay.cs" />
     <Compile Include="Models\AttendanceInfo.cs" />
+    <Compile Include="Models\AttendanceMonth1.cs" />
     <Compile Include="Models\AttendanceType.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\LoginJsonString.cs" />
