@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using ERP_MVC.Models;
 
 namespace ERP_MVC.Controllers
 {
@@ -13,17 +15,27 @@ namespace ERP_MVC.Controllers
         /// 日考勤管理
         /// </summary>
         /// <returns></returns>
+        
         public ActionResult AccountRules()
         {
-            return View();
+            string json = Helpers.HttpClientHelper.SendRequest("api/APIAttendance", "Get");
+            List<AttendanceDay> attday = JsonConvert.DeserializeObject<List<AttendanceDay>>(json);
+            return View(attday);
         }
+        //[HttpGet]
+        //public ActionResult AccountRuless()
+        //{
+        //    return View();
+        //}
         /// <summary>
         /// 月考勤管理
         /// </summary>
         /// <returns></returns>
         public ActionResult MonthAccount()
         {
-            return View();
+            string json = Helpers.HttpClientHelper.SendRequest("api/APIAttendance", "Get");
+            List<MonthAtten> months = JsonConvert.DeserializeObject<List<MonthAtten>>(json);
+            return View(months);
         }
     }
 }

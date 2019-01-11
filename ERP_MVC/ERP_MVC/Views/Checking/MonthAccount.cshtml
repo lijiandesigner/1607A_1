@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<ERP_MVC.Models.MonthAtten>
+
 @{
     ViewBag.Title = "MonthAccount";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -17,6 +18,17 @@
                         <th>总早退分钟数</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.EID</th>
+                            <th>@item.MAbsenteeism</th>
+                            <th>@item.MLateTime</th>
+                            <th>@item.MLeaveTime</th>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
