@@ -31,9 +31,8 @@
 <script>
     function loadData() {
         $.ajax({
-            url: '',
+            url: 'http://localhost:59776/api/',
             type: 'get',
-            data: {},
             dataType: 'json',
             success: function (data) {
                 var str = "";
@@ -51,7 +50,7 @@
         }
         else {
             $.ajax({
-                url: '',
+                url: 'http://localhost:59776/api/',
                 type: 'get',
                 data: { Eno: eno },
                 dataType: 'json',

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ERP_MVC.Models.LeaveInfo>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
@@ -8,150 +9,60 @@
     LoginResult loginResult = Session[str] as LoginResult;
 }
 
-
-<h2 style="text-align:center">请假信息表</h2>
-<div>
-    <label class="control-label float-left" style="font-size:17px;margin-left:25px;margin-top:4px">员工编号：</label>
-    <input class="form-control float-left" style="width:150px" type="text" autocomplete="off">
-    <select id="SelRestType" class="form-control float-left" style="width:150px">
-        <option value="选择请假类型">选择请假类型</option>
-        <option value="事假">事假</option>
-        <option value="病假">病假</option>
-        <option value="婚假">婚假</option>
-        <option value="产假">产假</option>
-        <option value="丧假">丧假</option>
-    </select>
-    <input id="btnSelect" type="button" class="btn btn-info" value="查询" />
-</div>
-
-
-<div class="col-md-12">
-    <div class="tile">
-        <div class="tile-body">
-            <table class="table table-bordered table-hover" id="sampleTable" style="text-align:center">
-                <thead>
-                    <tr>
-                        <th>员工编号</th>
-                        <th>员工姓名</th>
-                        <th>员工职位</th>
-                        <th>请假类型</th>
-                        <th>开始时间</th>
-                        <th>结束时间</th>
-                        <th>请假理由</th>
-                        <th>审核时间</th>
-                        <th>审核状态</th>
-                        @if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>员工编号</th>
+                            <th>员工姓名</th>
+                            <th>员工职位</th>
+                            <th>请假类型</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>请假理由</th>
+                            <th>审核时间</th>
+                            <th>审核状态</th>
+                            @if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
+                            {
+                                <th>操作</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
-                            <th>操作</th>
+                            <tr>
+                                <td>@item.ENo</td>
+                                <td>@item.EName</td>
+                                <td>@item.PoName</td>
+                                <td>@item.Rtype</td>
+                                <td>@item.RBeginTime</td>
+                                <td>@item.REndTime</td>
+                                <td>@item.RemarkInfo</td>
+                                <td>@item.ReAuditTime</td>
+                                <td id='s @item.RID'>@item.Restatic</td>
+                                <td class="@(item.Restatic!="待审批"?"che":"")"><input id='btnAgree @item.RID' class='btn btn - info float-left' type='button' onclick='Agree(@item.RID)' value='同意' /><input id='btnReject @item.RID' class='btn btn - info float-left' type='button' onclick='Reject(@item.RID)' value='驳回' /></td>
+                            </tr>
                         }
-
-                    </tr>
-                </thead>
-                <tbody id="tb" style="text-align:center"></tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     $(function () {
-        loadData();
-        $("#btnSelect").click(function () {
-            if ($("#TxtENo").val() != "" & $("#SelRestType").val() == "选择请假类型") {
-                eno = $("#TxtENo").val();
-                rtype = $("#SelRestType").val();
-
-                $.ajax({
-                    url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + '',
-                    type: 'get',
-                    success: function (data) {
-                        $("#tb").empty();
-                        for (var i in data) {
-                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
-                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td>@if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
-                        {<td>" + strs + "</td>}</tr>");
-                        }
-                    }
-                });
-            }
-
-            else if ($("#SelRestType").val() != "选择请假类型" & $("#TxtENo").val() == "") {
-                eno = $("#TxtENo").val();
-                rtype = $("#SelRestType").val();
-                $.ajax({
-                    url: 'http://localhost:59776/api/Rest?ENo=' + '' + '&Rtype=' + rtype,
-                    type: 'get',
-                    success: function (data) {
-                        $("#tb").empty();
-                        for (var i in data) {
-                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
-                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td>@if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
-                        {<td>" + strs + "</td>}</tr>");
-                        }
-                    }
-                });
-            }
-            else if ($("#SelRestType").val() == "选择请假类型" & $("#TxtENo").val() == "") {
-                eno = $("#TxtENo").val();
-                rtype = $("#SelRestType").val();
-                $.ajax({
-                    url: 'http://localhost:59776/api/Rest?ENo=' + '' + '&Rtype=' + '',
-                    type: 'get',
-                    success: function (data) {
-                        $("#tb").empty();
-                        for (var i in data) {
-                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
-                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td>@if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
-                        {<td>" + strs + "</td>}</tr>");
-                        }
-                    }
-                });
-            }
-            else {
-                eno = $("#TxtENo").val();
-                rtype = $("#SelRestType").val();
-                $.ajax({
-                    url: 'http://localhost:59776/api/Rest?ENo=' + eno + '&Rtype=' + rtype,
-                    type: 'get',
-                    success: function (data) {
-                        $("#tb").empty();
-                        for (var i in data) {
-                            var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
-                            $("#tb").append("<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td>@if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
-                        {<td>" + strs + "</td>}</tr>");
-                        }
-
-                    }
-                });
-            }
-
-        });
+        $(".che").empty();
+        $(".page-link").click(function () {
+            setTimeout(function () {
+                var c = $(".che");
+                c.empty();}, 50)
+        })
     });
-    function loadData() {
-        $(function () {
-            eno = $("#TxtENo").val();
-            rtype = $("#SelRestType").val();
-            $.ajax({
-                url: 'http://localhost:59776/api/Rest',
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    var str = "";
-                    for (var i in data) {
-                        var strs = data[i].Restatic != "待审批" ? "" : "<input id='btnAgree" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Agree(" + data[i].RID + ")' value='同意' /><input id='btnReject" + data[i].RID + "' class='btn btn - info float-left' type='button' onclick='Reject(" + data[i].RID + ")' value='驳回' />"
-                        str += "<tr><td align='center' valign='middle'>" + data[i].ENo + "</td><td>" + data[i].Ename + "</td><td>" + data[i].PoName + "</td><td>" + data[i].Rtype + "</td><td>" + data[i].RBeginTime + "</td><td>" + data[i].REndTime + "</td><td>" + data[i].RemarkInfo + "</td><td>" + data[i].ReAuditTime + "</td><td><span id='s" + data[i].RID + "'>" + data[i].Restatic + "</span></td>@if (loginResult.Permissins.Contains("N") || loginResult.Permissins.Equals("ALL"))
-                        {<td>" + strs + "</td>}</tr>";
-                    }
-                    $("#tb").html(str);
-                }
-            });
-        });
-    }
-    //$(function () {
-    //    loadData();
-    //})
     function Agree(RID) {
         $.ajax({
             url: 'http://localhost:59776/api/Rest?RID=' + RID + '&Restatic=1',
@@ -160,13 +71,10 @@
             success: function (data) {
                 if (data > 0) {
                     layer.msg('审批成功', { icon: 1 });
-                    loadData();
+                    location.href = '/Leave/Index';
                 }
             }
         })
-        document.getElementById("s" + RID).innerText = "同意";
-        $("#btnReject" + RID).attr("style", "display:none;");
-        $("#btnAgree" + RID).attr("style", "display:none;");
     }
     function Reject(RID) {
         $.ajax({
@@ -176,13 +84,10 @@
             success: function (data) {
                 if (data > 0) {
                     layer.msg('审批成功', { icon: 1 });
-                    loadData();
+                    location.href = '/Leave/Index';
                 }
             }
         })
-        document.getElementById("s" + RID).innerText = "驳回";
-        $("#btnReject" + RID).attr("style", "display:none;");
-        $("#btnAgree" + RID).attr("style", "display:none;");
 
     }
 

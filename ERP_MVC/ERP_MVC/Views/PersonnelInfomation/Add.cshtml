@@ -14,13 +14,13 @@
                 <div class="form-group row">
                     <label class="control-label col-md-3">员工编号</label>
                     <div class="col-md-8">
-                        <input id="txtbh" type="text" class="form-control" autocomplete="off" placeholder="由字母A开头,加五位数字组成" onblur="fun1();" /><span id="s1"></span>
+                        <input id="txtbh" type="text" class="form-control" placeholder="由字母A开头,加五位数字组成" onblur="fun1();" /><span id="s1"></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-md-3">员工姓名</label>
                     <div class="col-md-8">
-                        <input id="txtxm" type="text" class="form-control" autocomplete="off" placeholder="由2-3个汉字组成" onblur="fun2();" />
+                        <input id="txtxm" type="text" class="form-control" placeholder="由2-3个汉字组成" onblur="fun2();" />
                         <span id="s2"></span>
                     </div>
                 </div>
@@ -34,19 +34,19 @@
                 <div class="form-group row">
                     <label class="control-label col-md-3">手机号码</label>
                     <div class="col-md-8">
-                        <input id="txtsjh" type="text" class="form-control" autocomplete="off" placeholder="请输入规范的手机号" onblur="fun3();" /><span id="s3"></span>
+                        <input id="txtsjh" type="text" class="form-control" placeholder="请输入规范的手机号" onblur="fun3();" /><span id="s3"></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-md-3">身份证</label>
                     <div class="col-md-8">
-                        <input id="txtsfz" type="text" class="form-control" autocomplete="off" placeholder="请输入规范的身份证号" onblur="fun4();" /><span id="s4"></span>
+                        <input id="txtsfz" type="text" class="form-control" placeholder="请输入规范的身份证号" onblur="fun4();" /><span id="s4"></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="control-label col-md-3">邮箱</label>
                     <div class="col-md-8">
-                        <input id="txtyx" type="text" class="form-control" autocomplete="off" placeholder="请输入规范的邮箱号" onblur="fun5();" /><span id="s5"></span>
+                        <input id="txtyx" type="text" class="form-control" placeholder="请输入规范的邮箱号" onblur="fun5();" /><span id="s5"></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -67,8 +67,6 @@
         </div>
     </div>
 </div>
-
-<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     var flag = false;
     function fun1() {
@@ -233,7 +231,7 @@
         if (fun1() && fun2() && fun3() && fun4() && fun5()) {
             save1();
         } else {
-            layer.msg('请输入正确信息', {icon:1})
+            alert("请输入正确信息")
         }
     }
     //添加
@@ -253,11 +251,11 @@
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {
-                    layer.msg('添加成功', {icon:1});
-                    location.href = '/PersonnelInfomation/Index';
+                    alert("添加成功");
+                    location.href = '/PersonnelInfomation/FomationInfoface';
                 }
                 else {
-                    layer.msg('添加失败', {icon0});
+                    alert("添加失败");
                 }
             }
         });

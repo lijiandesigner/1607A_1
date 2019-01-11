@@ -84,11 +84,11 @@
                     <ul class="treeview-menu">
                         @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
                         {
-                            <li><a class="treeview-item" href="/PersonnelInfomation/Index/"><i class="icon fa fa-circle-o"></i> 员工信息管理</a></li>
+                            <li><a class="treeview-item" href="/PersonnelInfomation/FomationInfoface/"><i class="icon fa fa-circle-o"></i> 员工信息管理</a></li>
                         }
                         @if (loginResult.Permissins.Contains("C") || loginResult.Permissins.Equals("ALL"))
                         {
-                            <li><a class="treeview-item" href="/PersonnelPermissions/Index/"><i class="icon fa fa-circle-o"></i> 员工工作状态管理</a></li>
+                            <li><a class="treeview-item" href="/PersonnelPermissions/PermissionsInterface/"><i class="icon fa fa-circle-o"></i> 员工工作状态管理</a></li>
                         }
                         @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
                         {
