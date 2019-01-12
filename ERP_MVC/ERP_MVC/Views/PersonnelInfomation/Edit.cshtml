@@ -4,6 +4,7 @@
 }
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <html>
 <head>
@@ -13,7 +14,7 @@
     <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
     <div class="col-md-6" style="margin-left:300px">
         <div class="tile">
-            <h3 class="tile-title" style="text-align:center">修改员工信息</h3>
+            <h3 class="tile-title" style="text-align:center">编辑</h3>
             <div class="tile-body">
                 <form class="form-horizontal">
                     <div class="form-group row">
@@ -74,7 +75,6 @@
     </div>
 </body>
 </html>
-<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     $(function () {
         var Id = $("#hidId").val();
@@ -258,7 +258,7 @@
         if (fun1() && fun2() && fun3() && fun4() && fun5()) {
             save1();
         } else {
-            layer.msg('请输入正确信息'{icon:2})
+            layer.msg('请输入正确信息',{icon:2})
         }
     }
     function save1() {

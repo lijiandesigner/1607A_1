@@ -3,7 +3,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>修改职位</h2>
+<title>职位编辑</title>
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -11,32 +11,48 @@
 <head>
 </head>
 <body>
-    <div class="table table-hover">
-        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
-        <table class="table-condensed">
-            <tr>
-                <td>职位名称</td>
-                <td><input id="txtzwmc" type="text" placeholder="由2-3个汉字组成" onblur="fun1();" autocomplete="off" /><span id="s1"></span></td>
-            </tr>
-            <tr>
-                <td>职位级别</td>
-                <td><input id="txtzwjb" type="text" placeholder="由1个数字组成" onblur="fun2();" autocomplete="off" /><span id="s2"></span></td>
-            </tr>
-            <tr>
-                <td>底薪</td>
-                <td><input id="txtdx" type="text" placeholder="0-99999" onblur="fun3();" autocomplete="off" /><span id="s3"></span></td>
-            </tr>
-            <tr>
-                <td>权限</td>
-                <td><input id="txtqx" type="text" autocomplete="off" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href='/PersonnelPosition/Index'" />
-                </td>
-            </tr>
-        </table>
+    <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+    <div class="col-md-6" style="margin-left:300px">
+        <div class="tile">
+            <h3 class="tile-title" style="text-align:center">职位编辑</h3>
+            <div class="tile-body">
+                <form class="form-horizontal">
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">职位名称</label>
+                        <div class="col-md-8">
+                            <input id="txtzwmc" type="text" class="form-control" autocomplete="off" placeholder="由2-3个汉字组成" onblur="fun1();" /><span id="s1"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">职位级别</label>
+                        <div class="col-md-8">
+                            <input id="txtzwjb" type="text" class="form-control" autocomplete="off" placeholder="由1个数字组成" onblur="fun2();" /><span id="s2"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">底薪</label>
+                        <div class="col-md-8">
+                            <input id="txtdx" type="text" class="form-control" autocomplete="off" placeholder="0-99999" onblur="fun3();" /><span id="s3"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">权限</label>
+                        <div class="col-md-8">
+                            <input id="txtqx" type="text" class="form-control" autocomplete="off" /><span id="s2"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tile-footer">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-3">
+                        <input id="Button2" type="button" value="保存" class="btn btn-primary" onclick="save()" />
+
+                        <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelPosition/Index'" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -17,8 +17,8 @@
         <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
         <table class="table-condensed">
             <tr>
-                <td>员工ID</td>
-                <td><input id="txtygid" type="text" readonly="readonly" autocomplete="off" /></td>
+                <td>员工编号</td>
+                <td><input id="txtbh" type="text" readonly="readonly" autocomplete="off" /></td>
             </tr>
             <tr>
                 <td>入职时间</td>
@@ -38,7 +38,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href = '/PersonnelPermissions/Index'" />
+                    <input id="Button1" type="button" value="保存" onclick="save()" class="btn btn-default" />　　　<input id="Button1" type="button" value="返回" class="btn btn-default" onclick="location.href = '/PersonnelPermissions/PermissionsInterface'" />
                 </td>
             </tr>
         </table>
@@ -51,15 +51,15 @@
         var Id = $("#hidId").val();
         //反填
         $.ajax({
-            url: 'http://localhost:59776/api/position' + Id,
+            url: 'http://localhost:59776/api/PersonMessage/' + Id,
             type: 'get',
             dataType: 'json',
             success: function (data) {
                 if (data != null) {
-                    $("#txtygid").val(data.EID);
+                    $("#txtbh").val(data.ENo);
                     $("#txtrzsj").val(data.PeBeginWork);
                     $("#txtlzsj").val(data.PeEndwork);
-                    $(".rad[value='" + (data.Pstatic == true ? '是' : '否') + "']").prop("checked", true);
+                    $(".rad[value='" + (data.Pstatic == true ? '在职' : '离职') + "']").prop("checked", true);
                 }
             }
         });
@@ -67,15 +67,16 @@
     function save() {
         //接收
         var Id = $("#hidId").val();
-        var ygid = $("#txtygid").val();
+        var bh = $("#txtbh").val();
         var rzsj = $("#txtrzsj").val();
         var lzsj = $("#txtlzsj").val();
         var zt = $(".rad:checked").val();
         //传值
         $.ajax({
-            url: 'http://localhost:59776/api/position' + Id,
+            url: 'http://localhost:59776/api/PersonMessage',
             type: 'put',
-            data: { PID: Id, EID: ygid, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt },
+            data: {
+                '': JSON.stringify({ PID:Id,EID: bh, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt })},
             dataType: 'text',
             success: function (data) {
                 if (data > 0) {

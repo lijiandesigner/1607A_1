@@ -1,14 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "员工职位";
 }
 @*<h2>显示职位</h2>*@
 <div>
     <from class="form-inline">
         <div class="form-group">
             <input id="Button1" type="button" value="添加职位信息" class="btn btn-success" onclick="location.href='/PersonnelPosition/Add'" />
-            <input id="txtxm" type="text" placeholder="请输入职位名称" class="form-control" autocomplete="off" />
-            <input id="Button1" type="button" value="查询" onclick="sel()" class="btn btn-info" />
         </div>
     </from>
     <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
@@ -74,22 +72,6 @@
                 }
             });
         }
-    }
-    查询
-    function sel() {
-        var xm = $("#txtxm").val();
-        $.ajax({
-            url: '',
-            type: 'get',
-            data: { PoName: xm, },
-            dataType: 'json',
-            success: function (data) {
-                $("#tb").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].PoID + "</td><td>" + data[i].PoName + "</td><td>" + data[i].PoLeave + "</td><td>" + data[i].PoMinMoney + "</td><td>" + data[i].Permission + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PoID + ")' /><input id='btnDel' type='button' value='删除' onclick='del(" + data[i].PoID + ")' /></td></tr>");
-                }
-            }
-        })
     }
     function edit(id) {
         location.href = "/PersonnelPosition/Edit/" + id;
