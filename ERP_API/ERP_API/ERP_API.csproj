@@ -171,6 +171,7 @@
     <Compile Include="Controllers\APIAccountController.cs" />
     <Compile Include="Controllers\APIMonthattendanceController.cs" />
     <Compile Include="Controllers\AttendanceTypeController.cs" />
+    <Compile Include="Controllers\FinancialController.cs" />
     <Compile Include="Controllers\PersonMessageController.cs" />
     <Compile Include="Controllers\positionController.cs" />
     <Compile Include="Controllers\APIAttendanceController.cs" />
