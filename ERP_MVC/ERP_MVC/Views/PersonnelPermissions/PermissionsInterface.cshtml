@@ -54,7 +54,7 @@
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' class='btn btn - primary' value='编辑' onclick='edit(" + data[i].PID + ")' /></tr>");
                 }
             }
         });
@@ -89,7 +89,7 @@
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' class='btn btn - primary' value='编辑' onclick='edit(" + data[i].PID + ")' /></tr>");
                 }
             }
         })
