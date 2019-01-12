@@ -1,16 +1,15 @@
-﻿@model List<ERP_MVC.Models.WagesInfo>
+﻿@model List<ERP_MVC.Models.GZ>
 @{
-    ViewBag.Title = "SettleWage";
+    ViewBag.Title = "历史工资查看";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
-
 <h2>员工工资结算</h2>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<div>
+@*<div>
     <input id="txtName" type="text"  placeholder="请输入员工姓名"  class="form-control" />
     <input id="txtEno" type="text" placeholder="请输入员工编号" class="form-control"/>
     <input id="btnSelect" onclick="SelectMoney()" type="button" value="查询"  class="btn btn-info"/>
-</div>
+</div>*@
 <div class="col-md-12">
     <div class="tile">
         <div class="tile-body">
@@ -18,17 +17,29 @@
                 <thead>
                     <tr>
                         <th>员工号</th>
-                        <th>应发工资</th>
+                        <th>员工姓名</th>
                         <th>应扣工资</th>
                         <th>实发工资</th>
+                        <th>日期</th>
                     </tr>
                 </thead>
-                <tbody id="tb" style="text-align:center"></tbody>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ENo</td>
+                            <td>@item.EName</td>
+                            <td>@item.WDudectionMoney</td>
+                            <td>@item.WShouldMoney</td>
+                            <td>@item.CreateDate</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
 </div>
-<script>
+@*<script>
     function loadData() {
         $(function () {
             $.ajax({
@@ -48,7 +59,6 @@
     function SelectMoney() {
         ename = $("#Ename").val();
         eid = $("#Eid").val();
-        else {
             $.ajax({
                 url: '',
                 type: 'get',
@@ -63,6 +73,5 @@
                 }
             })
         }
-    }
-</script>
+</script>*@
 
