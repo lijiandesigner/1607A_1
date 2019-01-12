@@ -4,6 +4,7 @@
 }
 <!DOCTYPE html>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <html>
 <head>
@@ -74,7 +75,6 @@
     </div>
 </body>
 </html>
-<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <script>
     $(function () {
         var Id = $("#hidId").val();
@@ -258,7 +258,7 @@
         if (fun1() && fun2() && fun3() && fun4() && fun5()) {
             save1();
         } else {
-            layer.msg('请输入正确信息'{icon:2})
+            layer.msg('请输入正确信息',{icon:2})
         }
     }
     function save1() {
