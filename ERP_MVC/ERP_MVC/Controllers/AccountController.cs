@@ -20,7 +20,7 @@ namespace ERP_MVC.Controllers
             return View();
         }
         [HttpGet]
-        public void Login(string txtname, string txtpwd)
+        public ActionResult Login(string txtname, string txtpwd)
         {
             var post = new LoginJsonString { ENo = txtname, Rpassword = txtpwd };
             string result = Helpers.HttpClientHelper.SendRequest("api/APIAccount?jsonStr="+ JsonConvert.SerializeObject(post), "get");
@@ -29,16 +29,16 @@ namespace ERP_MVC.Controllers
             {
                 //List<EmployeeInfo> infos = JsonConvert.DeserializeObject<List<EmployeeInfo>>(result);
                 //EmployeeInfo e = infos.FirstOrDefault();
-                if(Session[loginResult.ENo]!=null)
-                { Session.Remove(loginResult.ENo);}
+                if (Session[loginResult.ENo] != null)
+                { Session.Remove(loginResult.ENo); }
                 Session[loginResult.ENo] = loginResult;
                 HttpCookie cok = Request.Cookies["cookie"];
-                if ( cok== null)
+                if (cok == null)
                 {
                     HttpCookie httpCookie = new HttpCookie("cookie");
                     httpCookie.Expires = DateTime.Now.AddMinutes(20);
                     httpCookie.Values.Add("eno", loginResult.ENo);
-                    Response.SetCookie(httpCookie);
+                    Response.Cookies.Add(httpCookie);
                 }
                 else
                 {
@@ -46,14 +46,14 @@ namespace ERP_MVC.Controllers
                     HttpCookie httpCookie = new HttpCookie("cookie");
                     httpCookie.Expires = DateTime.Now.AddMinutes(20);
                     httpCookie.Values.Add("eno", loginResult.ENo);
-                    Response.SetCookie(httpCookie);
+                    Response.Cookies.Add(httpCookie);
                 }
                 //ViewData["Name"] = loginResult.EName == null ? txtname : loginResult.EName;
-                
-                Response.Write("<script>location.href='/Account/Maininterface'</script>");
+
+                return View("Maininterface");
             }
             else
-                Response.Write("<script>alert('登陆失败');location.href='/Account/Index'</script>");
+                return Content("<script>alert('登陆失败')</script>");
         }
 
         public ActionResult Maininterface()
