@@ -7,7 +7,7 @@
 <div>
     <form class="form-inline">
         <div class="form-group">
-            <button type="button" class="btn btn-success" onclick="location.href='/PersonnelPermissions/Add'">添加员工状态</button>
+            @*<button type="button" class="btn btn-success" onclick="location.href='/PersonnelPermissions/Add'">添加员工状态</button>*@
             <input type="text" class="form-control" id="txtxm" placeholder="请输入姓名" autocomplete="off">
         </div>
         <button type="button" class="btn btn-info" onclick="sel()">查询</button>
@@ -17,8 +17,7 @@
     <table class="table table-bordered" style="background-color:#ffffff;text-align:center">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>员工ID</td>
+                <td>员工编号</td>
                 <td>入职时间</td>
                 <td>离职时间</td>
                 <td>状态</td>
@@ -54,7 +53,7 @@
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' class='btn btn - primary' value='编辑' onclick='edit(" + data[i].PID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + (data[i].Pstatic == true ? "在职" : "离职") + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
                 }
             }
         });
@@ -82,14 +81,14 @@
     function sel() {
         var xm = $("#txtxm").val();
         $.ajax({
-            url: 'http://localhost:59776/api/position',
+            url: 'http://localhost:59776/api/PersonMessage',
             type: 'get',
-            data: { EID: xm, },
+            data: { PID: xm, },
             dataType: 'json',
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].PID + "</td><td>" + data[i].EID + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' class='btn btn - primary' value='编辑' onclick='edit(" + data[i].PID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
                 }
             }
         })
