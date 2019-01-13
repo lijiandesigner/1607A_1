@@ -6,10 +6,10 @@
 <h2>员工工资结算</h2>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 @*<div>
-    <input id="txtName" type="text"  placeholder="请输入员工姓名"  class="form-control" />
-    <input id="txtEno" type="text" placeholder="请输入员工编号" class="form-control"/>
-    <input id="btnSelect" onclick="SelectMoney()" type="button" value="查询"  class="btn btn-info"/>
-</div>*@
+        <input id="txtName" type="text"  placeholder="请输入员工姓名"  class="form-control" />
+        <input id="txtEno" type="text" placeholder="请输入员工编号" class="form-control"/>
+        <input id="btnSelect" onclick="SelectMoney()" type="button" value="查询"  class="btn btn-info"/>
+    </div>*@
 <div class="col-md-12">
     <div class="tile">
         <div class="tile-body">
@@ -24,15 +24,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (Model != null)
                     {
-                        <tr>
-                            <td>@item.ENo</td>
-                            <td>@item.EName</td>
-                            <td>@item.WDudectionMoney</td>
-                            <td>@item.WShouldMoney</td>
-                            <td>@item.CreateDate</td>
-                        </tr>
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ENo</td>
+                                <td>@item.EName</td>
+                                <td>@item.WDudectionMoney</td>
+                                <td>@item.WShouldMoney</td>
+                                <td>@item.CreateDate</td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
@@ -40,38 +43,38 @@
     </div>
 </div>
 @*<script>
-    function loadData() {
-        $(function () {
-            $.ajax({
-                url: '',
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    var str = "";
-                    for (var i in data) {
-                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].WSsalary + "</td><td>" + data[i].WDudectionMoney + "</td><td>" + data[i].WSsalary - data[i].WDudectionMoney + "</td></tr>";
+        function loadData() {
+            $(function () {
+                $.ajax({
+                    url: '',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        var str = "";
+                        for (var i in data) {
+                            str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].WSsalary + "</td><td>" + data[i].WDudectionMoney + "</td><td>" + data[i].WSsalary - data[i].WDudectionMoney + "</td></tr>";
+                        }
+                        $("#tb").html(str);
                     }
-                    $("#tb").html(str);
-                }
+                });
             });
-        });
-    }
-    function SelectMoney() {
-        ename = $("#Ename").val();
-        eid = $("#Eid").val();
-            $.ajax({
-                url: '',
-                type: 'get',
-                data: { Eid: eid, Ename: ename },
-                dataType: 'json',
-                success: function (data) {
-                    var str = "";
-                    for (var i in data) {
-                        str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].WSsalary + "</td><td>" + data[i].WDudectionMoney + "</td><td>" + data[i].WShouldMoney + "</td></tr>";
-                    }
-                    $("#tb").html(str);
-                }
-            })
         }
-</script>*@
+        function SelectMoney() {
+            ename = $("#Ename").val();
+            eid = $("#Eid").val();
+                $.ajax({
+                    url: '',
+                    type: 'get',
+                    data: { Eid: eid, Ename: ename },
+                    dataType: 'json',
+                    success: function (data) {
+                        var str = "";
+                        for (var i in data) {
+                            str += "<tr><td>" + data[i].Eid + "</td><td>" + data[i].WSsalary + "</td><td>" + data[i].WDudectionMoney + "</td><td>" + data[i].WShouldMoney + "</td></tr>";
+                        }
+                        $("#tb").html(str);
+                    }
+                })
+            }
+    </script>*@
 
