@@ -18,12 +18,8 @@ namespace ERP_Dal
         /// <summary>
         /// 根据条件查询员工工资
         /// </summary>
-        /// <param name="ENo">员工编号</param>
-        /// <param name="EName">员工姓名</param>
-        /// <param name="date">日期</param>
-        /// <param name="Static">工作状态</param>
         /// <returns></returns>
-        public List<GZ> GetGZs(string ENo, string EName,string Date, string Static)
+        public static List<GZ> GetGZs()
         {
             using (EFContext Context = new EFContext())
             {
@@ -44,7 +40,7 @@ namespace ERP_Dal
                                       CreateDate=c.CreateDate,
                                       Pstatic = b.Pstatic
                                   }).ToList();
-                    return result.Where(u => ENo == null ? true : u.ENo == ENo).Where(u => EName == null ? true : u.EName == EName).Where(u =>  Date== null ? true : u.CreateDate == Date).Where(u => Static == null ? true : u.Pstatic == Convert.ToBoolean(Static)).ToList();
+                    return result.ToList();
                 }
                 catch (Exception)
                 {
@@ -56,11 +52,11 @@ namespace ERP_Dal
         /// 生成本月工资记录
         /// </summary>
         /// <returns></returns>
-        public  static int CreateGZ()
+        public  static int CreateGZ(string Date)
         {
             using (EFContext Context = new EFContext())
             {
-                var articles = Context.Database.SqlQuery(typeof(int), "exec [USP_GetPagedArticleList]", null);
+                //var articles = Context.Database.SqlQuery(typeof(int), "exec [USP_GetPagedArticleList]", null);
                 return 1;
             }
         }

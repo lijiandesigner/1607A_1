@@ -18,6 +18,10 @@ namespace ERP_MVC.Controllers
         {
             return View();
         }
+        public ActionResult EntryView()
+        {
+            return View();
+        }
         public ActionResult Add()
         {
             return View();
