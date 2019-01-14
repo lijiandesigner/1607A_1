@@ -30,9 +30,9 @@ namespace ERP_Dal
                 parameters[1] = new SqlParameter("@AttendanceTime", AttendanceTime);
                 parameters[2] = new SqlParameter("@Result", SqlDbType.Int);
                 parameters[2].Direction = ParameterDirection.Output;
-                var articles = Context.Database.SqlQuery(typeof(int), "exec prco_DaKa @EID,@AttendanceTime,@Result out", parameters);
+                var articles = Context.Database.SqlQuery(typeof(int), "exec prco_DaKa @EID,@AttendanceTime,@Result output", parameters).ToListAsync();
                 
-                return (int)parameters[2].Value;
+                return Convert.ToInt32(parameters[2].Value);
             }
         }
         /// <summary>

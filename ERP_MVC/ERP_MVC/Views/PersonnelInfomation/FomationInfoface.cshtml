@@ -10,7 +10,7 @@
     <from class="form-inline">
         <div class="form-group">
             <input id="Button1" type="button" value="添加员工信息" class="btn btn-success" onclick="location.href='/PersonnelInfomation/Add'" />
-            <span>在职状态</span>
+            <span style="margin-left:497px;">在职状态</span>
             <select id="selzw" class="form-control">
                 <option value="true">在职</option>
                 <option value="false">离职</option>
@@ -30,9 +30,8 @@
                 <td>手机号</td>
                 <td>邮箱</td>
                 <td>身份证</td>
-                <td>头像</td>
+                @*<td>头像</td>*@
                 <td>职位</td>
-                <td>状态</td>
                 <td>操作</td>
             </tr>
         </thead>
@@ -87,11 +86,12 @@
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].PoName + "</td><td>" + (data[i].Pstatic == true ? "在职" : "离职") + "</td><td><input id='btnEdit' type='button' style value='修改' onclick='edit(" + data[i].EID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].PoName + "</td><td><input id='btnEdit' type='button' class='btn btn - primary' value='编辑' onclick='edit(" + data[i].EID + ")' /></tr>");
                 }
             }
         });
     });
+    //<td>" + data[i].Eheart + "</td>
     //删除
     function del(id) {
         if (confirm("确认删除么？")) {
@@ -132,11 +132,12 @@
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].Eheart + "</td><td>" + data[i].PoName + "</td><td>" + (data[i].Pstatic == true ? "在职" : "离职") + "</td><td><input id='btnEdit' type='button'  class='btn btn - info float-left'  value='修改' onclick='edit(" + data[i].EID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].EID + "</td><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + (data[i].Esex == true ? "男" : "女") + "</td><td>" + data[i].Ephone + "</td><td>" + data[i].Eemail + "</td><td>" + data[i].EcardID + "</td><td>" + data[i].PoName + "</td><td><input id='btnEdit' type='button'  class='btn btn - info float-left'  value='编辑' onclick='edit(" + data[i].EID + ")' /></tr>");
                 }
             }
         })
     }
+    //<td>" + data[i].Eheart + "</td>
     function edit(id) {
         location.href = "/PersonnelInfomation/Edit/" + id;
     }

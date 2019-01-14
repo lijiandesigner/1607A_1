@@ -31,7 +31,7 @@
     <div>
         <!-- Navbar-->
         <header class="app-header">
-            <a class="app-header__logo" href="Maininterface.cshtml">Ida</a>
+            <a class="app-header__logo" href="/Account/Maininterface/">Ida</a>
             <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
@@ -53,98 +53,97 @@
                         </div>
                     </ul>
                 </li>
-    <!-- User Menu-->
-    <li class="dropdown">
-        <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-        <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            @*<li><a class="dropdown-item" data-toggle="modal" data-target="#myModal" onclick=""><i class="fa fa-user fa-lg"></i> 个人资料 </a></li>*@
-            <li><a class="dropdown-item" href="/Account/Index"><i class="fa fa-sign-out fa-lg"></i> 注销</a></li>
-        </ul>
-    </li>
-    </ul>
-    </header>\
-    <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar">
-        <div class="app-sidebar__user">
-            <img src="~/images/mll.png" style="width:50px;height:50px;border-radius:50%" alt="User Image">
-            <div>
-                <p class="app-sidebar__user-name">@loginResult.EName</p>
-                <p class="app-sidebar__user-designation">@loginResult.PoName</p>
-                @*<p class="app-sidebar__user-name">@loginResult.EName</p>
-                    <p class="app-sidebar__user-designation">@loginResult.PoName</p>*@
-            </div>
-        </div>
-        <ul class="app-menu">
-            <li><a class="app-menu__item active" href="/Account/Maininterface/"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">首页</span></a></li>
-            @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
-            {
-                <li class="treeview">
-                    <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">人事管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
-                        @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
-                        {
-                            <li><a class="treeview-item" href="/PersonnelInfomation/FomationInfoface/"><i class="icon fa fa-circle-o"></i> 员工信息管理</a></li>
-                        }
-                        @if (loginResult.Permissins.Contains("C") || loginResult.Permissins.Equals("ALL"))
-                        {
-                            <li><a class="treeview-item" href="/PersonnelPermissions/PermissionsInterface/"><i class="icon fa fa-circle-o"></i> 员工工作状态管理</a></li>
-                        }
-                        @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
-                        {
-                            <li><a class="treeview-item" href="/PersonnelPosition/Index/"><i class="icon fa fa-circle-o"></i>职位信息管理</a></li>
-                        }
-
+                <!-- User Menu-->
+                <li class="dropdown">
+                    <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+                    <ul class="dropdown-menu settings-menu dropdown-menu-right">
+                        @*<li><a class="dropdown-item" data-toggle="modal" data-target="#myModal" onclick=""><i class="fa fa-user fa-lg"></i> 个人资料 </a></li>*@
+                        <li><a class="dropdown-item" href="/Account/Index"><i class="fa fa-sign-out fa-lg"></i> 注销</a></li>
                     </ul>
                 </li>
-            }
-            @if (loginResult.Permissins.Contains("E") || loginResult.Permissins.Equals("ALL"))
-            {
-                <li class="treeview">
-                    <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">考勤管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a class="treeview-item" href="/Checking/AccountRules"><i class="icon fa fa-circle-o"></i> 日考勤管理</a></li>
-                        <li><a class="treeview-item" href="/Checking/MonthAccount"><i class="icon fa fa-circle-o"></i>月考勤管理</a></li>
-                    </ul>
-                </li>
-            }
-            @if (loginResult.Permissins.Contains("I") || loginResult.Permissins.Equals("ALL"))
-            {
-                <li class="treeview">
-                    <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">财务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> 历史工资管理</a></li>
-                        <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> 工资结算</a></li>
-                    </ul>
-                </li>
-            }
-            @if (loginResult.Permissins.Contains("L") || loginResult.Permissins.Equals("ALL"))
-            {
-                <li class="treeview">
-                    <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">请假管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a class="treeview-item" href="/Leave/AddRest"><i class="icon fa fa-circle-o"></i> 请假申请</a></li>
-                        <li><a class="treeview-item" href="/Leave/Index"><i class="icon fa fa-circle-o"></i> 请假信息查看</a></li>
-                    </ul>
-                </li>
-            }
-
-        </ul>
-    </aside>
-    <main class="app-content">
-        <div class="app-title">
-            <div>
-                @*<h1><i class="fa fa-dashboard"></i> 首页</h1>
-                    <p>A free and open source Bootstrap 4 admin template</p>*@
-            </div>
-            <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="/Account/Maininterface/">首页</a></li>
             </ul>
-        </div>
+        </header>\
+        <!-- Sidebar menu-->
+        <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+        <aside class="app-sidebar">
+            <div class="app-sidebar__user">
+                <img src="~/images/mll.png" style="width:50px;height:50px;border-radius:50%" alt="User Image">
+                <div>
+                    <p class="app-sidebar__user-name">@loginResult.EName</p>
+                    <p class="app-sidebar__user-designation">@loginResult.PoName</p>
+                    @*<p class="app-sidebar__user-name">@loginResult.EName</p>
+                        <p class="app-sidebar__user-designation">@loginResult.PoName</p>*@
+                </div>
+            </div>
+            <ul class="app-menu">
+                <li><a class="app-menu__item active" href="/Account/Maininterface/"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">首页</span></a></li>
+                @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
+                {
+                    <li class="treeview">
+                        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">人事管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                        <ul class="treeview-menu">
+                            @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
+                            {
+                                <li><a class="treeview-item" href="/PersonnelInfomation/FomationInfoface/"><i class="icon fa fa-circle-o"></i> 员工信息管理</a></li>
+                            }
+                            @if (loginResult.Permissins.Contains("C") || loginResult.Permissins.Equals("ALL"))
+                            {
+                                <li><a class="treeview-item" href="/PersonnelPermissions/PermissionsInterface/"><i class="icon fa fa-circle-o"></i> 员工工作状态管理</a></li>
+                            }
+                            @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
+                            {
+                                <li><a class="treeview-item" href="/PersonnelPosition/Index/"><i class="icon fa fa-circle-o"></i>职位信息管理</a></li>
+                            }
 
-        @RenderBody()
-    </main>
+                        </ul>
+                    </li>
+                }
+                @if (loginResult.Permissins.Contains("E") || loginResult.Permissins.Equals("ALL"))
+                {
+                    <li class="treeview">
+                        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">考勤管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a class="treeview-item" href="/Checking/AccountRules"><i class="icon fa fa-circle-o"></i> 日考勤管理</a></li>
+                            <li><a class="treeview-item" href="/Checking/MonthAccount"><i class="icon fa fa-circle-o"></i>月考勤管理</a></li>
+                        </ul>
+                    </li>
+                }
+                @if (loginResult.Permissins.Contains("I") || loginResult.Permissins.Equals("ALL"))
+                {
+                    <li class="treeview">
+                        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">财务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a class="treeview-item" href="/Finnance/SettleWage"><i class="icon fa fa-circle-o"></i> 工资管理</a></li>
+                        </ul>
+                    </li>
+                }
+                @if (loginResult.Permissins.Contains("L") || loginResult.Permissins.Equals("ALL"))
+                {
+                    <li class="treeview">
+                        <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">请假管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a class="treeview-item" href="/Leave/AddRest"><i class="icon fa fa-circle-o"></i> 请假申请</a></li>
+                            <li><a class="treeview-item" href="/Leave/Index"><i class="icon fa fa-circle-o"></i> 请假信息查看</a></li>
+                        </ul>
+                    </li>
+                }
+
+            </ul>
+        </aside>
+        <main class="app-content">
+            <div class="app-title">
+                <div>
+                    @*<h1><i class="fa fa-dashboard"></i> 首页</h1>
+                        <p>A free and open source Bootstrap 4 admin template</p>*@
+                </div>
+                <ul class="app-breadcrumb breadcrumb">
+                    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                    <li class="breadcrumb-item"><a href="/Account/Maininterface/">首页</a></li>
+                </ul>
+            </div>
+
+            @RenderBody()
+        </main>
 
     </div>
 </body>
@@ -236,20 +235,25 @@
 <script>
     function Sign() {
         $.ajax({
-            url: "",
+            url: "http://localhost:59776/api/APIAttendance",
             type: "post",
-            data: {
-                '': JSON.stringify({Eid:@loginResult.EID})
-            },
+            data: { '':@loginResult.EID},
+            dataType: "text",
             success: function (data) {
                 if (data == 0) {
-                    layer.msg('未在打卡时间段!', { icon: 0 });
+                    layer.msg('未在签到时间段!', { icon: 0 });
+                    var msg = new SpeechSynthesisUtterance("未在签到时间段！");
+                    window.speechSynthesis.speak(msg);
                 }
                 else if (data == 1) {
                     layer.msg('签到成功!', { icon: 1 });
+                    var msg = new SpeechSynthesisUtterance("签到成功！");
+                    window.speechSynthesis.speak(msg);
                 }
                 else if (data == 2) {
-                    layer.msg('已打卡', { icon: 2 });
+                    layer.msg('已签到', { icon: 2 });
+                    var msg = new SpeechSynthesisUtterance("已签到！");
+                    window.speechSynthesis.speak(msg);
                 }
             }
         })

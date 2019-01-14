@@ -4,7 +4,6 @@
 }
 
 @*<h2 style="text-align:center">员工职位信息</h2>*@
-<h2>离职人员</h2>
 <div>
     <form class="form-inline">
         <div class="form-group">
@@ -12,15 +11,17 @@
             <input type="text" class="form-control" id="txtxm" placeholder="请输入姓名" autocomplete="off">
         </div>
         <button type="button" class="btn btn-info" onclick="sel()">查询</button>
-        <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelPermissions/EntryView'" />
+
     </form>
+
     <table class="table table-bordered" style="background-color:#ffffff;text-align:center">
         <thead>
             <tr>
                 <td>员工编号</td>
-                <td>员工姓名</td>
                 <td>入职时间</td>
                 <td>离职时间</td>
+                <td>状态</td>
+                <td>操作</td>
             </tr>
         </thead>
         <tbody id="tb"></tbody>
@@ -52,7 +53,7 @@
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td></tr>");
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + (data[i].Pstatic == true ? "在职" : "离职") + "</td><td><input id='btnEdit' type='button' class='btn btn - info' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
                 }
             }
         });
@@ -87,7 +88,7 @@
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td></tr>");
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' class='btn btn - info' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
                 }
             }
         })
