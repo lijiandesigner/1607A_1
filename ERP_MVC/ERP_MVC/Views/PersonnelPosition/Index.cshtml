@@ -3,6 +3,9 @@
     ViewBag.Title = "员工职位";
 }
 @*<h2>显示职位</h2>*@
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
 <div>
     <from class="form-inline">
         <div class="form-group">
@@ -37,9 +40,7 @@
         </tr>
     </table>
 </div>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
+
 <script>
     //显示
     $(function () {
@@ -63,11 +64,11 @@
                 dataType: 'text',
                 success: function (data) {
                     if (data > 0) {
-                        layer.msg('删除成功', {icon:1});
+                        layer.msg('删除成功', { icon: 1 });
                         location.reload();
                     }
                     else {
-                        layer.msg('删除失败', { icon:0 });
+                        layer.msg('删除失败', { icon: 0 });
                     }
                 }
             });

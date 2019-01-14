@@ -280,6 +280,7 @@
     <Content Include="Views\PersonnelPermissions\PermissionsInterface.cshtml" />
     <Content Include="Views\PersonnelInfomation\FomationInfoface.cshtml" />
     <Content Include="Views\Checking\adfadsfdasf.cshtml" />
+    <Content Include="Views\PersonnelPermissions\EntryView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
