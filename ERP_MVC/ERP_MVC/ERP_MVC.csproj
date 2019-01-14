@@ -227,6 +227,7 @@
     <Content Include="Scripts\js\popper.min.js" />
     <Content Include="Scripts\layer-v3.0.3\demo.html" />
     <Content Include="Scripts\layer-v3.0.3\layer\layer.js" />
+    <Content Include="Scripts\layer-v3.0.3\layer\layui.css" />
     <Content Include="Scripts\layer-v3.0.3\layer\mobile\layer.js" />
     <Content Include="Scripts\layer-v3.0.3\layer\mobile\need\layer.css" />
     <Content Include="Scripts\layer-v3.0.3\layer\skin\default\icon-ext.png" />
