@@ -15,10 +15,9 @@
         <thead>
             <tr>
                 <td>员工编号</td>
+                <td>员工姓名</td>
                 <td>入职时间</td>
                 <td>离职时间</td>
-                <td>状态</td>
-                <td>操作</td>
             </tr>
         </thead>
         <tbody id="tb"></tbody>
@@ -50,48 +49,50 @@
             dataType: 'json',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + (data[i].Pstatic == true ? "在职" : "离职") + "</td><td><input id='btnEdit' type='button' class='btn btn - info' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td></tr>");
                 }
             }
         });
     });
     //删除
-    function del(id) {
-        if (confirm("确认删除么？")) {
-            $.ajax({
-                url: 'http://localhost:59776/api/position/' + id,
-                type: 'delete',
-                dataType: 'text',
-                success: function (data) {
-                    if (data > 0) {
-                        layer.msg('删除成功', {icon:1});
-                        location.reload();
-                    }
-                    else {
-                        layer.msg('删除失败', { icon:0 });
-                    }
-                }
-            });
-        }
-    }
+    //function del(id) {
+    //    if (confirm("确认删除么？")) {
+    //        $.ajax({
+    //            url: 'http://localhost:59776/api/position/' + id,
+    //            type: 'delete',
+    //            dataType: 'text',
+    //            success: function (data) {
+    //                if (data > 0) {
+    //                    layer.msg('删除成功', {icon:1});
+    //                    location.reload();
+    //                }
+    //                else {
+    //                    layer.msg('删除失败', { icon:0 });
+    //                }
+    //            }
+    //        });
+    //    }
+    //}
     //查询
     function sel() {
         var xm = $("#txtxm").val();
         $.ajax({
             url: 'http://localhost:59776/api/PersonMessage',
             type: 'get',
-            data: { PID: xm, },
+            data: { EName: xm, },
             dataType: 'json',
             success: function (data) {
                 $("#tb").empty();
                 for (var i = 0; i < data.length; i++) {
-                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td><td>" + data[i].Pstatic + "</td><td><input id='btnEdit' class='btn btn - info' type='button' value='修改' onclick='edit(" + data[i].PID + ")' /></tr>");
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + data[i].PeBeginWork + "</td><td>" + data[i].PeEndwork + "</td></tr>");
                 }
             }
         })
     }
     function edit(id) {
         location.href = "/PersonnelPermissions/Edit/" + id;
+        
     }
+    
 </script>
 
