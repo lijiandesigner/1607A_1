@@ -109,7 +109,7 @@ namespace ERP_Dal
         /// <param name="EName">员工姓名</param>
         /// <param name="Pstatic">工作状态</param>
         /// <returns></returns>
-        public static List<EmployeeInfos> GetEmployeeInfos( string ENo,string EName ,bool Pstatic)
+        public static List<EmployeeInfos> GetEmployeeInfos()
         {
             using (EFContext Context = new EFContext())
             {
@@ -132,7 +132,7 @@ namespace ERP_Dal
                                                  PeBeginWork = c.PeBeginWork,
                                                  PeEndwork = c.PeEndwork,
                                                  Pstatic = c.Pstatic
-                                             }).Where(u => ENo == null ? true : u.ENo == ENo).Where(u => EName == null ? true : u.EName == EName).Where(u =>u.Pstatic == Pstatic).ToList();
+                                             }).ToList();
                 return infos;
             }
         }

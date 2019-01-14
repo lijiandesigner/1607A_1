@@ -28,9 +28,9 @@ namespace ERP_Bll
         /// <param name="EName">员工姓名</param>
         /// <param name="Pstatic">工作状态</param>
         /// <returns></returns>
-        public static List<EmployeeInfos> GetEmployeeInfos(string ENo, string EName, bool Pstatic)
+        public static List<EmployeeInfos> GetEmployeeInfos()
         {
-            return EmployeeInfoDal.GetEmployeeInfos(ENo, EName, Pstatic);
+            return EmployeeInfoDal.GetEmployeeInfos();
         }
         /// <summary>
         /// 根据员工ID获取单个对象
