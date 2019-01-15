@@ -18,13 +18,10 @@ namespace ERP_API.Controllers
         /// <summary>
         /// 根据条件获取员工信息
         /// </summary>
-        /// <param name="ENo">员工编号</param>
-        /// <param name="EName">员工姓名</param>
-        /// <param name="Pstatic">工作状态</param>
         /// <returns></returns>
-        public List<EmployeeInfos> Get(bool Pstatic, string ENo = null, string EName = null)
+        public List<EmployeeInfos> Get()
         {
-            return EmployeeInfoBll.GetEmployeeInfos(ENo, EName, Pstatic);
+            return EmployeeInfoBll.GetEmployeeInfos();
         }
         /// <summary>
         /// 根据员工ID获取单个对象
