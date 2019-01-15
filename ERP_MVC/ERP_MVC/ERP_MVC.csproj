@@ -131,6 +131,7 @@
     <Compile Include="Controllers\PersonnelInfomationController.cs" />
     <Compile Include="Controllers\PersonnelPermissionsController.cs" />
     <Compile Include="Controllers\PersonnelPositionController.cs" />
+    <Compile Include="Filters\LoginAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
