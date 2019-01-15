@@ -131,6 +131,7 @@
     <Compile Include="Controllers\PersonnelInfomationController.cs" />
     <Compile Include="Controllers\PersonnelPermissionsController.cs" />
     <Compile Include="Controllers\PersonnelPositionController.cs" />
+    <Compile Include="Filter\LoginAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,7 +281,6 @@
     <Content Include="Views\PersonnelPosition\Index.cshtml" />
     <Content Include="Views\PersonnelPermissions\PermissionsInterface.cshtml" />
     <Content Include="Views\PersonnelInfomation\FomationInfoface.cshtml" />
-    <Content Include="Views\Checking\adfadsfdasf.cshtml" />
     <Content Include="Views\PersonnelPermissions\EntryView.cshtml" />
   </ItemGroup>
   <ItemGroup>

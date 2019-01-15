@@ -5,8 +5,8 @@
 }
 @using ERP_MVC.Models
 @{
-    string str = Request.Cookies["cookie"]["eno"];
-    LoginResult loginResult = Session[str] as LoginResult;
+    //string str = Request.Cookies["cookie"]["eno"];
+    LoginResult loginResult = Session["Login"] as LoginResult;
 }
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -35,18 +35,18 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>@item.ENo</td>
-                                <td>@item.EName</td>
-                                <td>@item.PoName</td>
-                                <td>@item.Rtype</td>
-                                <td>@item.RBeginTime</td>
-                                <td>@item.REndTime</td>
-                                <td>@item.RemarkInfo</td>
-                                <td>@item.ReAuditTime</td>
-                                <td id='s @item.RID'>@item.Restatic</td>
-                                <td class="@(item.Restatic!="待审批"?"che":"")"><input id='btnAgree @item.RID' class='btn btn - info float-left' type='button' onclick='Agree(@item.RID)' value='同意' /><input id='btnReject @item.RID' class='btn btn - info float-left' type='button' onclick='Reject(@item.RID)' value='驳回' /></td>
-                            </tr>
+                        <tr>
+                            <td>@item.ENo</td>
+                            <td>@item.EName</td>
+                            <td>@item.PoName</td>
+                            <td>@item.Rtype</td>
+                            <td>@item.RBeginTime</td>
+                            <td>@item.REndTime</td>
+                            <td>@item.RemarkInfo</td>
+                            <td>@item.ReAuditTime</td>
+                            <td id='s @item.RID'>@item.Restatic</td>
+                            <td class="@(item.Restatic!="待审批"?"che":"")"><input id='btnAgree @item.RID' class='btn btn - info float-left' type='button' onclick='Agree(@item.RID)' value='同意' /><input id='btnReject @item.RID' class='btn btn - info float-left' type='button' onclick='Reject(@item.RID)' value='驳回' /></td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -55,40 +55,39 @@
     </div>
 </div>
 <script>
-    $(function () {
-        $(".che").empty();
-        $(".page-link").click(function () {
-            setTimeout(function () {
-                var c = $(".che");
-                c.empty();}, 50)
-        })
-    });
-    function Agree(RID) {
-        $.ajax({
-            url: 'http://localhost:59776/api/Rest?RID=' + RID + '&Restatic=1',
-            type: 'put',
-            dataType: 'text',
-            success: function (data) {
-                if (data > 0) {
-                    layer.msg('审批成功', { icon: 1 });
-                    location.href = '/Leave/Index';
+        $(function () {
+            $(".che").empty();
+            $(".page-link").click(function () {
+                setTimeout(function () {
+                    var c = $(".che");
+                    c.empty();}, 50)
+            })
+        });
+        function Agree(RID) {
+            $.ajax({
+                url: 'http://localhost:59776/api/Rest?RID=' + RID + '&Restatic=1',
+                type: 'put',
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        layer.msg('审批成功', { icon: 1 });
+                        location.href = '/Leave/Index';
+                    }
                 }
-            }
-        })
-    }
-    function Reject(RID) {
-        $.ajax({
-            url: 'http://localhost:59776/api/Rest?RID=' + RID + '&Restatic=0',
-            type: 'put',
-            dataType: 'text',
-            success: function (data) {
-                if (data > 0) {
-                    layer.msg('审批成功', { icon: 1 });
-                    location.href = '/Leave/Index';
+            })
+        }
+        function Reject(RID) {
+            $.ajax({
+                url: 'http://localhost:59776/api/Rest?RID=' + RID + '&Restatic=0',
+                type: 'put',
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        layer.msg('审批成功', { icon: 1 });
+                        location.href = '/Leave/Index';
+                    }
                 }
-            }
-        })
-
-    }
+            })
+        }
 
 </script>
