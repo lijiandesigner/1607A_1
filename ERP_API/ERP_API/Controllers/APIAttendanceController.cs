@@ -32,7 +32,7 @@ namespace ERP_API.Controllers
         /// <returns></returns>
         public int Post([FromBody]int EID)
         {
-            return AttendanceInfoBll.DK(EID,DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"));
+            return AttendanceInfoBll.DK(EID,DateTime.Now.ToString());
         }
         
     }

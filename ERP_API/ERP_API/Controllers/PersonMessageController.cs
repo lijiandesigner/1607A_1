@@ -14,13 +14,11 @@ namespace ERP_API.Controllers
         /// <summary>
         /// 根据条件查询员工工作状态
         /// </summary>
-        /// <param name="ENo">员工编号</param>
-        /// <param name="EName">员工姓名</param>
         /// <param name="Static">工作状态</param>
         /// <returns></returns>
-        public List<WorkState> Get(string ENo=null, string EName=null, string Static=null)
+        public List<WorkState> Get(bool Static)
         {
-            return PersonMessageBll.Get(ENo, EName, Static);
+            return PersonMessageBll.Get(Static);
         }
         /// <summary>
         /// 员工工作状态修改

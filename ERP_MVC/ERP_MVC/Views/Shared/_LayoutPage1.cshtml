@@ -88,7 +88,8 @@
                             }
                             @if (loginResult.Permissins.Contains("C") || loginResult.Permissins.Equals("ALL"))
                             {
-                                <li><a class="treeview-item" href="/PersonnelPermissions/PermissionsInterface/"><i class="icon fa fa-circle-o"></i> 员工工作状态管理</a></li>
+                                <li><a class="treeview-item" href="/PersonnelPermissions/EntryView/"><i class="icon fa fa-circle-o"></i> 员工在职状态</a></li>
+                                <li><a class="treeview-item" href="/PersonnelPermissions/PermissionsInterface/"><i class="icon fa fa-circle-o"></i> 员工离职状态</a></li>
                             }
                             @if (loginResult.Permissins.Contains("A") || loginResult.Permissins.Equals("ALL"))
                             {
@@ -148,6 +149,9 @@
     </div>
 </body>
 </html>
+
+
+
 <!-- Essential javascripts for application to work-->
 <script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
 <script src="~/Scripts/js/popper.min.js"></script>
