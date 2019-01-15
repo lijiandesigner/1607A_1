@@ -11,7 +11,7 @@ namespace ERP_Dal
     {
         // @Ajax.Pager(Model, new PagerOptions { PageIndexParameterName = "id", ContainerTagName = "ul", CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>" }, new MvcAjaxOptions { HttpMethod="post",UpdateTargetId="divGoods",DataFormId="form0"})
 
-        public static string connStr = "Data Source =10.1.155.80;Initial Catalog = XiangMuDataBase;User Id = sa;Password = zcx123;";
+        public static string connStr = "Data Source =10.1.155.84;Initial Catalog = XiangMuDataBase;User Id = sa;Password = zcx123;";
         public static SqlConnection cnn = new SqlConnection(connStr);
 
         /// <summary>
