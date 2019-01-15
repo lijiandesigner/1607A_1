@@ -26,13 +26,14 @@ namespace ERP_Dal
             using (EFContext Context = new EFContext())
             {
                 SqlParameter[] parameters = new SqlParameter[3];
-                parameters[0]= new SqlParameter("@EID",EID );
-                parameters[1] = new SqlParameter("@AttendanceTime", AttendanceTime);
-                parameters[2] = new SqlParameter("@Result", SqlDbType.Int);
+                parameters[0]= new SqlParameter("EID",EID );
+                parameters[1] = new SqlParameter("AttendanceTime", AttendanceTime);
+                parameters[2] = new SqlParameter("Result", SqlDbType.Int);
                 parameters[2].Direction = ParameterDirection.Output;
-                var articles = Context.Database.SqlQuery<GZ>("exec prco_DaKa @EID,@AttendanceTime,@Result output", parameters).ToList();
-                int b = Convert.ToInt32(parameters[2].Value);
-                return b;
+                //var articles = Context.Database.SqlQuery(typeof(int), "exec prco_DaKa @EID,@AttendanceTime,@Result output", parameters).ToListAsync();
+                DBHelperProc.ExecuteNonQuery("prco_DaKa", parameters);
+                int res = Convert.ToInt32(parameters[2].Value);
+                return res;
             }
         }
         /// <summary>

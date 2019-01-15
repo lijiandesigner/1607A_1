@@ -35,7 +35,7 @@
       <HintPath>..\..\..\..\..\Desktop\桌面\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\..\Desktop\桌面\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />

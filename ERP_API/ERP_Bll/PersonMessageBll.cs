@@ -13,13 +13,11 @@ namespace ERP_Bll
         /// <summary>
         /// 根据条件查询员工工作状态
         /// </summary>
-        /// <param name="ENo">员工编号</param>
-        /// <param name="EName">员工姓名</param>
         /// <param name="Static">工作状态</param>
         /// <returns></returns>
-        public static List<WorkState> Get(string ENo, string EName, string Static)
+        public static List<WorkState> Get(bool Static)
         {
-            return PersonMessageDal.Get(ENo, EName, Static);
+            return PersonMessageDal.Get(Static);
         }
         /// <summary>
         /// 员工工作状态修改
