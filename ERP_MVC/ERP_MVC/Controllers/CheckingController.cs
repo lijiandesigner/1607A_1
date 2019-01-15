@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using ERP_MVC.Models;
+using ERP_MVC.Filter;
 
 namespace ERP_MVC.Controllers
 {
@@ -15,7 +16,7 @@ namespace ERP_MVC.Controllers
         /// 日考勤管理
         /// </summary>
         /// <returns></returns>
-        
+        [LoginAuthorization]
         public ActionResult AccountRules()
         {
             string json = Helpers.HttpClientHelper.SendRequest("api/APIAttendance", "Get");
@@ -26,6 +27,7 @@ namespace ERP_MVC.Controllers
         /// 月考勤管理
         /// </summary>
         /// <returns></returns>
+        [LoginAuthorization]
         public ActionResult MonthAccount()
         {
             string json = Helpers.HttpClientHelper.SendRequest("api/APIMonthattendance", "Get");

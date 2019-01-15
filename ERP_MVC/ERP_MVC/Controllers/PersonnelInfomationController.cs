@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
 using ERP_MVC.Helpers;
+using ERP_MVC.Filter;
 
 namespace ERP_MVC.Controllers
 {
@@ -17,14 +18,17 @@ namespace ERP_MVC.Controllers
         // GET: PersonnelInfomation
        
         [HttpGet]
+        [LoginAuthorization]
         public ActionResult  FomationInfoface()
         {
             return View();
         }
+        [LoginAuthorization]
         public ActionResult Add()
         {
             return View();
         }
+        [LoginAuthorization]
         public ActionResult Edit(int id)
         {
             ViewBag.Id = id;

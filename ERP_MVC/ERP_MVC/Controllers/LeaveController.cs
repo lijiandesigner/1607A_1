@@ -7,6 +7,7 @@ using ERP_MVC.Helpers;
 using Newtonsoft.Json;
 using System.Net.Http;
 using ERP_MVC.Models;
+using ERP_MVC.Filter;
 
 namespace ERP_MVC.Controllers
 {
@@ -18,6 +19,7 @@ namespace ERP_MVC.Controllers
         /// <returns></returns>
         // GET: Leave
         [HttpGet]
+        [LoginAuthorization]
         public ActionResult Index()
         {
             string json = HttpClientHelper.SendRequest("http://localhost:59776/api/Rest", "get");
@@ -25,6 +27,7 @@ namespace ERP_MVC.Controllers
             return View(leaves);
         }
         [HttpGet]
+        [LoginAuthorization]
         public ActionResult AddRest()
         {
             return View();

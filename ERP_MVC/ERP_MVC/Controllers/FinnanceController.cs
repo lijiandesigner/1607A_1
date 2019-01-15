@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ERP_MVC.Helpers;
 using ERP_MVC.Models;
 using Newtonsoft.Json;
+using ERP_MVC.Filter;
 
 namespace ERP_MVC.Controllers
 {
@@ -16,6 +17,7 @@ namespace ERP_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: Finnance
+        [LoginAuthorization]
         public ActionResult SettleWage()
         {
             string json = HttpClientHelper.SendRequest("http://localhost:59776/api/Financial", "get");
