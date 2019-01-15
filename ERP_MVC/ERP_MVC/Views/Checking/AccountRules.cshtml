@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ERP_MVC.Models.AttendanceDay>
+@using ERP_MVC.Models
+@{
+    ViewBag.Title = "日考勤信息";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body"> 
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>员工编号</th>
+                            <th>上午上班打卡时间</th>
+                            <th>上午下班打卡时间</th>
+                            <th>下午上班打卡时间</th>
+                            <th>下午下班打卡时间</th>
+                            <th>迟到分钟数</th>
+                            <th>迟到分钟数</th>
+                            <th>状态</th>
+                            <th>考勤日期</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th style="text-align:center">@item.ENo</th>
+                                <th style="text-align:center">@item.AMBeginTime</th>
+                                <th style="text-align:center">@item.AMEndTime</th>
+                                <th style="text-align:center">@item.AABeginTime</th>
+                                <th style="text-align:center">@item.AAEndTime</th>
+                                <th style="text-align:center">@item.ABeLateTime</th>
+                                <th style="text-align:center">@item.ALeaveTime</th>
+                                <th style="text-align:center">@item.AStatic</th>
+                                <th style="text-align:center">@item.Adate</th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<script>
+    //显示表格
+    function ShowAccount() {
+        $(function () {
+            $.ajax({
+                url: '',
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    var str = "";
+                    for (var i in data) {
+                        str += "<tr>"
+                        "+ < td > " + data[i].EID + "</td > "
+                        "+< td > " + data[i].AMBeginTime + "</td >"
+                        "+< td > " + data[i].AMEndTime + "</td >"
+                        "+< td > " + data[i].AABeginTime + "</td > "
+                        "+< td > " + data[i].AAEndTime + "</td > "
+                        "+< td > " + data[i].ABeLateTime + "</td > "
+                        "+< td > " + data[i].ALeaveTime + "</td >"
+                        "+< td > " + data[i].Static + "</td > "
+                        "+< td > " + data[i].Adate + "</td >"
+                        "+</tr > ";
+                    }
+                    $("#tb").html(str);
+                }
+            });
+        });
+    }
+</script>
+

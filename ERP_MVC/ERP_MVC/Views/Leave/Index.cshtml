@@ -5,8 +5,8 @@
 }
 @using ERP_MVC.Models
 @{
-    string str = Request.Cookies["cookie"]["eno"];
-    LoginResult loginResult = Session[str] as LoginResult;
+    //string str = Request.Cookies["cookie"]["eno"];
+    LoginResult loginResult = Session["Login"] as LoginResult;
 }
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
