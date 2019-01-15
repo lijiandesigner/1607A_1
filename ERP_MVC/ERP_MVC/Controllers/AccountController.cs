@@ -29,9 +29,9 @@ namespace ERP_MVC.Controllers
             {
                 //List<EmployeeInfo> infos = JsonConvert.DeserializeObject<List<EmployeeInfo>>(result);
                 //EmployeeInfo e = infos.FirstOrDefault();
-                if (Session[loginResult.ENo] != null)
-                { Session.Remove(loginResult.ENo); }
-                Session[loginResult.ENo] = loginResult;
+                if (Session["Login"] != null)
+                { Session.Remove("Login"); }
+                Session["Login"] = loginResult;
                 HttpCookie cok = Request.Cookies["cookie"];
                 if (cok == null)
                 {
