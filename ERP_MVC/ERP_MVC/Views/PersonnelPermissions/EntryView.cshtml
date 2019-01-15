@@ -42,7 +42,7 @@
     //显示
     $(function () {
         $.ajax({
-            url: 'http://localhost:59776/api/PersonMessage',
+            url: 'http://localhost:59776/api/PersonMessage?Static=true',
             type: 'get',
             dataType: 'json',
             success: function (data) {
