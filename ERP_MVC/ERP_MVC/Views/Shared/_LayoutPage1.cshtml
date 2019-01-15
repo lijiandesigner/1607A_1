@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 @using ERP_MVC.Models
 @{
-    string str = Request.Cookies["cookie"]["eno"];
-    LoginResult loginResult = Session[str] as LoginResult;
+    //string str = Request.Cookies["cookie"]["eno"];
+    LoginResult loginResult = Session["Login"] as LoginResult;
 }
 <html>
 <head>
