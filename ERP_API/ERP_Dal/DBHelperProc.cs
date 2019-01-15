@@ -11,7 +11,7 @@ namespace ERP_Dal
     {
         // @Ajax.Pager(Model, new PagerOptions { PageIndexParameterName = "id", ContainerTagName = "ul", CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>" }, new MvcAjaxOptions { HttpMethod="post",UpdateTargetId="divGoods",DataFormId="form0"})
 
-        public static string connStr = "Data Source=.;Initial Catalog=work;Integrated Security=True";
+        public static string connStr = "Data Source =10.1.155.84;Initial Catalog = XiangMuDataBase;User Id = sa;Password = zcx123;";
         public static SqlConnection cnn = new SqlConnection(connStr);
 
         /// <summary>
@@ -116,13 +116,13 @@ namespace ERP_Dal
         /// <returns></returns>
         public static int ExecuteNonQuery(string procName, SqlParameter[] paras)
         {
-            Open();
+            cnn.Open();
             SqlCommand command = new SqlCommand(procName, cnn);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddRange(paras);
 
             int result = command.ExecuteNonQuery();
-            Close();
+            cnn.Close();
 
             return result;
 
