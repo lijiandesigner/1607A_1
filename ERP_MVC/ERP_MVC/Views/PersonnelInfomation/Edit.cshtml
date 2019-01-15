@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="control-label col-md-3">员工姓名</label>
                         <div class="col-md-8">
-                            <input id="txtxm" type="text" class="form-control" placeholder="由2-3个汉字组成" autocomplete="off" onblur="fun2();" />
+                            <input id="txtxm" type="text" class="form-control" placeholder="由2-4个汉字组成" autocomplete="off" onblur="fun2();" />
                             <span id="s2"></span>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
     }
     function fun2() {
         var username = $("#txtxm").val();
-        var reg = /^[\u4e00-\u9fa5]{2,3}$/;
+        var reg = /^[\u4e00-\u9fa5]{2,4}$/;
         if (username == '') {
             $("#s2").html("<font color='red'>姓名不能为空</font>");
             return false;
@@ -162,7 +162,7 @@
                 return flag;
 
             } else {
-                $("#s2").html("<font color='blue'>由2-3位汉字组成</font>");
+                $("#s2").html("<font color='blue'>由2-4位汉字组成</font>");
                 return false;
             }
         }
