@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<html>
+<head>
+    <title>Edit</title>
+</head>
+<body>
+    <div class="container">
+        <hr />
+        <input id="hidId" type="hidden" name="hidId" value="@ViewBag.Id" />
+        <div class="col-md-6" style="margin-left:300px">
+            <div class="tile">
+                <h3 class="tile-title" style="text-align:center">人事管理编辑</h3>
+                <div class="tile-body">
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">员工ID</label>
+                            <div class="col-md-8">
+                                <input id="txtygid" type="text" autocomplete="off" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">入职时间</label>
+                            <div class="col-md-8">
+                                <input id="txtrzsj" type="text" class="form-control" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">离职时间</label>
+                            <div class="col-md-8">
+                                <input id="txtlzsj" class="form-control" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',readOnly:false})" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">状态</label>
+                            <div class="col-md-8">
+                                <input id="rad1" class="rad" type="radio" name="rad" value="true" checked="checked" />是
+                                <input id="rad2" class="rad" type="radio" name="rad" value="false" />否
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tile-footer">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-3">
+                            <input id="Button2" type="button" value="保存" class="btn btn-primary" onclick="save()" />
+                            <input id="Button1" type="button" value="返回" class="btn btn-dark" onclick="location.href='/PersonnelPermissions/PermissionsInterface'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
+<script>
+    $(function () {
+        var Id = $("#hidId").val();
+        //反填
+        $.ajax({
+            url: 'http://localhost:59776/api/PersonMessage/' + Id,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                if (data != null) {
+                    $("#txtbh").val(data.ENo);
+                    $("#txtrzsj").val(data.PeBeginWork);
+                    $("#txtlzsj").val(data.PeEndwork);
+                    $(".rad[value='" + (data.Pstatic == true ? '在职' : '离职') + "']").prop("checked", true);
+                }
+            }
+        });
+    });
+    function save() {
+        //接收
+        var Id = $("#hidId").val();
+        var bh = $("#txtbh").val();
+        var rzsj = $("#txtrzsj").val();
+        var lzsj = $("#txtlzsj").val();
+        var zt = $(".rad:checked").val();
+        //传值
+        $.ajax({
+            url: 'http://localhost:59776/api/PersonMessage',
+            type: 'put',
+            data: {
+                '': JSON.stringify({ PID: Id, EID: bh, PeBeginWork: rzsj, PeEndwork: lzsj, Pstatic: zt })
+            },
+            dataType: 'text',
+            success: function (data) {
+                if (data > 0) {
+                    layer.msg('修改成功', { icon: 1 });
+                    location.href = '/PersonnelPermissions/Index';
+                }
+                else {
+                    layer.msg('修改失败', { icon: 0 });
+                }
+            }
+        });
+    }
+</script>

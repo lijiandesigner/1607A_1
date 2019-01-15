@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "员工职位";
+}
+@*<h2>显示职位</h2>*@
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
+<div>
+    <from class="form-inline">
+        <div class="form-group">
+            <input id="Button1" type="button" value="添加职位信息" class="btn btn-success" onclick="location.href='/PersonnelPosition/Add'" />
+        </div>
+    </from>
+    <table class="table table-bordered" style="text-align:center;background-color:#ffffff">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>职位名称</td>
+                <td>职位级别</td>
+                <td>底薪</td>
+                <td>权限</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    <table class="table table-bordered">
+        <tr>
+            <td></td>
+            <td align="right">
+                <input id="Button1" type="button" value="首页" class="btn btn-default" />
+                <input id="Button1" type="button" value="上一页" class="btn btn-default" />
+                <input id="Button1" type="button" value="①" class="btn btn-default" />
+                <input id="Button1" type="button" value="②" class="btn btn-default" />
+                <input id="Button1" type="button" value="③" class="btn btn-default" />
+                <input id="Button1" type="button" value="下一页" class="btn btn-default" />
+                <input id="Button1" type="button" value="尾页" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    //显示
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:59776/api/position',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].PoID + "</td><td>" + data[i].PoName + "</td><td>" + data[i].PoLeave + "</td><td>" + data[i].PoMinMoney + "</td><td>" + data[i].Permission + "</td><td><input id='btnEdit' class='btn btn - info' type='button' value='修改' onclick='edit(" + data[i].PoID + ")' /><input id='btnDel' type='button' class='btn btn - info' value='删除' onclick='del(" + data[i].PoID + ")' /></td></tr>");
+                }
+            }
+        });
+    });
+    //删除
+    function del(id) {
+        if (confirm("确认删除么？")) {
+            $.ajax({
+                url: 'http://localhost:59776/api/position/' + id,
+                type: 'delete',
+                dataType: 'text',
+                success: function (data) {
+                    if (data > 0) {
+                        layer.msg('删除成功', { icon: 1 });
+                        location.reload();
+                    }
+                    else {
+                        layer.msg('删除失败', { icon: 0 });
+                    }
+                }
+            });
+        }
+    }
+    function edit(id) {
+        location.href = "/PersonnelPosition/Edit/" + id;
+    }
+</script>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "EntryView";
+}
+<h2>在职人员</h2>
+<div>
+    <form class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" id="txtxm" placeholder="请输入姓名" autocomplete="off">
+        </div>
+        <button type="button" class="btn btn-info" onclick="sel()">查询</button>
+    </form>
+    <table class="table table-bordered" style="background-color:#ffffff;text-align:center">
+        <thead>
+            <tr>
+                <td>员工编号</td>
+                <td>员工姓名</td>
+                <td>入职时间</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+    </table>
+    <table class="table table-bordered" style="border:none">
+        <tr>
+            <td></td>
+            <td align="right">
+                <input id="Button1" type="button" value="首页" class="btn btn-info" />
+                <input id="Button1" type="button" value="上一页" class="btn btn-info" />
+                <input id="Button1" type="button" value="①" class="btn btn-info" />
+                <input id="Button1" type="button" value="②" class="btn btn-info" />
+                <input id="Button1" type="button" value="③" class="btn btn-info" />
+                <input id="Button1" type="button" value="下一页" class="btn btn-info" />
+                <input id="Button1" type="button" value="尾页" class="btn btn-info" />
+            </td>
+        </tr>
+    </table>
+</div>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/layer-v3.0.3/layer/layer.js"></script>
+<script>
+    //显示
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:59776/api/PersonMessage',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + data[i].PeBeginWork + "</td><td><input id='btnEdit' type='button' value='离职' onclick='edit(" + data[i].PID + ")' /></tr>");
+                }
+            }
+        });
+    });
+    //查询
+    function sel() {
+        var xm = $("#txtxm").val();
+        $.ajax({
+            url: 'http://localhost:59776/api/PersonMessage',
+            type: 'get',
+            data: { PID: xm, },
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#tb").append("<tr><td>" + data[i].ENo + "</td><td>" + data[i].EName + "</td><td>" + data[i].PeBeginWork + "</td><td><input id='btnEdit' type='button' value='离职' onclick='edit(" + data[i].PID + ")' /></tr>");
+                }
+            }
+        })
+    }
+    function edit(id) {
+        //location.href = "/PersonnelPermissions/Edit/" + id;
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['630px', '360px'], //宽高
+            content: 'hello'
+        });
+    }
+</script>
