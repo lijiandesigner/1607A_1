@@ -61,7 +61,7 @@ namespace ERP_Dal
                     };
                     PersonMessage person = Context.PersonMessage.Attach(work);
                     person.PeEndwork = workState.PeEndwork;
-                    person.Pstatic = workState.Pstatic;
+                    person.Pstatic = false;
                     return Context.SaveChanges();
                 }
                 catch (Exception)

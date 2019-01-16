@@ -42,7 +42,7 @@
     //显示
     $(function () {
         $.ajax({
-            url: 'http://localhost:59776/api/PersonMessage',
+            url: 'http://localhost:59776/api/PersonMessage?Static=true',
             type: 'get',
             dataType: 'json',
             success: function (data) {
@@ -69,12 +69,12 @@
         })
     }
     function edit(id) {
-        //location.href = "/PersonnelPermissions/Edit/" + id;
-        layer.open({
-            type: 1,
-            skin: 'layui-layer-rim', //加上边框
-            area: ['630px', '360px'], //宽高
-            content: 'hello'
-        });
+        location.href = "/PersonnelPermissions/Add/" + id;
+        //layer.open({
+        //    type: 1,
+        //    skin: 'layui-layer-rim', //加上边框
+        //    area: ['630px', '360px'], //宽高
+        //    content: 'hello'
+        //});
     }
 </script>
