@@ -40,7 +40,7 @@
         var id = $("#hidId").val();
         var lzsj = $("#txtlzsj").val();
         $.ajax({
-            url: 'http://localhost:59776/api/PersonMessage',
+            url: 'http://localhost:59776/api/PersonMessage/',
             type: 'put',
             data: { PID:id,PeEndwork: lzsj },
             dataType: 'text',
